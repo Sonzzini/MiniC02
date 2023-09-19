@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct MiniC02App: App {
+	
+	@StateObject private var viewModel = ViewModel()
+	
     var body: some Scene {
         WindowGroup {
             ContentView()
+				  .environmentObject(viewModel)
         }
     }
 }
