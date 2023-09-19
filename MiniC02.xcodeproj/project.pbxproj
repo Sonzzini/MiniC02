@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4A2A6C62ABA3740002C4115 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C52ABA3740002C4115 /* PostView.swift */; };
+		B4A2A6C82ABA3748002C4115 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C72ABA3748002C4115 /* HomeView.swift */; };
 		E9E7261D2A9551C800D63EDF /* MiniC02App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E7261C2A9551C800D63EDF /* MiniC02App.swift */; };
 		E9E7261F2A9551C800D63EDF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E7261E2A9551C800D63EDF /* ContentView.swift */; };
 		E9E726212A9551C800D63EDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9E726202A9551C800D63EDF /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B4A2A6C52ABA3740002C4115 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		B4A2A6C72ABA3748002C4115 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E9E726192A9551C800D63EDF /* MiniC02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniC02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E7261C2A9551C800D63EDF /* MiniC02App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniC02App.swift; sourceTree = "<group>"; };
 		E9E7261E2A9551C800D63EDF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +36,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4A2A6C42ABA36FF002C4115 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B4A2A6C52ABA3740002C4115 /* PostView.swift */,
+				B4A2A6C72ABA3748002C4115 /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E9E726102A9551C800D63EDF = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +64,7 @@
 		E9E7261B2A9551C800D63EDF /* MiniC02 */ = {
 			isa = PBXGroup;
 			children = (
+				B4A2A6C42ABA36FF002C4115 /* Views */,
 				E9E7261C2A9551C800D63EDF /* MiniC02App.swift */,
 				E9E7261E2A9551C800D63EDF /* ContentView.swift */,
 				E9E726202A9551C800D63EDF /* Assets.xcassets */,
@@ -138,6 +152,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9E7261F2A9551C800D63EDF /* ContentView.swift in Sources */,
+				B4A2A6C82ABA3748002C4115 /* HomeView.swift in Sources */,
+				B4A2A6C62ABA3740002C4115 /* PostView.swift in Sources */,
 				E9E7261D2A9551C800D63EDF /* MiniC02App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
