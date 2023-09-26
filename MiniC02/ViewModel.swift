@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+// Ponte entre a View e o Model (instancia as coisas que as Views recebem)
 
 class ViewModel: ObservableObject {
 	@Published var users: [User]
