@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+	
+	@EnvironmentObject var eventC: EventCRU
+	
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+		 List {
+			 ForEach(eventC.events) { event in
+				 Text("\(event.id)")
+				 Text(event.event.title)
+				 Text(event.event.location)
+					 .padding(.bottom)
+			 }
+		 }
+		 .onAppear {
+			 eventC.getEvents()
+		 }
     }
 }
 

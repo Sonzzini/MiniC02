@@ -11,11 +11,13 @@ import SwiftUI
 struct MiniC02App: App {
 	
 	@StateObject private var viewModel = ViewModel()
+	var eventC = EventCRU()
 	
     var body: some Scene {
         WindowGroup {
             ContentView()
 				  .environmentObject(viewModel)
+				  .environmentObject(eventC)
         }
     }
 }
