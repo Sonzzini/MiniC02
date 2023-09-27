@@ -12,16 +12,21 @@ struct ContentView: View {
 	@EnvironmentObject var eventC: EventCRU
 	
     var body: some View {
-		 List {
-			 ForEach(eventC.events) { event in
-				 Text("\(event.id)")
-				 Text(event.event.title)
-				 Text(event.event.location)
-					 .padding(.bottom)
+		 NavigationStack {
+			 NavigationLink(destination: EventPostView()) {
+				 Text("Got to event post view")
 			 }
-		 }
-		 .onAppear {
-			 eventC.getEvents()
+			 List {
+				 ForEach(eventC.events) { event in
+					 Text("\(event.id)")
+					 Text(event.event.title)
+					 Text(event.event.location)
+						 .padding(.bottom)
+				 }
+			 }
+			 .onAppear {
+				 eventC.getEvents()
+			 }
 		 }
     }
 }
