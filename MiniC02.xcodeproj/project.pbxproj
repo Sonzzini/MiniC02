@@ -11,7 +11,10 @@
 		19683E492ABA3B7B006896B9 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19683E482ABA3B7B006896B9 /* UserView.swift */; };
 		B4A2A6C62ABA3740002C4115 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C52ABA3740002C4115 /* PostView.swift */; };
 		B4A2A6C82ABA3748002C4115 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C72ABA3748002C4115 /* HomeView.swift */; };
-		B4A2A6CB2ABA3FFF002C4115 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6CA2ABA3FFF002C4115 /* SwiftUIView.swift */; };
+		B4A2A6CB2ABA3FFF002C4115 /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */; };
+		E94EA1292AC36C4F003D5DB8 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EA1282AC36C4F003D5DB8 /* EventModel.swift */; };
+		E94EA12B2AC36D0C003D5DB8 /* EventCRU.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EA12A2AC36D0C003D5DB8 /* EventCRU.swift */; };
+		E94EA12D2AC4C126003D5DB8 /* EventPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EA12C2AC4C126003D5DB8 /* EventPostView.swift */; };
 		E9D397242ABA3940002202F0 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D397232ABA3940002202F0 /* ViewModel.swift */; };
 		E9D397272ABA396B002202F0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D397262ABA396B002202F0 /* UserModel.swift */; };
 		E9D397292ABA3A7F002202F0 /* TagsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D397282ABA3A7F002202F0 /* TagsModel.swift */; };
@@ -26,7 +29,10 @@
 		19683E482ABA3B7B006896B9 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		B4A2A6C52ABA3740002C4115 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		B4A2A6C72ABA3748002C4115 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		B4A2A6CA2ABA3FFF002C4115 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		E94EA1282AC36C4F003D5DB8 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		E94EA12A2AC36D0C003D5DB8 /* EventCRU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCRU.swift; sourceTree = "<group>"; };
+		E94EA12C2AC4C126003D5DB8 /* EventPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPostView.swift; sourceTree = "<group>"; };
 		E9D397232ABA3940002202F0 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		E9D397262ABA396B002202F0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		E9D397282ABA3A7F002202F0 /* TagsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsModel.swift; sourceTree = "<group>"; };
@@ -54,6 +60,7 @@
 				B4A2A6C72ABA3748002C4115 /* HomeView.swift */,
 				19683E482ABA3B7B006896B9 /* UserView.swift */,
 				B4A2A6C52ABA3740002C4115 /* PostView.swift */,
+				E94EA12C2AC4C126003D5DB8 /* EventPostView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -63,6 +70,7 @@
 			children = (
 				B4A2A6CA2ABA3FFF002C4115 /* SwiftUIView.swift */,
 				193668422AC1FDF5002BB6A9 /* PlainButton.swift */,
+				B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -73,6 +81,8 @@
 				E9D397232ABA3940002202F0 /* ViewModel.swift */,
 				E9D397262ABA396B002202F0 /* UserModel.swift */,
 				E9D397282ABA3A7F002202F0 /* TagsModel.swift */,
+				E94EA1282AC36C4F003D5DB8 /* EventModel.swift */,
+				E94EA12A2AC36D0C003D5DB8 /* EventCRU.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -143,7 +153,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					E9E726182A9551C800D63EDF = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -187,13 +197,16 @@
 			files = (
 				193668432AC1FDF5002BB6A9 /* PlainButton.swift in Sources */,
 				E9D397242ABA3940002202F0 /* ViewModel.swift in Sources */,
+				E94EA1292AC36C4F003D5DB8 /* EventModel.swift in Sources */,
 				E9E7261F2A9551C800D63EDF /* ContentView.swift in Sources */,
-				B4A2A6CB2ABA3FFF002C4115 /* SwiftUIView.swift in Sources */,
+				B4A2A6CB2ABA3FFF002C4115 /* PostCard.swift in Sources */,
 				E9D397272ABA396B002202F0 /* UserModel.swift in Sources */,
 				B4A2A6C82ABA3748002C4115 /* HomeView.swift in Sources */,
 				19683E492ABA3B7B006896B9 /* UserView.swift in Sources */,
+				E94EA12D2AC4C126003D5DB8 /* EventPostView.swift in Sources */,
 				B4A2A6C62ABA3740002C4115 /* PostView.swift in Sources */,
 				E9D397292ABA3A7F002202F0 /* TagsModel.swift in Sources */,
+				E94EA12B2AC36D0C003D5DB8 /* EventCRU.swift in Sources */,
 				E9E7261D2A9551C800D63EDF /* MiniC02App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +250,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -297,6 +311,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
