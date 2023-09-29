@@ -16,6 +16,7 @@ struct MiniC02App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+				  .environment(\.managedObjectContext, CoreDataController.shared.viewContext)
 				  .environmentObject(viewModel)
 				  .environmentObject(eventC)
         }

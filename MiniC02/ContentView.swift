@@ -9,12 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
 	
-	@EnvironmentObject var eventC: EventCRU
+	@Environment(\.managedObjectContext) var moc
+	
+	@EnvironmentObject var eventC : EventCRU
+	@EnvironmentObject var vm : ViewModel
+	
 	
     var body: some View {
 		 NavigationStack {
 			 NavigationLink(destination: EventPostView()) {
-				 Text("Got to event post view")
+				 Text("Go to event post view")
 			 }
 			 List {
 				 ForEach(eventC.events) { event in
@@ -34,5 +38,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+			 .environmentObject(EventCRU())
     }
 }

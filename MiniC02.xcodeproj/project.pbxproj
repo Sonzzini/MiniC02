@@ -12,6 +12,8 @@
 		B4A2A6C62ABA3740002C4115 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C52ABA3740002C4115 /* PostView.swift */; };
 		B4A2A6C82ABA3748002C4115 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C72ABA3748002C4115 /* HomeView.swift */; };
 		B4A2A6CB2ABA3FFF002C4115 /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */; };
+		E939209F2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E939209D2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld */; };
+		E93920A12AC5FD2200E74361 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93920A02AC5FD2200E74361 /* CoreDataController.swift */; };
 		E94EA1292AC36C4F003D5DB8 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EA1282AC36C4F003D5DB8 /* EventModel.swift */; };
 		E94EA12B2AC36D0C003D5DB8 /* EventCRU.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EA12A2AC36D0C003D5DB8 /* EventCRU.swift */; };
 		E94EA12D2AC4C126003D5DB8 /* EventPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EA12C2AC4C126003D5DB8 /* EventPostView.swift */; };
@@ -30,6 +32,8 @@
 		B4A2A6C52ABA3740002C4115 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		B4A2A6C72ABA3748002C4115 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		E939209E2AC5FC1700E74361 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		E93920A02AC5FD2200E74361 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		E94EA1282AC36C4F003D5DB8 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		E94EA12A2AC36D0C003D5DB8 /* EventCRU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCRU.swift; sourceTree = "<group>"; };
 		E94EA12C2AC4C126003D5DB8 /* EventPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPostView.swift; sourceTree = "<group>"; };
@@ -68,7 +72,6 @@
 		B4A2A6C92ABA3FE3002C4115 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				B4A2A6CA2ABA3FFF002C4115 /* SwiftUIView.swift */,
 				193668422AC1FDF5002BB6A9 /* PlainButton.swift */,
 				B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */,
 			);
@@ -108,6 +111,8 @@
 			children = (
 				E9E7261C2A9551C800D63EDF /* MiniC02App.swift */,
 				E9E7261E2A9551C800D63EDF /* ContentView.swift */,
+				E939209D2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld */,
+				E93920A02AC5FD2200E74361 /* CoreDataController.swift */,
 				B4A2A6C92ABA3FE3002C4115 /* Components */,
 				B4A2A6C42ABA36FF002C4115 /* Views */,
 				E9D397252ABA395F002202F0 /* Models */,
@@ -197,6 +202,7 @@
 			files = (
 				193668432AC1FDF5002BB6A9 /* PlainButton.swift in Sources */,
 				E9D397242ABA3940002202F0 /* ViewModel.swift in Sources */,
+				E93920A12AC5FD2200E74361 /* CoreDataController.swift in Sources */,
 				E94EA1292AC36C4F003D5DB8 /* EventModel.swift in Sources */,
 				E9E7261F2A9551C800D63EDF /* ContentView.swift in Sources */,
 				B4A2A6CB2ABA3FFF002C4115 /* PostCard.swift in Sources */,
@@ -207,6 +213,7 @@
 				B4A2A6C62ABA3740002C4115 /* PostView.swift in Sources */,
 				E9D397292ABA3A7F002202F0 /* TagsModel.swift in Sources */,
 				E94EA12B2AC36D0C003D5DB8 /* EventCRU.swift in Sources */,
+				E939209F2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld in Sources */,
 				E9E7261D2A9551C800D63EDF /* MiniC02App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +417,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E939209D2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E939209E2AC5FC1700E74361 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = E939209E2AC5FC1700E74361 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E9E726112A9551C800D63EDF /* Project object */;
 }

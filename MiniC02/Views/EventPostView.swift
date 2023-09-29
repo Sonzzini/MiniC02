@@ -9,6 +9,8 @@ import SwiftUI
 
 struct EventPostView: View {
 	
+	@Environment(\.dismiss) private var dismiss
+	
 	@State private var title: String = "" // ON
 	@State private var desc: String = "" // OFF
 	@State private var date: String = "" // ON
@@ -28,7 +30,7 @@ struct EventPostView: View {
 					Button(action: {
 						print("AAAAAA")
 					}, label: {
-						RoundedRectangle(cornerRadius: 25.0)
+						Image(systemName: "plus")
 					})
 				} header: {
 					Text("Coloque uma foto/vídeo!")
@@ -53,6 +55,7 @@ struct EventPostView: View {
 					Button("Criar") {
 						let event = EventModel(id: 0, event: EventModel.Event(title: title, desc: desc, date: date, time: time, location: location, neighborhood: neighborhood, hostname: hostname))
 						eventC.postEvent(event: event)
+						dismiss()
 					}
 				}
 			}

@@ -10,8 +10,10 @@ import Foundation
 class EventCRU: ObservableObject {
 	@Published var events: [EventModel] = []
 	
+	private let baseURL = "https://deafevents.onrender.com"
+	
 	func getEvents() {
-		guard let url = URL(string: "http://10.44.48.21:3000/events") else { fatalError("Missing URL") }
+		guard let url = URL(string: "\(baseURL)/events") else { fatalError("Missing URL") }
 		
 		let urlRequest = URLRequest(url: url)
 		
@@ -37,34 +39,11 @@ class EventCRU: ObservableObject {
 		}
 		dataTask.resume()
 	}
+
 	
-	/*
-	func postEvent(event: EventModel) {
-		guard let url = URL(string: "https://10.44.48.23:3000/events") else {
-			print("Failed to get URL")
-			return
-		}
-		
-		var request = URLRequest(url: url)
-		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-		request.httpMethod = "POST"
-		
-		// implementando na branch feat/postAPI
-		guard let encoded = try? JSONEncoder().encode(event) else {
-			print("Failed to encode event")
-			return
-		}
-		
-		
-	}
-	 */
-	
-	func request(_ absoluteURL: String, completion: @escaping (Result<Void, Error>) -> Void) {
-		
-	}
 	
 	func postEvent(event: EventModel) {
-		guard let url = URL(string: "http://10.44.48.21:3000/events") else { fatalError("Missing URL") }
+		guard let url = URL(string: "\(baseURL)/events") else { fatalError("Missing URL") }
 		
 		guard let jsonData = try? JSONEncoder().encode(event) else {
 			print("Error trying to convert model to JSON data")
