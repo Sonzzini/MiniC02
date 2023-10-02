@@ -12,7 +12,7 @@ struct SwiftUIView: View {
         Button("Continuar") {
             print("oi")
         }
-        .buttonStyle(PlainButton())
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
