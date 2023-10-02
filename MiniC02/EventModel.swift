@@ -8,18 +8,15 @@
 import Foundation
 
 struct EventModel: Identifiable, Codable {
-	var id: Int
-	var event: Event
-	
-	struct Event: Codable {
-		var title: String
-		var desc: String
-		var date: String
-		var time: String
-		var location: String
-		var neighborhood: String
-		var hostname: String
-	}
+	var id: String?
+	var title: String
+	var desc: String
+	var date: String
+	var time: String
+	var location: String
+	var neighborhood: String
+	var hostname: String
+	var imagename: String
 }
 
 

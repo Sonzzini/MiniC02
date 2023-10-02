@@ -18,6 +18,7 @@ struct EventPostView: View {
 	@State private var location: String = "" // ON
 	@State private var neighborhood: String = "" // ON
 	@State private var hostname: String = "" // OFF
+	@State private var imagename: String = "image1"
 	
 	
 	@EnvironmentObject var eventC: EventCRU
@@ -53,7 +54,15 @@ struct EventPostView: View {
 				}
 				ToolbarItem(placement: .confirmationAction) {
 					Button("Criar") {
-						let event = EventModel(id: 0, event: EventModel.Event(title: title, desc: desc, date: date, time: time, location: location, neighborhood: neighborhood, hostname: hostname))
+						let event = EventModel(
+							title: title,
+							desc: desc,
+							date: date,
+							time: time,
+							location: location,
+							neighborhood: neighborhood,
+							hostname: hostname,
+							imagename: imagename)
 						eventC.postEvent(event: event)
 						dismiss()
 					}

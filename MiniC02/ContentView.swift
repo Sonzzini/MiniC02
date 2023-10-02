@@ -13,7 +13,7 @@ struct ContentView: View {
 	
 	@EnvironmentObject var eventC : EventCRU
 	@EnvironmentObject var vm : ViewModel
-	
+	//a
 	
     var body: some View {
 		 NavigationStack {
@@ -22,10 +22,11 @@ struct ContentView: View {
 			 }
 			 List {
 				 ForEach(eventC.events) { event in
-					 Text("\(event.id)")
-					 Text(event.event.title)
-					 Text(event.event.location)
+					 Text("\(event.id ?? "ops")")
+					 Text(event.title)
+					 Text(event.location)
 						 .padding(.bottom)
+					 Image(event.imagename)
 				 }
 			 }
 			 .onAppear {

@@ -10,6 +10,8 @@ import Foundation
 class EventCRU: ObservableObject {
 	@Published var events: [EventModel] = []
 	
+//	private let baseURL = "http://10.44.48.21:3000"
+//	private let baseURL = "http://localhost:3000"
 	private let baseURL = "https://deafevents.onrender.com"
 	
 	func getEvents() {
