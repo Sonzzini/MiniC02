@@ -7,30 +7,48 @@
 
 import SwiftUI
 
+// Essa tela precisa de CoreData
 struct CadastroView: View {
     @State private var name = ""
     var body: some View {
-        VStack {
-            Image("hiLibras")
-                .resizable()
-                .frame(width: 129, height: 134.7)
-                .padding(.bottom, 24)
-            
-            Text("Vamos começar, qual é o seu nome?")
-                .font(.custom("SF-Pro", size: 19))
-                .padding(.bottom, 35)
-            
-            TextField("Seu Nome", text: $name)
-                .font(.custom("SF-Pro", size: 28))
-                .fixedSize()
-                .fontWeight(.bold) // não fica em bold :(((((((
-                .padding(.horizontal, 131)
-            
-            Button("Continuar") {
-                print("aa")
+        NavigationStack {
+            VStack {
+                Image("hiLibras")
+                    .resizable()
+                    .frame(width: 129, height: 134.7)
+                    .padding(.bottom, 24)
+                
+                Text("Vamos começar, qual é o seu nome?")
+                    .font(.custom("SF Pro", size: 19))
+                    .fontWeight(.semibold)
+                    .padding(.bottom, 35)
+                
+                TextField("Seu Nome", text: $name)
+                    .font(.custom("SF Pro", size: 28))
+                    .fixedSize()
+                    .fontWeight(.bold)
+                    .padding(.horizontal, 131)
+                
+                if name == "" {
+                    Button("Continuar") {
+                        print()
+                    }
+                    .frame(width: 361, height: 44)
+                    .font(.custom("SF Pro", size: 20))
+                    .fontWeight(.semibold)
+                    .foregroundColor(.black)
+                    .background(Color("LightBlue"))
+                    .cornerRadius(8)
+                    .disabled(true)
+                    .padding(.top, 357)
+                } else {
+                    NavigationLink("Continuar") {
+                        TagView()
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .padding(.top, 357)
+                }
             }
-            .buttonStyle(PlainButtonStyle())
-            .padding(.top, 357)
         }
     }
 }

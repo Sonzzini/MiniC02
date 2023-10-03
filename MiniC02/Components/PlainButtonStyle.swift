@@ -7,25 +7,15 @@
 
 import SwiftUI
 
-struct PlainButton: ButtonStyle {
+struct PlainButtonStyle: ButtonStyle {
 	 func makeBody(configuration: Configuration) -> some View {
 		  configuration.label
 				.frame(width: 361, height: 44)
 				.font(.custom("SF Pro", size: 20))
 				.fontWeight(.semibold)
-				.foregroundColor(configuration.isPressed ? .gray: .black)
-				.background(configuration.isPressed ? Color("DarkBlue"): Color("LightBlue"))
+				.foregroundColor(configuration.isPressed ? .black: .white)
+				.background(configuration.isPressed ? Color("LightBlue"): Color("DarkBlue"))
 				.cornerRadius(8)
 	 }
 }
 
-struct PlainButton_Previews: PreviewProvider {
-	 static var previews: some View {
-		  Button {
-				print("aaaAAaaa")
-		  } label: {
-				Text("Continuar")
-		  }
-		  .buttonStyle(PlainButton())
-	 }
-}
