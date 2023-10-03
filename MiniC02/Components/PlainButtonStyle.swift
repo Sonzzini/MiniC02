@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PlainButton: ButtonStyle {
+struct PlainButtonStyle: ButtonStyle {
 	 func makeBody(configuration: Configuration) -> some View {
 		  configuration.label
 				.frame(width: 361, height: 44)
@@ -26,6 +26,6 @@ struct PlainButton_Previews: PreviewProvider {
 		  } label: {
 				Text("Continuar")
 		  }
-		  .buttonStyle(PlainButton())
+		  .buttonStyle(PlainButtonStyle())
 	 }
 }
