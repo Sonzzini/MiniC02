@@ -28,21 +28,21 @@ struct TagView: View {
 				
 				
 			}
-			.toolbar {
-				ToolbarItem(placement: .automatic) {
-					Button {
-						showingSheet.toggle()
-					} label: {
-						Image(systemName: "info.circle.fill")
-							.foregroundStyle(Color("DarkBlue"))
-					}
-					.sheet(isPresented: $showingSheet) {
-						TagInformationView()
-					}
-				}
-				
-				
-			}
+//			.toolbar {
+//				ToolbarItem(placement: .automatic) {
+//					Button {
+//						showingSheet.toggle()
+//					} label: {
+//						Image(systemName: "info.circle.fill")
+//							.foregroundStyle(Color("DarkBlue"))
+//					}
+//					.sheet(isPresented: $showingSheet) {
+//						TagInformationView()
+//					}
+//				}
+//				
+//				
+//			}
 		}
 	}
 }

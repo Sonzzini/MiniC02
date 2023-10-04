@@ -27,11 +27,14 @@ struct EventView: View {
 						Text(event.title)
 							.font(Font.custom("SF Pro", size: 28))
 							.padding(.top, 14)
+                            .bold()
 						
 						EventDescription
+                            .padding(.vertical)
 						
 						EventInfo
-						
+                            .padding(.vertical)
+
 						Button("Eu vou") {
 							print("eu vou")
 						}
@@ -123,8 +126,8 @@ extension EventView {
 				.font(Font.custom("SF Pro Text", size: 17)
 					.weight(.semibold))
 				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
-				.padding(.top, 27)
-				.padding(.bottom, 10)
+				.padding(.top)
+				.padding(.bottom, 5)
 			
 			Text(event.desc)
 				.font(Font.custom("SF Pro", size: 17))
