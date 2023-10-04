@@ -14,7 +14,9 @@ struct HomeView: View {
 	
 	@EnvironmentObject var eventC : EventCRU
 	@EnvironmentObject var vm : ViewModel
-		
+	
+	@State var firstLoginSheetIsPresented: Bool = false
+	
 	let date = Date.now
 
 	var body: some View {
@@ -30,6 +32,7 @@ struct HomeView: View {
 			}
 			.onAppear {
 				eventC.getEvents()
+				vm.isFirstLoginQuestion(firstLoginSheetIsPresented: &firstLoginSheetIsPresented)
 				
 				UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
 				UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
@@ -38,14 +41,16 @@ struct HomeView: View {
 			}
 			.navigationTitle("Hoje")
 		}
+		.fullScreenCover(isPresented: $firstLoginSheetIsPresented) {
+			TutorialView()
+		}
+		
 	}
 }
 
-struct HomeView_Previews: PreviewProvider {
-	static var previews: some View {
+#Preview {
 		HomeView()
 			.environmentObject(EventCRU())
-	}
 }
 
 extension HomeView {

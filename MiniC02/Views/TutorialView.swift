@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BemVindoView: View {
+struct TutorialView: View {
     var body: some View {
         NavigationStack {
             VStack {
@@ -15,12 +15,12 @@ struct BemVindoView: View {
                     Spacer(minLength: 105)
                     Image("hiLibras")
                         .padding(26)
-                    Text(tutorialInformation[0])
-                        .font(Font.custom("SF Pro", size: 24))
-                        .fontWeight(.semibold)
-                        .fixedSize()
-                        .multilineTextAlignment(.center)
-                        .kerning(-0.4)
+//                    Text(tutorialInformation[0])
+//                        .font(Font.custom("SF Pro", size: 24))
+//                        .fontWeight(.semibold)
+//                        .fixedSize()
+//                        .multilineTextAlignment(.center)
+//                        .kerning(-0.4)
                 }
                 Button("Continuar") {
                     print("aaa")
@@ -45,5 +45,5 @@ struct BemVindoView: View {
 }
 
 #Preview {
-    BemVindoView()
+	TutorialView()
 }

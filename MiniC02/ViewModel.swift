@@ -4,35 +4,18 @@
 //
 //  Created by Paulo Sonzzini Ribeiro de Souza on 19/09/23.
 //
-
+import UIKit
 import Foundation
 import SwiftUI
 import CoreData
 // Ponte entre a View e o Model (instancia as coisas que as Views recebem)
 
 class ViewModel: ObservableObject {
-//	@Published var users: [User]
-//	
-//	init() {
-//		self.users = [
-//			User(name: "Dondetos",
-//				  username: "paulosonzzini",
-//				  Image: "PauloProfilePic",
-//				  tags: [Tag(identifier: "1"), Tag(identifier: "2")]),
-//			User(name: "lau b.",
-//				  username: "laurinha",
-//				  Image: "LauraProfilePic",
-//				  tags: [Tag(identifier: "1"), Tag(identifier: "3")])
-//		]
-//	}
-//	
-//	func addUser(user: User) {
-//		self.users.append(user)
-//	}
 	
 	@Published var profiles: [Profile] = []
 	@Published var controller: [Controller] = []
 	@Published var context: NSManagedObjectContext
+	
 	
 	init() {
 		self.context = CoreDataController.shared.viewContext
@@ -48,6 +31,52 @@ class ViewModel: ObservableObject {
 	
 	func DELETECOREDATA() {
 		CoreDataController.shared.DELETEALL()
+	}
+	
+	func isFirstLoginQuestion(firstLoginSheetIsPresented: inout Bool) {
+		getController()
+		
+		if controller.isEmpty {
+			firstLoginSheetIsPresented.toggle()
+			
+			let controller = Controller(context: context)
+			controller.firstLogin = false
+			
+			self.controller = [controller]
+			
+			try? context.save()
+		}
+
+		
+	}
+	
+	func removeWhitespacesFromString(mStr: String) -> String {
+		 let filteredChar = mStr.filter { !$0.isWhitespace }
+		 return String(filteredChar)
+	}
+	
+	func setupProfile(name: String, tags: [Int]) {
+		getProfile()
+		
+		if profiles.isEmpty {
+			let profile = Profile(context: context)
+			profile.imagename = name
+			profile.name = name
+			profile.username = removeWhitespacesFromString(mStr: name).lowercased()
+			
+			for num in tags {
+				let tagObj = Tag(context: context)
+				tagObj.num = Int16(num)
+				
+				profile.addToRelationship(tagObj)
+			}
+			
+			profile.profileid = UUID()
+
+			
+			
+			try? context.save()
+		}
 	}
 	
 }
