@@ -20,6 +20,7 @@ struct EventPostView: View {
 	@State private var hostname: String = "" // OFF
 	@State private var imagename: String = "image1"
 	
+    
 	
 	@EnvironmentObject var eventC: EventCRU
 	
@@ -46,7 +47,24 @@ struct EventPostView: View {
 				} header: {
 					Text("Informações")
 				}
+                
+                Section {
+//                    Picker(<#T##LocalizedStringKey#>, selection: <#T##Binding<SelectionValue>#>, content: <#T##() -> Content#>)
+                        } header: {
+                    Text("Selecione as acessibilidades do evento:")
+                }
 				
+                Section {
+                    ZStack{
+                        Rectangle()
+                            .foregroundColor(.clear)
+                            .frame(width: 359, height: 157)
+                            .background(Color(red: 0.98, green: 0.98, blue: 0.98))
+                            .cornerRadius(20)
+                    }
+                } header: {
+                    Text("Adicione uma descrição do evento: ")
+                }
 			}
 			.toolbar {
 				ToolbarItem(placement: .principal) {

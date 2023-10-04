@@ -100,10 +100,10 @@ extension EventView {
 				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
 			
 			// MARK: bagulho dos designers
-			HStack{
-				Image(systemName: "")
-				Text("Intérpretes e legendas")
-			}
+		//	HStack{
+//				Image(systemName: "acessibility")
+//				Text("Intérpretes e legendas")
+//			}
 			// MARK: Acaba bagulho
 			
 			HStack{
@@ -112,7 +112,7 @@ extension EventView {
 				Image(systemName: "clock")
 				Text(event.time)
 			}
-			
+            .padding(.vertical)
 			HStack{
 				Image(systemName: "mappin")
 				Text(event.location + " - " + event.neighborhood)
