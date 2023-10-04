@@ -9,10 +9,9 @@ import SwiftUI
 
 // Essa tela precisa de CoreData
 struct CadastroView: View {
-	
 	@EnvironmentObject var vm: ViewModel
-	
 	@State private var name = ""
+    
 	var body: some View {
 		NavigationStack {
 			VStack {
