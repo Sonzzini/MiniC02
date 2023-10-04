@@ -17,10 +17,11 @@
 		1995B72C2ACCC6EE00908B4B /* TagInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B72B2ACCC6EE00908B4B /* TagInformationView.swift */; };
 		19D367332AC5F70E00F0D926 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D367322AC5F70E00F0D926 /* OnboardingView.swift */; };
 		19D367362AC5F9CF00F0D926 /* TagButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D367352AC5F9CF00F0D926 /* TagButtonStyle.swift */; };
-		B4A2A6C62ABA3740002C4115 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C52ABA3740002C4115 /* PostView.swift */; };
+		B4A2A6C62ABA3740002C4115 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C52ABA3740002C4115 /* EventView.swift */; };
 		B4A2A6C82ABA3748002C4115 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C72ABA3748002C4115 /* HomeView.swift */; };
 		B4A2A6CB2ABA3FFF002C4115 /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */; };
 		E938F5722ACB5C180049874E /* PlainButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E938F5712ACB5C180049874E /* PlainButtonStyle.swift */; };
+		E938F5742ACB5FB50049874E /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E938F5732ACB5FB50049874E /* EventCard.swift */; };
 		E939209F2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E939209D2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld */; };
 		E93920A12AC5FD2200E74361 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93920A02AC5FD2200E74361 /* CoreDataController.swift */; };
 		E94EA1292AC36C4F003D5DB8 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94EA1282AC36C4F003D5DB8 /* EventModel.swift */; };
@@ -47,10 +48,11 @@
 		1995B72B2ACCC6EE00908B4B /* TagInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInformationView.swift; sourceTree = "<group>"; };
 		19D367322AC5F70E00F0D926 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		19D367352AC5F9CF00F0D926 /* TagButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButtonStyle.swift; sourceTree = "<group>"; };
-		B4A2A6C52ABA3740002C4115 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		B4A2A6C52ABA3740002C4115 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		B4A2A6C72ABA3748002C4115 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
-		E938F5712ACB5C180049874E /* PlainButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainButtonStyle.swift; sourceTree = "<group>"; };
+		E938F5712ACB5C180049874E /* PlainButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlainButtonStyle.swift; path = ../Components/PlainButtonStyle.swift; sourceTree = "<group>"; };
+		E938F5732ACB5FB50049874E /* EventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
 		E939209E2AC5FC1700E74361 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		E93920A02AC5FD2200E74361 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		E94EA1282AC36C4F003D5DB8 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		19D367342AC5F8A600F0D926 /* Style */ = {
 			isa = PBXGroup;
 			children = (
+				E938F5712ACB5C180049874E /* PlainButtonStyle.swift */,
 				19D367352AC5F9CF00F0D926 /* TagButtonStyle.swift */,
 			);
 			path = Style;
@@ -99,7 +102,7 @@
 				1995B71B2ACB3D4E00908B4B /* TagButtonView.swift */,
 				B4A2A6C72ABA3748002C4115 /* HomeView.swift */,
 				19683E482ABA3B7B006896B9 /* UserView.swift */,
-				B4A2A6C52ABA3740002C4115 /* PostView.swift */,
+				B4A2A6C52ABA3740002C4115 /* EventView.swift */,
 				E94EA12C2AC4C126003D5DB8 /* EventPostView.swift */,
 				19D367322AC5F70E00F0D926 /* OnboardingView.swift */,
 				1952496B2AC606BD003D986A /* TutorialView.swift */,
@@ -114,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */,
-				E938F5712ACB5C180049874E /* PlainButtonStyle.swift */,
+				E938F5732ACB5FB50049874E /* EventCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -261,10 +264,11 @@
 				19683E492ABA3B7B006896B9 /* UserView.swift in Sources */,
 				1995B72A2ACCC0D500908B4B /* TagView.swift in Sources */,
 				E94EA12D2AC4C126003D5DB8 /* EventPostView.swift in Sources */,
-				B4A2A6C62ABA3740002C4115 /* PostView.swift in Sources */,
+				B4A2A6C62ABA3740002C4115 /* EventView.swift in Sources */,
 				1995B71C2ACB3D4E00908B4B /* TagButtonView.swift in Sources */,
 				E9D397292ABA3A7F002202F0 /* TagsModel.swift in Sources */,
 				1995B72C2ACCC6EE00908B4B /* TagInformationView.swift in Sources */,
+				E938F5742ACB5FB50049874E /* EventCard.swift in Sources */,
 				E94EA12B2AC36D0C003D5DB8 /* EventCRU.swift in Sources */,
 				E939209F2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld in Sources */,
 				E9E7261D2A9551C800D63EDF /* MiniC02App.swift in Sources */,
@@ -399,7 +403,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MiniC02/Preview Content\"";
-				DEVELOPMENT_TEAM = YHC26T5B2D;
+				DEVELOPMENT_TEAM = 7FZ4ZHZT5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MiniC02/Info.plist;
@@ -430,7 +434,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MiniC02/Preview Content\"";
-				DEVELOPMENT_TEAM = YHC26T5B2D;
+				DEVELOPMENT_TEAM = 7FZ4ZHZT5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MiniC02/Info.plist;

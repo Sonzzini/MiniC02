@@ -6,19 +6,58 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct HomeView: View {
-    var body: some View {
-		 NavigationStack {
-			 ScrollView {
-				 
-			 }
-		 }
-    }
+	
+	@Environment(\.managedObjectContext) var moc
+	
+	@EnvironmentObject var eventC : EventCRU
+	@EnvironmentObject var vm : ViewModel
+		
+	let date = Date.now
+
+	var body: some View {
+		NavigationStack {
+			ScrollView {
+				
+				Subtitle
+				
+				ForEach(eventC.events) { event in
+					EventCard(event: event)
+						.padding(.bottom)
+				}
+			}
+			.onAppear {
+				eventC.getEvents()
+				
+				UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
+				UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
+
+				
+			}
+			.navigationTitle("Hoje")
+		}
+	}
 }
 
 struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
+	static var previews: some View {
+		HomeView()
+			.environmentObject(EventCRU())
+	}
+}
+
+extension HomeView {
+	
+	private var Subtitle: some View {
+		HStack {
+			Text(date, style: .date)
+				.foregroundStyle(Color("DarkYellow"))
+				.font(.system(size: 27, weight: .semibold))
+				.padding(.horizontal)
+			
+			Spacer()
+		}
+	}
 }
