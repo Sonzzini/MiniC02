@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1952496C2AC606BD003D986A /* BemVindoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1952496B2AC606BD003D986A /* BemVindoView.swift */; };
+		1952496C2AC606BD003D986A /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1952496B2AC606BD003D986A /* TutorialView.swift */; };
 		19683E492ABA3B7B006896B9 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19683E482ABA3B7B006896B9 /* UserView.swift */; };
 		1995B7182AC7436200908B4B /* CadastroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B7172AC7436200908B4B /* CadastroView.swift */; };
 		1995B71C2ACB3D4E00908B4B /* TagButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B71B2ACB3D4E00908B4B /* TagButtonView.swift */; };
+		1995B7232ACCA5C500908B4B /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1995B7222ACCA5C500908B4B /* SF-Pro.ttf */; };
+		1995B7282ACCB79B00908B4B /* TutorialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B7272ACCB79B00908B4B /* TutorialModel.swift */; };
+		1995B72A2ACCC0D500908B4B /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B7292ACCC0D400908B4B /* TagView.swift */; };
+		1995B72C2ACCC6EE00908B4B /* TagInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B72B2ACCC6EE00908B4B /* TagInformationView.swift */; };
 		19D367332AC5F70E00F0D926 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D367322AC5F70E00F0D926 /* OnboardingView.swift */; };
 		19D367362AC5F9CF00F0D926 /* TagButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D367352AC5F9CF00F0D926 /* TagButtonStyle.swift */; };
 		B4A2A6C62ABA3740002C4115 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C52ABA3740002C4115 /* EventView.swift */; };
@@ -33,10 +37,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1952496B2AC606BD003D986A /* BemVindoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BemVindoView.swift; sourceTree = "<group>"; };
+		1952496B2AC606BD003D986A /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		19683E482ABA3B7B006896B9 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		1995B7172AC7436200908B4B /* CadastroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadastroView.swift; sourceTree = "<group>"; };
 		1995B71B2ACB3D4E00908B4B /* TagButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButtonView.swift; sourceTree = "<group>"; };
+		1995B7222ACCA5C500908B4B /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
+		1995B7262ACCA70200908B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1995B7272ACCB79B00908B4B /* TutorialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialModel.swift; sourceTree = "<group>"; };
+		1995B7292ACCC0D400908B4B /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		1995B72B2ACCC6EE00908B4B /* TagInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInformationView.swift; sourceTree = "<group>"; };
 		19D367322AC5F70E00F0D926 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		19D367352AC5F9CF00F0D926 /* TagButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButtonStyle.swift; sourceTree = "<group>"; };
 		B4A2A6C52ABA3740002C4115 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
@@ -70,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1995B7212ACCA5B700908B4B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1995B7222ACCA5C500908B4B /* SF-Pro.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		19D367342AC5F8A600F0D926 /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,8 +105,10 @@
 				B4A2A6C52ABA3740002C4115 /* EventView.swift */,
 				E94EA12C2AC4C126003D5DB8 /* EventPostView.swift */,
 				19D367322AC5F70E00F0D926 /* OnboardingView.swift */,
-				1952496B2AC606BD003D986A /* BemVindoView.swift */,
+				1952496B2AC606BD003D986A /* TutorialView.swift */,
 				1995B7172AC7436200908B4B /* CadastroView.swift */,
+				1995B7292ACCC0D400908B4B /* TagView.swift */,
+				1995B72B2ACCC6EE00908B4B /* TagInformationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -106,6 +125,7 @@
 		E9D397252ABA395F002202F0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1995B7272ACCB79B00908B4B /* TutorialModel.swift */,
 				E9D397232ABA3940002202F0 /* ViewModel.swift */,
 				E9D397262ABA396B002202F0 /* UserModel.swift */,
 				E9D397282ABA3A7F002202F0 /* TagsModel.swift */,
@@ -134,6 +154,8 @@
 		E9E7261B2A9551C800D63EDF /* MiniC02 */ = {
 			isa = PBXGroup;
 			children = (
+				1995B7262ACCA70200908B4B /* Info.plist */,
+				1995B7212ACCA5B700908B4B /* Fonts */,
 				E9E7261C2A9551C800D63EDF /* MiniC02App.swift */,
 				E9E7261E2A9551C800D63EDF /* ContentView.swift */,
 				E939209D2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld */,
@@ -215,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9E726242A9551C800D63EDF /* Preview Assets.xcassets in Resources */,
+				1995B7232ACCA5C500908B4B /* SF-Pro.ttf in Resources */,
 				E9E726212A9551C800D63EDF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,8 +249,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1952496C2AC606BD003D986A /* BemVindoView.swift in Sources */,
+				1952496C2AC606BD003D986A /* TutorialView.swift in Sources */,
 				19D367362AC5F9CF00F0D926 /* TagButtonStyle.swift in Sources */,
+				1995B7282ACCB79B00908B4B /* TutorialModel.swift in Sources */,
 				E9D397242ABA3940002202F0 /* ViewModel.swift in Sources */,
 				E93920A12AC5FD2200E74361 /* CoreDataController.swift in Sources */,
 				E94EA1292AC36C4F003D5DB8 /* EventModel.swift in Sources */,
@@ -238,10 +262,12 @@
 				B4A2A6C82ABA3748002C4115 /* HomeView.swift in Sources */,
 				E938F5722ACB5C180049874E /* PlainButtonStyle.swift in Sources */,
 				19683E492ABA3B7B006896B9 /* UserView.swift in Sources */,
+				1995B72A2ACCC0D500908B4B /* TagView.swift in Sources */,
 				E94EA12D2AC4C126003D5DB8 /* EventPostView.swift in Sources */,
 				B4A2A6C62ABA3740002C4115 /* EventView.swift in Sources */,
 				1995B71C2ACB3D4E00908B4B /* TagButtonView.swift in Sources */,
 				E9D397292ABA3A7F002202F0 /* TagsModel.swift in Sources */,
+				1995B72C2ACCC6EE00908B4B /* TagInformationView.swift in Sources */,
 				E938F5742ACB5FB50049874E /* EventCard.swift in Sources */,
 				E94EA12B2AC36D0C003D5DB8 /* EventCRU.swift in Sources */,
 				E939209F2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld in Sources */,
@@ -380,6 +406,8 @@
 				DEVELOPMENT_TEAM = 7FZ4ZHZT5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MiniC02/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -409,6 +437,8 @@
 				DEVELOPMENT_TEAM = 7FZ4ZHZT5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MiniC02/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
