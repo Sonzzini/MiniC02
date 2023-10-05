@@ -18,6 +18,7 @@
 		B4A2A6C62ABA3740002C4115 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C52ABA3740002C4115 /* EventView.swift */; };
 		B4A2A6C82ABA3748002C4115 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C72ABA3748002C4115 /* HomeView.swift */; };
 		B4A2A6CB2ABA3FFF002C4115 /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */; };
+		B4B8A3B52ACF563F001CFFE0 /* DisclosureGroupImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B8A3B42ACF563F001CFFE0 /* DisclosureGroupImageStyle.swift */; };
 		E938F5722ACB5C180049874E /* PlainButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E938F5712ACB5C180049874E /* PlainButtonStyle.swift */; };
 		E938F5742ACB5FB50049874E /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E938F5732ACB5FB50049874E /* EventCard.swift */; };
 		E939209F2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E939209D2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld */; };
@@ -45,6 +46,7 @@
 		B4A2A6C52ABA3740002C4115 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		B4A2A6C72ABA3748002C4115 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
+		B4B8A3B42ACF563F001CFFE0 /* DisclosureGroupImageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclosureGroupImageStyle.swift; sourceTree = "<group>"; };
 		E938F5712ACB5C180049874E /* PlainButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlainButtonStyle.swift; path = ../Components/PlainButtonStyle.swift; sourceTree = "<group>"; };
 		E938F5732ACB5FB50049874E /* EventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
 		E939209E2AC5FC1700E74361 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				E938F5712ACB5C180049874E /* PlainButtonStyle.swift */,
+				B4B8A3B42ACF563F001CFFE0 /* DisclosureGroupImageStyle.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				E938F5722ACB5C180049874E /* PlainButtonStyle.swift in Sources */,
 				19683E492ABA3B7B006896B9 /* UserView.swift in Sources */,
 				1995B72A2ACCC0D500908B4B /* TagView.swift in Sources */,
+				B4B8A3B52ACF563F001CFFE0 /* DisclosureGroupImageStyle.swift in Sources */,
 				B40309462ACE00EF00014998 /* TagInfoItem.swift in Sources */,
 				E94EA12D2AC4C126003D5DB8 /* EventPostView.swift in Sources */,
 				B4A2A6C62ABA3740002C4115 /* EventView.swift in Sources */,

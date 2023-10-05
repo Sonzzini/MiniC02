@@ -11,7 +11,9 @@ struct EventView: View {
 	
 	var event: EventModel
 	@State var salvo: Bool = false
-	
+    @State private var oneOpen: Bool = false
+    @State private var twoOpen: Bool = false
+    
 	var body: some View {
 		NavigationStack {
 			ScrollView{
@@ -51,7 +53,7 @@ struct EventView: View {
 }
 
 #Preview {
-	EventView(event: EventModel(title: "Aniversário do Sabaini", desc: "", date: "19/09/2023 (quarta-feira)", time: "19h", location: "Rua Lacerda de Almeida, 130", neighborhood: "Higienópolis", hostname: "sabainigabriel", imagename: "image2"))
+	EventView(event: EventModel(title: "Aniversário do Sabaini", desc: "", date: "19/09/2023 (quarta-feira)", time: "19h", location: "Rua Lacerda de Almeida, 130", neighborhood: "Higienópolis", hostname: "sabainigabriel", imagename: "image2", acctag: "1" ))
 }
 
 extension EventView {
@@ -100,10 +102,13 @@ extension EventView {
 				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
 			
 			// MARK: bagulho dos designers
-		//	HStack{
-//				Image(systemName: "acessibility")
-//				Text("Intérpretes e legendas")
-//			}
+			VStack{
+                DisclosureGroup("Itens", isExpanded: $oneOpen){
+                    Text("w")
+                }
+                
+                
+			}.padding()
 			// MARK: Acaba bagulho
 			
 			HStack{

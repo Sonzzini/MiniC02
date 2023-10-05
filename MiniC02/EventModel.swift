@@ -17,6 +17,7 @@ struct EventModel: Identifiable, Codable {
 	var neighborhood: String
 	var hostname: String
 	var imagename: String
+    var acctag: String
 }
 
 

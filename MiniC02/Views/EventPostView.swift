@@ -19,9 +19,10 @@ struct EventPostView: View {
 	@State private var neighborhood: String = "" // ON
 	@State private var hostname: String = "" // OFF
 	@State private var imagename: String = "image1"
-	
+    @State private var acctag: String = ""
+    @State private var oneOpen: Bool = false
+    @State private var twoOpen: Bool = false
     
-	
 	@EnvironmentObject var eventC: EventCRU
 	
 	var body: some View {
@@ -49,19 +50,18 @@ struct EventPostView: View {
 				}
                 
                 Section {
-//                    Picker(<#T##LocalizedStringKey#>, selection: <#T##Binding<SelectionValue>#>, content: <#T##() -> Content#>)
+                    DisclosureGroup("Itens", isExpanded: $oneOpen){
+                        Toggle("Toggle 1", isOn: $twoOpen)
+                    }
                         } header: {
                     Text("Selecione as acessibilidades do evento:")
                 }
 				
                 Section {
-                    ZStack{
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 359, height: 157)
-                            .background(Color(red: 0.98, green: 0.98, blue: 0.98))
-                            .cornerRadius(20)
-                    }
+
+                        TextField("Descrição", text: $desc)
+                        .textFieldStyle(.plain)
+
                 } header: {
                     Text("Adicione uma descrição do evento: ")
                 }
@@ -69,6 +69,11 @@ struct EventPostView: View {
 			.toolbar {
 				ToolbarItem(placement: .principal) {
 					Text("Novo Evento")
+                        .font(
+                        Font.custom("SF Pro", size: 20)
+                        .weight(.semibold)
+                        )
+                        .foregroundStyle(Color("DarkYellow"))
 				}
 				ToolbarItem(placement: .confirmationAction) {
 					Button("Criar") {
@@ -80,7 +85,8 @@ struct EventPostView: View {
 							location: location,
 							neighborhood: neighborhood,
 							hostname: hostname,
-							imagename: imagename)
+							imagename: imagename,
+                           acctag: acctag)
 						eventC.postEvent(event: event)
 						dismiss()
 					}
