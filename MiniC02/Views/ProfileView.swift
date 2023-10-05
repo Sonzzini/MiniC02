@@ -32,6 +32,11 @@ struct ProfileView: View {
 				Text("Hobbies")
 				
 				Text("Identificação")
+//				List {
+//					ForEach(vm.profiles[0].relationship) { tag in
+//						Text("\(tag)")
+//					}
+//				}
 				
 				Text("Meus Eventos")
 				

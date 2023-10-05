@@ -31,8 +31,10 @@ struct HomeView: View {
 				}
 			}
 			.onAppear {
+				
 				eventC.getEvents()
-				vm.isFirstLoginQuestion(firstLoginSheetIsPresented: &firstLoginSheetIsPresented)
+				
+				vm.setupController(firstLoginSheetIsPresented: &firstLoginSheetIsPresented)
 				
 				UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
 				UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
@@ -40,12 +42,26 @@ struct HomeView: View {
 				
 			}
 			.navigationTitle("Hoje")
+			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					NavigationLink(destination: EventPostView()) {
+						Image(systemName: "plus")
+					}
+				}
+				
+				ToolbarItem(placement: .topBarTrailing) {
+					NavigationLink(destination: ProfileView()) {
+						Text("Ver seu perifl")
+					}
+				}
+			}
 		}
 		.fullScreenCover(isPresented: $firstLoginSheetIsPresented) {
-			TutorialView()
+			TutorialView(sheetIsPresented: $firstLoginSheetIsPresented)
 		}
 		
 	}
+		
 }
 
 #Preview {
@@ -64,5 +80,6 @@ extension HomeView {
 			
 			Spacer()
 		}
+		.environment(\.locale, Locale(identifier: "pt"))
 	}
 }

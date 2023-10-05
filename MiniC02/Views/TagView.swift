@@ -14,6 +14,9 @@ struct TagView: View {
 	
 	@EnvironmentObject var vm : ViewModel
 	
+	@Environment(\.dismiss) private var dismiss
+	@Binding var sheetIsPresented: Bool
+	
 	var body: some View {
 		NavigationStack {
 			VStack {
@@ -38,6 +41,9 @@ struct TagView: View {
 				Button("Continuar") {
 					// MARK: mudar as tags para as tags la de cima, e nao hardcoded
 					vm.setupProfile(name: name, tags: [1, 2, 3]) // essas tags
+					print("-> Perfil Criado")
+					dismiss()
+					sheetIsPresented.toggle()
 				}
 				.buttonStyle(PlainButtonStyle())
 				
@@ -65,6 +71,3 @@ struct TagView: View {
 }
 
 
-#Preview {
-	TagView(name: "Paulo Sonzzini")
-}

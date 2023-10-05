@@ -11,6 +11,8 @@ import SwiftUI
 struct CadastroView: View {
 	@EnvironmentObject var vm: ViewModel
 	@State private var name = ""
+	
+	@Binding var sheetIsPresented: Bool
     
 	var body: some View {
 		NavigationStack {
@@ -44,7 +46,7 @@ struct CadastroView: View {
 					.padding(.top, 357)
 				} else {
 					NavigationLink("Continuar") {
-						TagView(name: name)
+						TagView(name: name, sheetIsPresented: $sheetIsPresented)
 					}
 					.buttonStyle(PlainButtonStyle())
 					.padding(.top, 357)
@@ -54,6 +56,3 @@ struct CadastroView: View {
 	}
 }
 
-#Preview {
-	CadastroView()
-}
