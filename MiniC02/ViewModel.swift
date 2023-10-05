@@ -63,7 +63,7 @@ class ViewModel: ObservableObject {
 			let profile = Profile(context: context)
 			profile.imagename = name
 			profile.name = name
-			profile.username = removeWhitespacesFromString(mStr: name)//.lowercased()
+			profile.username = removeWhitespacesFromString(mStr: name).lowercased()
 			profile.profileid = UUID()
 			
 			for number in tags {
