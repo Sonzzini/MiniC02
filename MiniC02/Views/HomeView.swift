@@ -72,10 +72,10 @@ struct HomeView: View {
 		
 }
 
-#Preview {
-		HomeView()
-			.environmentObject(EventCRU())
-}
+//#Preview {
+//		HomeView()
+//			.environmentObject(EventCRU())
+//}
 
 extension HomeView {
 	
