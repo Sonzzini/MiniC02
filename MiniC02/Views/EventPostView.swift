@@ -50,9 +50,23 @@ struct EventPostView: View {
 				
 			}
 			.toolbar {
+				ToolbarItem(placement: .cancellationAction) {
+					Button(action: {
+						dismiss()
+					}, label: {
+						HStack {
+							Image(systemName: "chevron.left")
+							Text("Início")
+						}
+						.foregroundStyle(Color("DarkBlue"))
+					})
+				}
+				
 				ToolbarItem(placement: .principal) {
 					Text("Novo Evento")
+						.foregroundStyle(Color("DarkYellow"))
 				}
+				
 				ToolbarItem(placement: .confirmationAction) {
 					Button("Criar") {
 						let event = EventModel(
@@ -69,9 +83,11 @@ struct EventPostView: View {
 						eventC.postEvent(event: event)
 						dismiss()
 					}
+					.foregroundStyle(Color("DarkBlue"))
 				}
 			}
 		}
+		.navigationBarBackButtonHidden(true)
 		
 	}
 }

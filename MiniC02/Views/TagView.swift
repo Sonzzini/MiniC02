@@ -39,7 +39,7 @@ struct TagView: View {
                 
 				Button("Continuar") {
 					// MARK: mudar as tags para as tags la de cima, e nao hardcoded
-					vm.setupProfile(name: name, tags: [1, 2, 3]) // essas tags
+					vm.setupProfile(name: name, tags: [1, 2, 3, 4, 5, 6]) // essas tags
 					print("-> Perfil Criado")
 					sheetIsPresented.toggle()
 				}

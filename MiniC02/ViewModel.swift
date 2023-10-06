@@ -13,16 +13,23 @@ import CoreData
 class ViewModel: ObservableObject {
 	
 	@Published var profiles: [Profile] = []
+	@Published var tags: [Tag] = []
 	@Published var controller: [Controller] = []
 	@Published var context: NSManagedObjectContext
 	
 	
 	init() {
 		self.context = CoreDataController.shared.viewContext
+		getTags()
+		getProfile()
 	}
 	
 	func getProfile() {
 		profiles = CoreDataController.shared.getProfile()
+	}
+	
+	func getTags() {
+		tags = CoreDataController.shared.getTags()
 	}
 	
 	func getController() {
@@ -70,14 +77,23 @@ class ViewModel: ObservableObject {
 				let tagObj = Tag(context: context)
 				tagObj.num = Int16(number)
 				
-				profile.addToRelationship(tagObj)
+				do {
+					tagObj.tagToProfile = profile
+					try context.save()
+				} catch {
+					print("Error relating tag to profile: \(error.localizedDescription)")
+				}
 			}
 			
 			
 
 			self.profiles = [profile]
 			
-			try? context.save()
+			do {
+				try context.save()
+			} catch {
+				print("Error saving profile")
+			}
 		}
 	}
 	

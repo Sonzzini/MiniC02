@@ -46,6 +46,17 @@ class CoreDataController: ObservableObject {
 		}
 	}
 	
+	func getTags() -> [Tag] {
+		let request = NSFetchRequest<Tag>(entityName: "Tag")
+		
+		do {
+			return try viewContext.fetch(request)
+		} catch {
+			return []
+		}
+	}
+	
+	
 	func DELETEALL() {
 		let storeContainer = persistentContainer.persistentStoreCoordinator
 		
