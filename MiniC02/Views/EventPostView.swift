@@ -20,8 +20,7 @@ struct EventPostView: View {
 	@State private var hostname: String = "" // OFF
 	@State private var imagename: String = "image1"
     @State private var acctag: String = ""
-    @State private var oneOpen: Bool = false
-    @State private var twoOpen: Bool = false
+
     
 	@EnvironmentObject var eventC: EventCRU
 	
@@ -50,9 +49,7 @@ struct EventPostView: View {
 				}
                 
                 Section {
-                    DisclosureGroup("Itens", isExpanded: $oneOpen){
-                        Toggle("Toggle 1", isOn: $twoOpen)
-                    }
+                    
                         } header: {
                     Text("Selecione as acessibilidades do evento:")
                 }
