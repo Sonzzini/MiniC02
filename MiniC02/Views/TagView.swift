@@ -14,17 +14,38 @@ struct TagView: View {
 	
 	@EnvironmentObject var vm : ViewModel
 	
+	@Binding var sheetIsPresented: Bool
+	
 	var body: some View {
 		NavigationStack {
 			VStack {
-				Text("Hello, World!")
+				Image("hiLibras")
+                    .resizable()
+                    .frame(width: 129, height: 134.7)
+                    .padding(.bottom, 24)
+                
+                Text("Selecione as tags que você se identifica:")
+                    .font(.custom("SF Pro", size: 19))
+                    .fontWeight(.semibold)
+                    .padding(.bottom, 30)
+                
+                Text("Essas tags irão aparecer em seu perfil")
+                    .font(.custom("SF Pro", size: 16))
+                    .fontWeight(.semibold)
+                    .foregroundStyle(Color("LightGray"))
 				
+                
+                
+                
 				Button("Continuar") {
 					// MARK: mudar as tags para as tags la de cima, e nao hardcoded
 					vm.setupProfile(name: name, tags: [1, 2, 3]) // essas tags
+					print("-> Perfil Criado")
+					sheetIsPresented.toggle()
 				}
 				.buttonStyle(PlainButtonStyle())
 				
+                
 				
 				
 			}
@@ -48,6 +69,3 @@ struct TagView: View {
 }
 
 
-#Preview {
-	TagView(name: "Paulo Sonzzini")
-}

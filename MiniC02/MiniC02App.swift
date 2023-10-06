@@ -13,12 +13,12 @@ struct MiniC02App: App {
 	@StateObject private var viewModel = ViewModel()
 	var eventC = EventCRU()
 	
-    var body: some Scene {
-        WindowGroup {
-            HomeView()
-				  .environment(\.managedObjectContext, CoreDataController.shared.viewContext)
-				  .environmentObject(viewModel)
-				  .environmentObject(eventC)
-        }
-    }
+	var body: some Scene {
+		WindowGroup {
+			HomeView()
+				.environment(\.managedObjectContext, CoreDataController.shared.viewContext)
+				.environmentObject(viewModel)
+				.environmentObject(eventC)
+		}
+	}
 }

@@ -33,7 +33,7 @@ class ViewModel: ObservableObject {
 		CoreDataController.shared.DELETEALL()
 	}
 	
-	func isFirstLoginQuestion(firstLoginSheetIsPresented: inout Bool) {
+	func setupController(firstLoginSheetIsPresented: inout Bool) {
 		getController()
 		
 		if controller.isEmpty {
@@ -59,24 +59,27 @@ class ViewModel: ObservableObject {
 		getProfile()
 		
 		if profiles.isEmpty {
+			
 			let profile = Profile(context: context)
 			profile.imagename = name
 			profile.name = name
 			profile.username = removeWhitespacesFromString(mStr: name).lowercased()
+			profile.profileid = UUID()
 			
-			for num in tags {
+			for number in tags {
 				let tagObj = Tag(context: context)
-				tagObj.num = Int16(num)
+				tagObj.num = Int16(number)
 				
 				profile.addToRelationship(tagObj)
 			}
 			
-			profile.profileid = UUID()
-
 			
+
+			self.profiles = [profile]
 			
 			try? context.save()
 		}
 	}
+	
 	
 }
