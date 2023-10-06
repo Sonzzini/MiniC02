@@ -7,7 +7,10 @@
 
 import SwiftUI
 
+
+
 struct DisclosureGroupImageStyle: DisclosureGroupStyle {
+    @State var icon: String
     func makeBody(configuration: Configuration) -> some View {
             VStack {
                 Button {
@@ -15,15 +18,9 @@ struct DisclosureGroupImageStyle: DisclosureGroupStyle {
                         configuration.isExpanded.toggle()
                     }
                 } label: {
-                    HStack(alignment: .firstTextBaseline) {
-                        configuration.label
-                        Spacer()
-                        Text(configuration.isExpanded ? "hide" : "show")
-                            .foregroundColor(.accentColor)
-                            .font(.caption.lowercaseSmallCaps())
-                            .animation(nil, value: configuration.isExpanded)
-                    }
-                    .contentShape(Rectangle())
+                    Image("icon-\($icon)")
+                        .resizable()
+                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 100)
                 }
                 .buttonStyle(.plain)
                 if configuration.isExpanded {

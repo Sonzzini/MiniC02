@@ -102,13 +102,13 @@ extension EventView {
 				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
 			
 			// MARK: bagulho dos designers
-			VStack{
-                DisclosureGroup("Itens", isExpanded: $oneOpen){
-                    Text("w")
-                }
-                
-                
-			}.padding()
+//			VStack{
+//                DisclosureGroup("teste", isExpanded: $oneOpen){
+//                    Text(event.desc)
+//                }.disclosureGroupStyle(DisclosureGroupImageStyle(icon: event.acctag))
+//                
+//                
+//			}.padding()
 			// MARK: Acaba bagulho
 			
 			HStack{
