@@ -38,6 +38,9 @@ extension TutorialView {
                         .kerning(-0.4)
                         .frame(width: 250, height: 86)
                 }
+                
+                ProgressCircles
+                
                 if (indexTutorial <= (tutorialInformation.count - 2)) {
                     Button("Continuar") {
                         indexTutorial += 1
@@ -47,10 +50,12 @@ extension TutorialView {
                 } else {
                     NavigationLink("Continuar") {
                         CadastroView()
+                            .navigationBarBackButtonHidden(true)
                     }
                     .buttonStyle(PlainButtonStyle())
                     .padding(.vertical, 110)
                 }
+                
             }
         }
         .toolbar {
@@ -64,9 +69,23 @@ extension TutorialView {
             }
         }
     }
+    
+    private var ProgressCircles: some View {
+        HStack {
+            ForEach(tutorialInformation.indices, id: \.self) { index in
+                Circle()
+                    .frame(width: 10)
+                
+                // .onChange(of: variavel)
+                
+            }
+        }
+    }
 }
+
 
 
 #Preview {
     TutorialView()
 }
+

@@ -45,6 +45,7 @@ struct CadastroView: View {
 				} else {
 					NavigationLink("Continuar") {
 						TagView(name: name)
+                            .navigationBarBackButtonHidden(true)
 					}
 					.buttonStyle(PlainButtonStyle())
 					.padding(.top, 357)

@@ -7,24 +7,27 @@
 
 import SwiftUI
 
+struct TagButton: Identifiable {
+    let id = UUID()
+    var nome: String
+    var togle = false
+}
+
 struct TagView: View {
     var name: String
+    let columns = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10)]
     
-    @State private var tags: [Int] = []
+    @State private var tags: [String] = []
     @State private var isSelected = false
+
     @State private var showingSheet = false
     @EnvironmentObject var vm : ViewModel
     
-    var TagIdentify: [String] = ["Bilíngue", "Sinalizado", "Oralizado", "Leitura Labial", "Intérprete", "Trilíngue", "Implante Coclear", "Profissional da Saúde", "Simpatizante"]
-    
+    var TagIdentifiers: [String] = ["Bilíngue", "Sinalizado", "Oralizado", "Leitura Labial", "Intérprete", "Trilíngue", "Implante Coclear", "Profissional da Saúde", "Simpatizante"]
     var TagHobbies: [String] = ["Esportes", "Artes", "Pets", "Jogos", "Animes", "Festas", "Comida", "Exercício", "Investimento", "Livros", "Música", "Podcast", "Tecnologia", "Parque", "Teatro", "Rede Social", "Viagem", "Religião"]
-    
-//    enum TagNames: String {
-//        case one = "Bilíngue"
-//        case two = "Sinalizado"
-//        case Oralizado = 3
-//        case LeituraLabial =
-//    }
     
     var body: some View {
         NavigationStack {
@@ -32,15 +35,22 @@ struct TagView: View {
                 
                 TagViewHeader
                 
-                Button("Bilíngue") {
-                    isSelected.toggle()
+                ScrollView(.vertical) {
+                    LazyVGrid(columns: columns, alignment: .center) {
+                        ForEach(TagIdentifiers.indices, id: \.self) { index in
+                            TagButtonView(string: TagIdentifiers[index])
+                                .onTapGesture {
+                                    tags.append(TagIdentifiers[index])
+                                }
+
+                        }
+                    }
+                    .padding()
                 }
-                .buttonStyle(PlainTagStyle(isSelected: $isSelected))
-                .padding(.bottom, 147)
                 
                 Button("Continuar") {
                     // MARK: mudar as tags para as tags la de cima, e nao hardcoded
-                    vm.setupProfile(name: name, tags: [1, 2, 3]) // no caso, essas tags são as que o usuário selecionou 
+                    vm.setupProfile(name: name, tags: tags) // no caso, essas tags são as que o usuário selecionou
                 }
                 .buttonStyle(PlainButtonStyle())
             }
