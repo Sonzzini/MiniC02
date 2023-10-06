@@ -11,6 +11,7 @@ struct EventView: View {
 	
 	var event: EventModel
 	@State var salvo: Bool = false
+	@Environment(\.dismiss) private var dismiss
 	
 	var body: some View {
 		NavigationStack {
@@ -19,6 +20,7 @@ struct EventView: View {
 				VStack(alignment: .leading){
 					Image(event.imagename)
 						.resizable()
+						.scaledToFit()
 					
 					VStack(alignment: .leading){
 						
@@ -43,7 +45,21 @@ struct EventView: View {
 					
 				}
 			}
+			.toolbar {
+				ToolbarItem(placement: .cancellationAction) {
+					Button(action: {
+						dismiss()
+					}, label: {
+						HStack {
+							Image(systemName: "chevron.left")
+							Text("Início")
+						}
+					})
+					.foregroundStyle(Color("DarkBlue"))
+				}
+			}
 		}
+		.navigationBarBackButtonHidden(true)
 	}
 }
 
@@ -98,8 +114,10 @@ extension EventView {
 			
 			// MARK: bagulho dos designers
 			HStack{
-				Image(systemName: "")
-				Text("Intérpretes e legendas")
+				
+				Image("icon-"+event.acctag)
+					.resizable()
+					.frame(width: 48, height: 48)
 			}
 			// MARK: Acaba bagulho
 			
@@ -115,6 +133,7 @@ extension EventView {
 				Text(event.location + " - " + event.neighborhood)
 			}
 		}
+		.padding(.top)
 	}
 	
 	private var EventDescription: some View {
@@ -124,7 +143,6 @@ extension EventView {
 					.weight(.semibold))
 				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
 				.padding(.top, 27)
-				.padding(.bottom, 10)
 			
 			Text(event.desc)
 				.font(Font.custom("SF Pro", size: 17))

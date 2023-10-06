@@ -62,7 +62,7 @@ struct ProfileView: View {
 						.bold()
 					
 					
-					LazyVGrid(columns: columns) {
+//					LazyVGrid(columns: columns) {
 						ForEach(vm.profiles) { profile in
 							ForEach(profile.tags) { tag in
 								Text(tag.name ?? "laur")
@@ -73,24 +73,26 @@ struct ProfileView: View {
 								
 							}
 						}
-					}
+//					}
 					
 					
 					
 					Text("Meus Eventos")
 						.font(.custom("SF Pro", size: 20))
 						.bold()
-					
-					ForEach(yourEvents) { event in
-						EventCard(event: event)
-					}
-					.onAppear {
-						for event in eventC.events {
-							if event.hostname == vm.profiles[0].username {
-								yourEvents.append(event)
+						.onAppear {
+							for event in eventC.events {
+								if event.hostname == vm.profiles[0].username {
+									yourEvents.append(event)
+								}
 							}
 						}
+					
+					ForEach(yourEvents) { event in
+						EventCard(event: event, onYourProfile: true)
+							.padding(.vertical)
 					}
+					
 					
 				}
 				.padding(.horizontal)
