@@ -16,10 +16,10 @@ struct ProfileView: View {
 	@State var yourEvents: [EventModel] = []
 	
 	@State var columns: [GridItem] = [
-		GridItem(.adaptive(minimum: 100, maximum: 150)),
-		GridItem(.adaptive(minimum: 100, maximum: 150)),
-		GridItem(.adaptive(minimum: 100, maximum: 150)),
-		GridItem(.adaptive(minimum: 100, maximum: 150))
+		GridItem(.adaptive(minimum: 150, maximum: 550)),
+		GridItem(.adaptive(minimum: 150, maximum: 550)),
+		GridItem(.adaptive(minimum: 150, maximum: 550)),
+		GridItem(.adaptive(minimum: 150, maximum: 550))
 	]
 	
 	let acctags = [""]
@@ -30,10 +30,13 @@ struct ProfileView: View {
 			ScrollView {
 				VStack(alignment: .leading) {
 					
-					HStack {
+					HStack(alignment: .top) {
 						
 						VStack {
 							Image(vm.profiles[0].imagename ?? "sabainigabriel")
+								.resizable()
+								.frame(width: 100, height: 100, alignment: .center)
+							
 							HStack {
 								Image("InstagramIcon")
 								Image("FacebookIcon")
@@ -54,10 +57,6 @@ struct ProfileView: View {
 						
 					}
 					
-//					Text("Hobbies")
-//						.font(.custom("SF Pro", size: 20))
-//						.bold()
-					
 					Text("Identificação")
 						.font(.custom("SF Pro", size: 20))
 						.bold()
@@ -66,28 +65,32 @@ struct ProfileView: View {
 					LazyVGrid(columns: columns) {
 						ForEach(vm.profiles) { profile in
 							ForEach(profile.tags) { tag in
-								Text("\(tag.num)")
+								Text(tag.name ?? "laur")
 									.padding(.horizontal)
 									.padding(.vertical, 5)
 									.background(Color("DarkBlue"))
 									.clipShape(RoundedRectangle(cornerRadius: 10))
-
+								
 							}
 						}
 					}
 					
-//					List {
-//						ForEach(vm.profiles) { profile in
-//							ForEach(profile.tags) { tag in
-//								Text("\(tag.num)")
-//							}
-//						}
-//					}
 					
 					
 					Text("Meus Eventos")
 						.font(.custom("SF Pro", size: 20))
 						.bold()
+					
+					ForEach(yourEvents) { event in
+						EventCard(event: event)
+					}
+					.onAppear {
+						for event in eventC.events {
+							if event.hostname == vm.profiles[0].username {
+								yourEvents.append(event)
+							}
+						}
+					}
 					
 				}
 				.padding(.horizontal)

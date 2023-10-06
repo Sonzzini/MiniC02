@@ -10,12 +10,14 @@ import SwiftUI
 struct TagButtonView: View {
     
     @State var isToggled: Bool = false
+	@Binding var tags: [String]
     var string: String
     
     var body: some View {
         
         Button(action: {
             isToggled.toggle()
+			  tags.append(string)
         }, label: {
             Text(string)
         })

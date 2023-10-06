@@ -25,7 +25,7 @@ extension Profile {
 	public var tags: [Tag] {
 		let setOfTags = profileToTag
 		return setOfTags!.sorted {
-			$0.num < $1.num
+			$0.name ?? "error" < $1.name ?? "error"
 		}
 	}
 

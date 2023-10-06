@@ -51,7 +51,7 @@ extension TutorialView {
                     .padding(.vertical, 110)
                 } else {
                     NavigationLink("Continuar") {
-                        CadastroView()
+							  CadastroView(sheetIsPresented: $sheetIsPresented)
                             .navigationBarBackButtonHidden(true)
                     }
                     .buttonStyle(PlainButtonStyle())
@@ -63,7 +63,7 @@ extension TutorialView {
         .toolbar {
             ToolbarItem(placement: .automatic) {
                 NavigationLink("Pular") {
-                    CadastroView()
+                    CadastroView(sheetIsPresented: $sheetIsPresented)
                         .navigationBarBackButtonHidden(true)
                 }
                 .font(.custom("SF Pro", size: 17))
@@ -86,8 +86,4 @@ extension TutorialView {
 }
 
 
-
-#Preview {
-    TutorialView()
-}
 

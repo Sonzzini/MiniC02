@@ -54,8 +54,12 @@ struct HomeView: View {
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink(destination: ProfileView()) {
 
-						Image(vm.profiles[0].imagename ?? "sabainigabriel")
-						
+						if !vm.profiles.isEmpty {
+							Image(vm.profiles[0].imagename ?? "sabainigabriel")
+						}
+						else {
+							Image(systemName: "person")
+						}
 					}
 				}
 			}

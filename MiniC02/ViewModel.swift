@@ -62,7 +62,7 @@ class ViewModel: ObservableObject {
 		 return String(filteredChar)
 	}
 	
-	func setupProfile(name: String, tags: [Int]) {
+	func setupProfile(name: String, tags: [String]) {
 		getProfile()
 		
 		if profiles.isEmpty {
@@ -73,9 +73,9 @@ class ViewModel: ObservableObject {
 			profile.username = removeWhitespacesFromString(mStr: name).lowercased()
 			profile.profileid = UUID()
 			
-			for number in tags {
+			for tag in tags {
 				let tagObj = Tag(context: context)
-				tagObj.num = Int16(number)
+				tagObj.name = tag
 				
 				do {
 					tagObj.tagToProfile = profile
@@ -83,6 +83,7 @@ class ViewModel: ObservableObject {
 				} catch {
 					print("Error relating tag to profile: \(error.localizedDescription)")
 				}
+				
 			}
 			
 			
