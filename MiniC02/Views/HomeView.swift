@@ -36,6 +36,7 @@ struct HomeView: View {
 				
 				vm.setupController(firstLoginSheetIsPresented: &firstLoginSheetIsPresented)
 				
+				
 				UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
 				UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
 
@@ -46,12 +47,19 @@ struct HomeView: View {
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink(destination: EventPostView()) {
 						Image(systemName: "plus")
+							.foregroundStyle(Color("DarkBlue"))
 					}
 				}
 				
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink(destination: ProfileView()) {
-						Text("Ver seu perifl")
+
+						if !vm.profiles.isEmpty {
+							Image(vm.profiles[0].imagename ?? "sabainigabriel")
+						}
+						else {
+							Image(systemName: "person")
+						}
 					}
 				}
 			}

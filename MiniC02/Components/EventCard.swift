@@ -10,6 +10,7 @@ import SwiftUI
 struct EventCard: View {
 	
 	var event: EventModel
+	var onYourProfile: Bool = false
 	
 	var body: some View {
 		NavigationStack {
@@ -17,7 +18,9 @@ struct EventCard: View {
 				
 				VStack(alignment: .leading) {
 					
-					ImageWithName
+					if !onYourProfile {
+						ImageWithName
+					}
 					
 					VStack(spacing: 0) {
 						
@@ -102,5 +105,8 @@ extension EventCard {
 	
 	private var eventImage: some View {
 		Image(event.imagename)
+			.resizable()
+			.scaledToFill()
+			.frame(width: 361, height: 186)
 	}
 }

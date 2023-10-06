@@ -14,6 +14,8 @@ struct EventView: View {
     @State private var oneOpen: Bool = false
     @State private var twoOpen: Bool = false
     
+	@Environment(\.dismiss) private var dismiss
+	
 	var body: some View {
 		NavigationStack {
 			ScrollView{
@@ -21,6 +23,7 @@ struct EventView: View {
 				VStack(alignment: .leading){
 					Image(event.imagename)
 						.resizable()
+						.scaledToFit()
 					
 					VStack(alignment: .leading){
 						
@@ -48,7 +51,21 @@ struct EventView: View {
 					
 				}
 			}
+			.toolbar {
+				ToolbarItem(placement: .cancellationAction) {
+					Button(action: {
+						dismiss()
+					}, label: {
+						HStack {
+							Image(systemName: "chevron.left")
+							Text("Início")
+						}
+					})
+					.foregroundStyle(Color("DarkBlue"))
+				}
+			}
 		}
+		.navigationBarBackButtonHidden(true)
 	}
 }
 
@@ -109,6 +126,12 @@ extension EventView {
 //                
 //                
 //			}.padding()
+			HStack{
+				
+				Image("icon-"+event.acctag)
+					.resizable()
+					.frame(width: 48, height: 48)
+			}
 			// MARK: Acaba bagulho
 			
 			HStack{
@@ -123,6 +146,7 @@ extension EventView {
 				Text(event.location + " - " + event.neighborhood)
 			}
 		}
+		.padding(.top)
 	}
 	
 	private var EventDescription: some View {

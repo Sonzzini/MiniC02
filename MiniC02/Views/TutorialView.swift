@@ -25,47 +25,65 @@ struct TutorialView: View {
 }
 
 extension TutorialView {
-	private var TutorialCore: some View {
-		NavigationStack {
-			VStack {
-				VStack {
-					Spacer(minLength: 105)
-					Image("hiLibras")
-						.padding(26)
-					Text(tutorialInformation[indexTutorial])
-						.font(Font.custom("SF Pro", size: 24))
-						.fontWeight(.semibold)
-						.fixedSize()
-						.multilineTextAlignment(.center)
-						.kerning(-0.4)
-						.frame(width: 250, height: 86)
-				}
-				if (indexTutorial <= (tutorialInformation.count - 2)) {
-					Button("Continuar") {
-						indexTutorial += 1
-					}
-					.buttonStyle(PlainButtonStyle())
-					.padding(.vertical, 110)
-				} else {
-					NavigationLink("Continuar") {
-						CadastroView(sheetIsPresented: $sheetIsPresented)
-					}
-					.buttonStyle(PlainButtonStyle())
-					.padding(.vertical, 110)
-				}
-			}
-		}
-		.toolbar {
-			ToolbarItem(placement: .automatic) {
-				NavigationLink("Pular") {
-					CadastroView(sheetIsPresented: $sheetIsPresented)
-						.navigationBarBackButtonHidden(true)
-				}
-				.font(.custom("SF Pro", size: 17))
-				.tint(.black)
-			}
-		}
-	}
+    private var TutorialCore: some View {
+        NavigationStack {
+            VStack {
+                VStack {
+                    Spacer(minLength: 105)
+                    Image("hiLibras")
+                        .padding(26)
+                    Text(tutorialInformation[indexTutorial])
+                        .font(Font.custom("SF Pro", size: 24))
+                        .fontWeight(.semibold)
+                        .fixedSize()
+                        .multilineTextAlignment(.center)
+                        .kerning(-0.4)
+                        .frame(width: 250, height: 86)
+                }
+                
+                ProgressCircles
+                
+                if (indexTutorial <= (tutorialInformation.count - 2)) {
+                    Button("Continuar") {
+                        indexTutorial += 1
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .padding(.vertical, 110)
+                } else {
+                    NavigationLink("Continuar") {
+							  CadastroView(sheetIsPresented: $sheetIsPresented)
+                            .navigationBarBackButtonHidden(true)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .padding(.vertical, 110)
+                }
+                
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .automatic) {
+                NavigationLink("Pular") {
+                    CadastroView(sheetIsPresented: $sheetIsPresented)
+                        .navigationBarBackButtonHidden(true)
+                }
+                .font(.custom("SF Pro", size: 17))
+                .tint(.black)
+            }
+        }
+    }
+    
+    private var ProgressCircles: some View {
+        HStack {
+            ForEach(tutorialInformation.indices, id: \.self) { index in
+                Circle()
+                    .frame(width: 10)
+                
+                // .onChange(of: variavel)
+                
+            }
+        }
+    }
 }
+
 
 

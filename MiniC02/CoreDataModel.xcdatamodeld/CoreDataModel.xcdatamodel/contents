@@ -3,15 +3,15 @@
     <entity name="Controller" representedClassName="Controller" syncable="YES" codeGenerationType="class">
         <attribute name="firstLogin" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="Profile" representedClassName="Profile" syncable="YES" codeGenerationType="class">
+    <entity name="Profile" representedClassName=".Profile" syncable="YES">
         <attribute name="imagename" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="profileid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="username" optional="YES" attributeType="String"/>
-        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="relationship" inverseEntity="Tag"/>
+        <relationship name="profileToTag" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="tagToProfile" inverseEntity="Tag"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
-        <attribute name="num" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="relationship" inverseEntity="Profile"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="tagToProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="profileToTag" inverseEntity="Profile"/>
     </entity>
 </model>
