@@ -7,20 +7,6 @@
 
 import SwiftUI
 
-//enum AccessibilityTag: String, CaseIterable, Identifiable {
-//    case ClosedCaptions = "icon-1"
-//    case InternationalDeaf = "icon-2"
-//    
-//    var label: String {
-//        switch self {
-//        case .ClosedCaptions: return "Closed Caption"
-//        case .InternationalDeaf: return "International Deficiencia Auditiva"
-//        }
-//    }
-//    
-//    var id: String { return self.rawValue }
-//}
-
 struct EventPostView: View {
     
     @Environment(\.dismiss) private var dismiss
@@ -34,8 +20,7 @@ struct EventPostView: View {
     @State private var hostname: String = "" 			// OFF
     @State private var imagename: String = "image1" // OFF
     @State private var acctag: String = "1" 			// OFF
-    private var tags: [String] = ["Closed_Captions","Internacional Deficiencia_Auditiva","Interprete_Libras", "Libras", "Opened_Captions","Protecao_Ouvido_Obrigatoria","icon-Sistemas_Audicao_Assistida", "Icon-Telebobina", "icon-Telefone_Amplificador_Sonoro", "icon-Telefone_Surdos"]
-//    @State private var selectedAccessibilityTag: AccessibilityTag = .ClosedCaptions
+    @State private var selectedAccessibilityTag: AccessibilityTag = .ClosedCaptions
     
     @EnvironmentObject var eventC: EventCRU
     
@@ -46,6 +31,7 @@ struct EventPostView: View {
                 Section {
                     Button(action: {
                         print("AAAAAA")
+                        
                     }, label: {
                         Image(systemName: "plus")
                     })
@@ -64,19 +50,20 @@ struct EventPostView: View {
                 }
                 
                 Section {
-//                    
-//                    Picker("Tag de Acessibilidade:", selection: $selectedAccessibilityTag) {
-//                        ForEach(AccessibilityTag.allCases, id: \.id) { tag in
-//                            Text(tag.label)
-//                        }
-//                    }
-//                    
-                                        Picker("Tag de Acessibilidade:", selection: $acctag) {
-                                            ForEach(tags, id: \.self) {
-                                               Text($0)
-                                            }
-                                       }
+                    
+                    Picker("Tag de Acessibilidade:", selection: $selectedAccessibilityTag) {
+                        ForEach(AccessibilityTag.allCases, id: \.self) {
+                            Text($0.label)
+                        }
+                    }
                 }
+                    
+//                                        Picker("Tag de Acessibilidade:", selection: $acctag) {
+//                                            ForEach(tags, id: \.self) {
+//                                               Text($0)
+//                                            }
+//                                       }
+//                }
                 //            header: {
                 //                Text("Selecione as acessibilidades do evento:")
                 //            }
