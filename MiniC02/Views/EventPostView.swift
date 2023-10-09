@@ -31,6 +31,7 @@ struct EventPostView: View {
                 Section {
                     Button(action: {
                         print("AAAAAA")
+                        
                     }, label: {
                         Image(systemName: "plus")
                     })

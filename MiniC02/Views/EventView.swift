@@ -11,8 +11,6 @@ struct EventView: View {
 	
 	var event: EventModel
 	@State var salvo: Bool = false
-    @State private var oneOpen: Bool = false
-    @State private var twoOpen: Bool = false
     
 	@Environment(\.dismiss) private var dismiss
 	
@@ -36,6 +34,8 @@ struct EventView: View {
 						
 						EventDescription
                             .padding(.vertical)
+                        
+                        EventAcessibility
 						
 						EventInfo
                             .padding(.vertical)
@@ -119,19 +119,12 @@ extension EventView {
 				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
 			
 			// MARK: bagulho dos designers
-//			VStack{
-//                DisclosureGroup("teste", isExpanded: $oneOpen){
-//                    Text(event.desc)
-//                }.disclosureGroupStyle(DisclosureGroupImageStyle(icon: event.acctag))
-//                
-//                
-//			}.padding()
-			HStack{
-				
-				Image("icon-"+event.acctag)
-					.resizable()
-					.frame(width: 48, height: 48)
-			}
+//			HStack{
+//				
+//				Image("icon-"+event.acctag)
+//					.resizable()
+//					.frame(width: 48, height: 48)
+//			}
 			// MARK: Acaba bagulho
 			
 			HStack{
@@ -162,4 +155,25 @@ extension EventView {
 				.font(Font.custom("SF Pro", size: 17))
 		}
 	}
+    
+    private var EventAcessibility: some View {
+        VStack(alignment: .leading){
+            HStack{
+                Text("Acessibilidade")
+                    .foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
+                Button {
+                    print("informacoes")
+                    
+                    withAnimation(.linear(duration: 0.3)) {
+                    }
+                    
+                } label: {
+                    Image(systemName: "info.circle.fill")
+                }
+            }
+//            HStack{
+//                ForEach( )
+//            }
+        }
+    }
 }

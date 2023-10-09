@@ -12,7 +12,7 @@
 		1995B7182AC7436200908B4B /* CadastroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B7172AC7436200908B4B /* CadastroView.swift */; };
 		1995B7232ACCA5C500908B4B /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1995B7222ACCA5C500908B4B /* SF-Pro.ttf */; };
 		1995B72A2ACCC0D500908B4B /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B7292ACCC0D400908B4B /* TagView.swift */; };
-		1995B72C2ACCC6EE00908B4B /* TagInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B72B2ACCC6EE00908B4B /* TagInformationView.swift */; };
+		1995B72C2ACCC6EE00908B4B /* AcessibilityTagInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B72B2ACCC6EE00908B4B /* AcessibilityTagInformationView.swift */; };
 		19F0B5BA2ACF46F80097E283 /* PlainTagStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F0B5B92ACF46F80097E283 /* PlainTagStyle.swift */; };
 		19F0B5BC2AD088E90097E283 /* TagButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F0B5BB2AD088E90097E283 /* TagButtonView.swift */; };
 		B40309462ACE00EF00014998 /* TagInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40309452ACE00EF00014998 /* TagInfoItem.swift */; };
@@ -45,7 +45,7 @@
 		1995B7222ACCA5C500908B4B /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		1995B7262ACCA70200908B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1995B7292ACCC0D400908B4B /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
-		1995B72B2ACCC6EE00908B4B /* TagInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInformationView.swift; sourceTree = "<group>"; };
+		1995B72B2ACCC6EE00908B4B /* AcessibilityTagInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcessibilityTagInformationView.swift; sourceTree = "<group>"; };
 		19F0B5B92ACF46F80097E283 /* PlainTagStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainTagStyle.swift; sourceTree = "<group>"; };
 		19F0B5BB2AD088E90097E283 /* TagButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButtonView.swift; sourceTree = "<group>"; };
 		B40309452ACE00EF00014998 /* TagInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInfoItem.swift; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 				1952496B2AC606BD003D986A /* TutorialView.swift */,
 				1995B7172AC7436200908B4B /* CadastroView.swift */,
 				1995B7292ACCC0D400908B4B /* TagView.swift */,
-				1995B72B2ACCC6EE00908B4B /* TagInformationView.swift */,
+				1995B72B2ACCC6EE00908B4B /* AcessibilityTagInformationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 				E938F57A2ACDFF4D0049874E /* ProfileView.swift in Sources */,
 				19F0B5BC2AD088E90097E283 /* TagButtonView.swift in Sources */,
 				B4A2A6C62ABA3740002C4115 /* EventView.swift in Sources */,
-				1995B72C2ACCC6EE00908B4B /* TagInformationView.swift in Sources */,
+				1995B72C2ACCC6EE00908B4B /* AcessibilityTagInformationView.swift in Sources */,
 				E938F5742ACB5FB50049874E /* EventCard.swift in Sources */,
 				E94EA12B2AC36D0C003D5DB8 /* EventCRU.swift in Sources */,
 				E939209F2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld in Sources */,
