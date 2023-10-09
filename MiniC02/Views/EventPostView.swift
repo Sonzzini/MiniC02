@@ -7,20 +7,6 @@
 
 import SwiftUI
 
-//enum AccessibilityTag: String, CaseIterable, Identifiable {
-//    case ClosedCaptions = "icon-1"
-//    case InternationalDeaf = "icon-2"
-//    
-//    var label: String {
-//        switch self {
-//        case .ClosedCaptions: return "Closed Caption"
-//        case .InternationalDeaf: return "International Deficiencia Auditiva"
-//        }
-//    }
-//    
-//    var id: String { return self.rawValue }
-//}
-
 struct EventPostView: View {
     
     @Environment(\.dismiss) private var dismiss
