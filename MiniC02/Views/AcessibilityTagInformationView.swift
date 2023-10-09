@@ -7,19 +7,20 @@
 //
 
 
-//import SwiftUI
-//
-//struct AcessibilityTagInformationView: View {
-//    @Environment(\.dismiss) var dismiss
-//    
-//    var body: some View {
-//        
-//        List{
-//            TagInfoItem()
-//        }
-//        
-//}
-//
-//#Preview {
-//    AcessibilityTagInformationView()
-//}
+import SwiftUI
+
+struct AcessibilityTagInformationView: View {
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        
+    
+            TagInfoItem()
+        
+    }
+    
+}
+
+#Preview {
+    AcessibilityTagInformationView()
+}

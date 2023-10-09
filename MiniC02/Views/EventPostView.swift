@@ -45,32 +45,22 @@ struct EventPostView: View {
                     TextField("Horário", text: $time)
                     TextField("Local", text: $location)
                     TextField("Bairro", text: $neighborhood)
-                } header: {
-                    Text("Informações")
                 }
                 
                 Section {
                     
-                    Picker("Tag de Acessibilidade:", selection: $selectedAccessibilityTag) {
+                    Picker("", selection: $selectedAccessibilityTag) {
                         ForEach(AccessibilityTag.allCases, id: \.self) {
                             Text($0.label)
                         }
                     }
+                } header: {
+                    Text("Selecione as Acessibilidades do evento:")
                 }
-                    
-//                                        Picker("Tag de Acessibilidade:", selection: $acctag) {
-//                                            ForEach(tags, id: \.self) {
-//                                               Text($0)
-//                                            }
-//                                       }
-//                }
-                //            header: {
-                //                Text("Selecione as acessibilidades do evento:")
-                //            }
                 
                 Section {
                     
-                    TextField("Descrição", text: $desc)
+                    TextField("Venha celebrar...", text: $desc)
                         .textFieldStyle(.plain)
                     
                 } header: {
