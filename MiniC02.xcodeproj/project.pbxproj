@@ -13,9 +13,10 @@
 		1995B7232ACCA5C500908B4B /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1995B7222ACCA5C500908B4B /* SF-Pro.ttf */; };
 		1995B72A2ACCC0D500908B4B /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B7292ACCC0D400908B4B /* TagView.swift */; };
 		1995B72C2ACCC6EE00908B4B /* TagInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B72B2ACCC6EE00908B4B /* TagInformationView.swift */; };
-		B40309462ACE00EF00014998 /* TagInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40309452ACE00EF00014998 /* TagInfoItem.swift */; };
 		19F0B5BA2ACF46F80097E283 /* PlainTagStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F0B5B92ACF46F80097E283 /* PlainTagStyle.swift */; };
 		19F0B5BC2AD088E90097E283 /* TagButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F0B5BB2AD088E90097E283 /* TagButtonView.swift */; };
+		19F0B5BE2AD479B20097E283 /* IndexCircles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F0B5BD2AD479B20097E283 /* IndexCircles.swift */; };
+		B40309462ACE00EF00014998 /* TagInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40309452ACE00EF00014998 /* TagInfoItem.swift */; };
 		B4A2A6C62ABA3740002C4115 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C52ABA3740002C4115 /* EventView.swift */; };
 		B4A2A6C82ABA3748002C4115 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C72ABA3748002C4115 /* HomeView.swift */; };
 		B4A2A6CB2ABA3FFF002C4115 /* PostCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */; };
@@ -45,9 +46,10 @@
 		1995B7262ACCA70200908B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1995B7292ACCC0D400908B4B /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		1995B72B2ACCC6EE00908B4B /* TagInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInformationView.swift; sourceTree = "<group>"; };
-		B40309452ACE00EF00014998 /* TagInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInfoItem.swift; sourceTree = "<group>"; };
 		19F0B5B92ACF46F80097E283 /* PlainTagStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainTagStyle.swift; sourceTree = "<group>"; };
 		19F0B5BB2AD088E90097E283 /* TagButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButtonView.swift; sourceTree = "<group>"; };
+		19F0B5BD2AD479B20097E283 /* IndexCircles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexCircles.swift; sourceTree = "<group>"; };
+		B40309452ACE00EF00014998 /* TagInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInfoItem.swift; sourceTree = "<group>"; };
 		B4A2A6C52ABA3740002C4115 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		B4A2A6C72ABA3748002C4115 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCard.swift; sourceTree = "<group>"; };
@@ -119,9 +121,10 @@
 			isa = PBXGroup;
 			children = (
 				B4A2A6CA2ABA3FFF002C4115 /* PostCard.swift */,
-				19F0B5BB2AD088E90097E283 /* TagButtonView.swift */,
 				E938F5732ACB5FB50049874E /* EventCard.swift */,
 				B40309452ACE00EF00014998 /* TagInfoItem.swift */,
+				19F0B5BB2AD088E90097E283 /* TagButtonView.swift */,
+				19F0B5BD2AD479B20097E283 /* IndexCircles.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				19F0B5BC2AD088E90097E283 /* TagButtonView.swift in Sources */,
 				B4A2A6C62ABA3740002C4115 /* EventView.swift in Sources */,
 				1995B72C2ACCC6EE00908B4B /* TagInformationView.swift in Sources */,
+				19F0B5BE2AD479B20097E283 /* IndexCircles.swift in Sources */,
 				E938F5742ACB5FB50049874E /* EventCard.swift in Sources */,
 				E94EA12B2AC36D0C003D5DB8 /* EventCRU.swift in Sources */,
 				E939209F2AC5FC1700E74361 /* CoreDataModel.xcdatamodeld in Sources */,
