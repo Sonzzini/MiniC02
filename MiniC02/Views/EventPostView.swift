@@ -10,10 +10,10 @@ import SwiftUI
 struct EventPostView: View {
     
     @Environment(\.dismiss) private var dismiss
-    
+    @State private var date1 = Date()
     @State private var title: String = "" 				// ON
     @State private var desc: String = "" 				// OFF
-    @State private var date: String = "" 				// ON
+    @State private var date: String = ""			// ON
     @State private var time: String = "" 				// ON
     @State private var location: String = "" 			// ON
     @State private var neighborhood: String = "" 	// ON
@@ -41,7 +41,12 @@ struct EventPostView: View {
                 
                 Section {
                     TextField("Nome do seu Evento", text: $title)
-                    TextField("Data", text: $date)
+                    DatePicker (
+                        "Start Date",
+                        selection: $date1,
+                        displayedComponents: [.date, .hourAndMinute]
+                    )
+                    .datePickerStyle(.wheel)
                     TextField("Horário", text: $time)
                     TextField("Local", text: $location)
                     TextField("Bairro", text: $neighborhood)
