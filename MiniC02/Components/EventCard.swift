@@ -46,7 +46,7 @@ struct EventCard: View {
 								// MARK: Event accessibility tags or whatever the design team is up to
 								Spacer()
 								
-								Image("icon-"+event.acctag)
+                                Image(event.acctag.rawValue)
 									.resizable()
 									.frame(width: 35, height: 35)
 									.padding(.trailing)
@@ -66,7 +66,7 @@ struct EventCard: View {
 }
 
 #Preview {
-	EventCard(event: EventModel(title: "Aniversário do Sabaini", desc: "", date: "19/09/2023 (quarta-feira)", time: "19h", location: "Rua Lacerda de Almeida, 130", neighborhood: "Higienópolis", hostname: "sabainigabriel", imagename: "image2", acctag: "1"))
+    EventCard(event: EventModel(title: "Aniversário do Sabaini", desc: "", date: "19/09/2023 (quarta-feira)", time: "19h", location: "Rua Lacerda de Almeida, 130", neighborhood: "Higienópolis", hostname: "sabainigabriel", imagename: "image2", acctag: .ClosedCaptions))
 }
 
 

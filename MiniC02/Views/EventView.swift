@@ -14,6 +14,8 @@ struct EventView: View {
 	@State private var oneOpen: Bool = false
 	@State private var twoOpen: Bool = false
 	
+	@State var salvo: Bool = false
+    
 	@Environment(\.dismiss) private var dismiss
 	
 	@EnvironmentObject var vm : ViewModel
@@ -37,7 +39,9 @@ struct EventView: View {
 							.bold()
 						
 						EventDescription
-							.padding(.vertical)
+                            .padding(.vertical)
+                        
+                        EventAcessibility
 						
 						EventInfo
 							.padding(.vertical)
@@ -69,6 +73,10 @@ struct EventView: View {
 		}
 		.navigationBarBackButtonHidden(true)
 	}
+}
+
+#Preview {
+    EventView(event: EventModel(title: "Aniversário do Sabaini", desc: "", date: "19/09/2023 (quarta-feira)", time: "19h", location: "Rua Lacerda de Almeida, 130", neighborhood: "Higienópolis", hostname: "sabainigabriel", imagename: "image2", acctag: .ClosedCaptions))
 }
 
 extension EventView {
@@ -123,12 +131,12 @@ extension EventView {
 				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
 			
 			// MARK: bagulho dos designers
-			HStack{
-				
-				Image("icon-"+event.acctag)
-					.resizable()
-					.frame(width: 48, height: 48)
-			}
+//			HStack{
+//				
+//				Image("icon-"+event.acctag)
+//					.resizable()
+//					.frame(width: 48, height: 48)
+//			}
 			// MARK: Acaba bagulho
 			
 			HStack{
@@ -166,4 +174,25 @@ extension EventView {
 				.font(Font.custom("SF Pro", size: 17))
 		}
 	}
+    
+    private var EventAcessibility: some View {
+        VStack(alignment: .leading){
+            HStack{
+                Text("Acessibilidade")
+                    .foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
+                Button {
+                    print("informacoes")
+                    
+                    withAnimation(.linear(duration: 0.3)) {
+                    }
+                    
+                } label: {
+                    Image(systemName: "info.circle.fill")
+                }
+            }
+//            HStack{
+//                ForEach( )
+//            }
+        }
+    }
 }

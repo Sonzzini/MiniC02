@@ -5,9 +5,11 @@
 //  Created by Laura C. Balbachan dos Santos on 03/10/23.
 //
 //
+
+
 //import SwiftUI
 //
-//struct TagInformationView: View {
+//struct AcessibilityTagInformationView: View {
 //    @Environment(\.dismiss) var dismiss
 //    
 //    var body: some View {
@@ -19,5 +21,5 @@
 //}
 //
 //#Preview {
-//    TagInformationView()
+//    AcessibilityTagInformationView()
 //}
