@@ -11,15 +11,16 @@ struct EventPostView: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    @State private var date1 = Date()
     @State private var title: String = "" 				// ON
     @State private var desc: String = "" 				// OFF
-    @State private var date: String = "" 				// ON
+    @State private var date: String = ""			// ON
     @State private var time: String = "" 				// ON
     @State private var location: String = "" 			// ON
     @State private var neighborhood: String = "" 	// ON
     @State private var hostname: String = "" 			// OFF
     @State private var imagename: String = "image1" // OFF
-    @State private var acctag: String = "1" 			// OFF
+//    @State private var acctag: String = "1" 			// OFF
     @State private var selectedAccessibilityTag: AccessibilityTag = .ClosedCaptions
     
     @EnvironmentObject var eventC: EventCRU
@@ -41,7 +42,12 @@ struct EventPostView: View {
                 
                 Section {
                     TextField("Nome do seu Evento", text: $title)
-                    TextField("Data", text: $date)
+                    DatePicker (
+                        "Start Date",
+                        selection: $date1,
+                        displayedComponents: [.date, .hourAndMinute]
+                    )
+                    .datePickerStyle(.wheel)
                     TextField("Horário", text: $time)
                     TextField("Local", text: $location)
                     TextField("Bairro", text: $neighborhood)
@@ -87,7 +93,7 @@ struct EventPostView: View {
                             neighborhood: neighborhood,
                             hostname: hostname,
                             imagename: imagename,
-                            acctag: acctag)
+                            acctag:  selectedAccessibilityTag)
                         
                         eventC.postEvent(event: event)
                         dismiss()
