@@ -2,7 +2,7 @@
 //  Profile+CoreDataClass.swift
 //  MiniC02
 //
-//  Created by Paulo Sonzzini Ribeiro de Souza on 06/10/23.
+//  Created by Paulo Sonzzini Ribeiro de Souza on 09/10/23.
 //
 //
 

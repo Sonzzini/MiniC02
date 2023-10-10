@@ -11,10 +11,12 @@ struct EventView: View {
 	
 	var event: EventModel
 	@State var salvo: Bool = false
-    @State private var oneOpen: Bool = false
-    @State private var twoOpen: Bool = false
-    
+	@State private var oneOpen: Bool = false
+	@State private var twoOpen: Bool = false
+	
 	@Environment(\.dismiss) private var dismiss
+	
+	@EnvironmentObject var vm : ViewModel
 	
 	var body: some View {
 		NavigationStack {
@@ -32,14 +34,14 @@ struct EventView: View {
 						Text(event.title)
 							.font(Font.custom("SF Pro", size: 28))
 							.padding(.top, 14)
-                            .bold()
+							.bold()
 						
 						EventDescription
-                            .padding(.vertical)
+							.padding(.vertical)
 						
 						EventInfo
-                            .padding(.vertical)
-
+							.padding(.vertical)
+						
 						Button("Eu vou") {
 							print("eu vou")
 						}
@@ -84,7 +86,8 @@ extension EventView {
 			Spacer()
 			
 			Button {
-				print("funcionando")
+				
+				vm.saveEventToProfile(event: event)
 				
 				withAnimation(.linear(duration: 0.3)) {
 					salvo.toggle()
@@ -119,13 +122,6 @@ extension EventView {
 				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
 			
 			// MARK: bagulho dos designers
-//			VStack{
-//                DisclosureGroup("teste", isExpanded: $oneOpen){
-//                    Text(event.desc)
-//                }.disclosureGroupStyle(DisclosureGroupImageStyle(icon: event.acctag))
-//                
-//                
-//			}.padding()
 			HStack{
 				
 				Image("icon-"+event.acctag)
@@ -136,13 +132,20 @@ extension EventView {
 			
 			HStack{
 				Image(systemName: "calendar")
+					.foregroundStyle(Color("DarkBlue"))
+				
 				Text(event.date)
+				
 				Image(systemName: "clock")
+					.foregroundStyle(Color("DarkBlue"))
+				
 				Text(event.time)
 			}
-            .padding(.vertical)
+			.padding(.vertical)
 			HStack{
 				Image(systemName: "mappin")
+					.foregroundStyle(Color("DarkBlue"))
+
 				Text(event.location + " - " + event.neighborhood)
 			}
 		}

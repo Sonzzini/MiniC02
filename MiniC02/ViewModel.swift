@@ -14,6 +14,7 @@ class ViewModel: ObservableObject {
 	
 	@Published var profiles: [Profile] = []
 	@Published var tags: [Tag] = []
+	@Published var ids: [EventPresenceIDs] = []
 	@Published var controller: [Controller] = []
 	@Published var context: NSManagedObjectContext
 	
@@ -22,6 +23,7 @@ class ViewModel: ObservableObject {
 		self.context = CoreDataController.shared.viewContext
 		getTags()
 		getProfile()
+		getIDs()
 	}
 	
 	func getProfile() {
@@ -30,6 +32,10 @@ class ViewModel: ObservableObject {
 	
 	func getTags() {
 		tags = CoreDataController.shared.getTags()
+	}
+	
+	func getIDs() {
+		ids = CoreDataController.shared.getIDs()
 	}
 	
 	func getController() {
@@ -98,5 +104,19 @@ class ViewModel: ObservableObject {
 		}
 	}
 	
+	func saveEventToProfile(event: EventModel) {
+		getProfile()
+		
+		if !profiles.isEmpty {
+			let eventObj = EventPresenceIDs(context: context)
+			eventObj.id = event.id
+			eventObj.eventIDstoProfile = profiles[0]
+			
+			try? context.save()
+			
+			ids.insert(eventObj, at: 0)
+		}
+	}
 	
+	func removeEventFromProfile() {}
 }
