@@ -10,6 +10,7 @@ import SwiftUI
 struct EventPostView: View {
     
     @Environment(\.dismiss) private var dismiss
+    
     @State private var date1 = Date()
     @State private var title: String = "" 				// ON
     @State private var desc: String = "" 				// OFF
@@ -19,7 +20,7 @@ struct EventPostView: View {
     @State private var neighborhood: String = "" 	// ON
     @State private var hostname: String = "" 			// OFF
     @State private var imagename: String = "image1" // OFF
-    @State private var acctag: String = "1" 			// OFF
+//    @State private var acctag: String = "1" 			// OFF
     @State private var selectedAccessibilityTag: AccessibilityTag = .ClosedCaptions
     
     @EnvironmentObject var eventC: EventCRU
@@ -62,16 +63,6 @@ struct EventPostView: View {
                         }
                     }
                 }
-                    
-//                                        Picker("Tag de Acessibilidade:", selection: $acctag) {
-//                                            ForEach(tags, id: \.self) {
-//                                               Text($0)
-//                                            }
-//                                       }
-//                }
-                //            header: {
-                //                Text("Selecione as acessibilidades do evento:")
-                //            }
                 
                 Section {
                     
@@ -102,7 +93,7 @@ struct EventPostView: View {
                             neighborhood: neighborhood,
                             hostname: hostname,
                             imagename: imagename,
-                            acctag: acctag)
+                            acctag:  selectedAccessibilityTag)
                         
                         eventC.postEvent(event: event)
                         dismiss()
