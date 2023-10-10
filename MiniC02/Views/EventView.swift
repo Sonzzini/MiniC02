@@ -159,6 +159,7 @@ extension EventView {
                     
                 } label: {
                     Image(systemName: "info.circle.fill")
+                        .tint(Color("DarkBlue"))
                 }
                 .sheet(isPresented: $showingInfoView){
                     AcessibilityTagInformationView()

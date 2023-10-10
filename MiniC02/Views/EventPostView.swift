@@ -77,7 +77,7 @@ struct EventPostView: View {
                         .foregroundStyle(Color("DarkYellow"))
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Criar") {
+                    Button (action: {
                         let event = EventModel(
                             title: title,
                             desc: desc,
@@ -91,13 +91,17 @@ struct EventPostView: View {
                         
                         eventC.postEvent(event: event)
                         dismiss()
-                    }
+                    }, label: {
+                        Text("Criar")
+                            .font(.custom("SF Pro", size: 16))
+                            .foregroundStyle(Color("DarkBlue"))
+                    })
                 }
             }
         }
-        
     }
 }
+
 
 #Preview {
     EventPostView()
