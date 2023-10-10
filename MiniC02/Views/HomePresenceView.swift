@@ -17,8 +17,18 @@ struct HomePresenceView: View {
 		NavigationStack {
 			ScrollView {
 				
+				if eventsPresence.isEmpty {
+					VStack {
+						Image("Frown")
+							.padding(.bottom, 50)
+						
+						Text("Nenhum evento...")
+					}
+					.padding(.top, 100)
+				}
+				
 				ForEach(eventsPresence) { event in
-					EventCard(event: event)
+					EventCard(event: event, salvo: true)
 				}
 				
 			}

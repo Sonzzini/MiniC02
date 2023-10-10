@@ -10,7 +10,7 @@ import SwiftUI
 struct EventView: View {
 	
 	var event: EventModel
-	@State var salvo: Bool = false
+	@Binding var salvo: Bool
 	@State private var oneOpen: Bool = false
 	@State private var twoOpen: Bool = false
 	
@@ -71,10 +71,6 @@ struct EventView: View {
 	}
 }
 
-#Preview {
-	EventView(event: EventModel(title: "Aniversário do Sabaini", desc: "", date: "19/09/2023 (quarta-feira)", time: "19h", location: "Rua Lacerda de Almeida, 130", neighborhood: "Higienópolis", hostname: "sabainigabriel", imagename: "image2", acctag: "acc1"))
-}
-
 extension EventView {
 	
 	private var EventHeaderWithSave: some View {
@@ -87,7 +83,12 @@ extension EventView {
 			
 			Button {
 				
-				vm.saveEventToProfile(event: event)
+				if !salvo {
+					vm.saveEventToProfile(event: event)
+				}
+				else if salvo {
+					vm.unsaveEventFromProfile(event: event)
+				}
 				
 				withAnimation(.linear(duration: 0.3)) {
 					salvo.toggle()

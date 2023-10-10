@@ -10,11 +10,12 @@ import SwiftUI
 struct EventCard: View {
 	
 	var event: EventModel
+	@State var salvo: Bool = false
 	var onYourProfile: Bool = false
 	
 	var body: some View {
-		NavigationStack {
-			NavigationLink(destination: EventView(event: event)) {
+		NavigationStack { 
+			NavigationLink(destination: EventView(event: event, salvo: $salvo)) {
 				
 				VStack(alignment: .leading) {
 					

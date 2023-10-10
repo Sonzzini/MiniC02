@@ -12,30 +12,48 @@ import Aptabase
 struct HomeView: View {
 	
 	@EnvironmentObject var vm : ViewModel
+	@EnvironmentObject var eventC : EventCRU
 	let screens = ["Feed", "Presença"]
 	@State var selectedIndex: Int = 0
 	let date = Date.now
 	
 	init() {
-//		Aptabase.shared.trackEvent("app_started")
-//		Aptabase.shared.trackEvent("screen_view", with: ["name": "Settings"])
+		//		Aptabase.shared.trackEvent("app_started")
+		//		Aptabase.shared.trackEvent("screen_view", with: ["name": "Settings"])
 	}
 	
 	var body: some View {
 		NavigationStack {
 			ScrollView {
+				VStack {
+					
+					Subtitle
+					
+					SegmentedControlView(selectedIndex: $selectedIndex, titles: screens)
+						.padding(.bottom)
+				}
+				.background(
+					
+					Color.white
+					
+				)
 				
-				Subtitle
+				if eventC.events.isEmpty {
+					Text("Carregando eventos...")
+						.padding(.top, 250)
+				}
 				
-				SegmentedControlView(selectedIndex: $selectedIndex, titles: screens)
-					.padding(.bottom)
-
 				if selectedIndex == 0 {
 					HomeFeedView()
 				} else {
 					HomePresenceView()
 				}
+				
+				
 			}
+			.background(
+				Color(red: 0.95, green: 0.95, blue: 0.95)
+			)
 			.navigationTitle("Hoje")
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {

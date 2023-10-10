@@ -118,5 +118,22 @@ class ViewModel: ObservableObject {
 		}
 	}
 	
-	func removeEventFromProfile() {}
+	func unsaveEventFromProfile(event: EventModel) {
+		getProfile()
+		
+		if !profiles.isEmpty {
+			let eventId = event.id
+			for id in ids {
+				if id.id == eventId {
+					print(id.id)
+					context.delete(id)
+					
+					try? context.save()
+				}
+			}
+		}
+		
+	}
+	
+	
 }

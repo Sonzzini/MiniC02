@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1952496C2AC606BD003D986A /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1952496B2AC606BD003D986A /* TutorialView.swift */; };
-		19683E492ABA3B7B006896B9 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19683E482ABA3B7B006896B9 /* UserView.swift */; };
 		1995B7182AC7436200908B4B /* CadastroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B7172AC7436200908B4B /* CadastroView.swift */; };
 		1995B7232ACCA5C500908B4B /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1995B7222ACCA5C500908B4B /* SF-Pro.ttf */; };
 		1995B72A2ACCC0D500908B4B /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B7292ACCC0D400908B4B /* TagView.swift */; };
@@ -45,7 +44,6 @@
 
 /* Begin PBXFileReference section */
 		1952496B2AC606BD003D986A /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
-		19683E482ABA3B7B006896B9 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		1995B7172AC7436200908B4B /* CadastroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadastroView.swift; sourceTree = "<group>"; };
 		1995B7222ACCA5C500908B4B /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		1995B7262ACCA70200908B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 				E938F5C02AD470F20049874E /* HomeFeedView.swift */,
 				E938F5C22AD470FD0049874E /* HomePresenceView.swift */,
 				E938F5792ACDFF4D0049874E /* ProfileView.swift */,
-				19683E482ABA3B7B006896B9 /* UserView.swift */,
 				B4A2A6C52ABA3740002C4115 /* EventView.swift */,
 				E94EA12C2AC4C126003D5DB8 /* EventPostView.swift */,
 				1952496B2AC606BD003D986A /* TutorialView.swift */,
@@ -287,7 +284,6 @@
 				1995B7182AC7436200908B4B /* CadastroView.swift in Sources */,
 				B4A2A6C82ABA3748002C4115 /* HomeView.swift in Sources */,
 				E938F5722ACB5C180049874E /* PlainButtonStyle.swift in Sources */,
-				19683E492ABA3B7B006896B9 /* UserView.swift in Sources */,
 				1995B72A2ACCC0D500908B4B /* TagView.swift in Sources */,
 				B4B8A3B52ACF563F001CFFE0 /* DisclosureGroupImageStyle.swift in Sources */,
 				E938F5C32AD470FD0049874E /* HomePresenceView.swift in Sources */,
