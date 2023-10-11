@@ -56,6 +56,15 @@ class CoreDataController: ObservableObject {
 		}
 	}
 	
+	func getIDs() -> [EventPresenceIDs] {
+		let request = NSFetchRequest<EventPresenceIDs>(entityName: "EventPresenceIDs")
+		
+		do {
+			return try viewContext.fetch(request)
+		} catch {
+			return []
+		}
+	}
 	
 	func DELETEALL() {
 		let storeContainer = persistentContainer.persistentStoreCoordinator

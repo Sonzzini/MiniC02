@@ -10,57 +10,73 @@ import SwiftUI
 struct EventCard: View {
 	
 	var event: EventModel
+	@State var salvo: Bool = false
 	var onYourProfile: Bool = false
 	
 	var body: some View {
 		NavigationStack {
-			NavigationLink(destination: EventView(event: event)) {
+			NavigationLink(destination: EventView(event: event, salvo: $salvo)) {
 				
-				VStack(alignment: .leading) {
-					
-					if !onYourProfile {
-						ImageWithName
-					}
+
 					
 					VStack(spacing: 0) {
+						
+						if !onYourProfile {
+							ImageWithName
+								.padding(.vertical, 10)
+								.padding(.horizontal, 5)
+						}
+
 						
 						eventImage
 						
 						ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
 							
 							RoundedCorner(radius: 10, corners: [.bottomLeft, .bottomRight])
-								.fill(Color.white)
-								.shadow(color: .gray, radius: 5, x: 0, y: 5)
+								.fill(Color("BG"))
+								.shadow(color: Color("BG"), radius: 5, x: 0, y: 5)
 							
 							HStack {
 								VStack(alignment: .leading) {
 									Text(event.title)
+                                        .foregroundStyle(Color("MainTextColor"))
 										.font(.title2)
 										.fontWeight(.semibold)
 									
 									Text(event.date + " - " + event.time)
+                                        .foregroundStyle(Color("MainTextColor"))
 								}
 								.padding(.horizontal, 10)
 								
 								// MARK: Event accessibility tags or whatever the design team is up to
 								Spacer()
 								
-                                Image(event.acctag.rawValue)
+								Image(event.acctag.rawValue)
 									.resizable()
 									.frame(width: 35, height: 35)
 									.padding(.trailing)
 							}
+							
 						}
 						
+						
 					}
+                    .background(Color("BG"))
+					.frame(width: 361, height: 300)
+					.clipShape(RoundedCorner(radius: 15, corners: [.allCorners]))
+					.background(
+						RoundedCorner(radius: 15, corners: [.allCorners])
+							.fill(.white)
+							.shadow(radius: 5)
+					)
 					
-				}
-				.frame(width: 361, height: 276)
+					
+					
 				
 			}
+			.foregroundStyle(.black)
+			
 		}
-		.foregroundStyle(.black)
-		
 	}
 }
 
@@ -94,10 +110,12 @@ extension EventCard {
 			Image(event.hostname)
 				.resizable()
 				.scaledToFit()
-				.frame(height: 25)
+				.frame(height: 30)
 			
 			Text(event.hostname)
+                .foregroundStyle(Color("MainTextColor"))
 				.font(.custom("SF-Pro", size: 20))
+                
 			
 			Spacer()
 		}
