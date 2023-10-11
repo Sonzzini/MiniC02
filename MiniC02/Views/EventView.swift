@@ -14,6 +14,7 @@ struct EventView: View {
 	@State private var oneOpen: Bool = false
 	@State private var twoOpen: Bool = false
 	@State var showingInfoView: Bool = false
+    @State var tag: AccessibilityTag
 	
 	@Environment(\.dismiss) private var dismiss
 	
@@ -185,6 +186,11 @@ extension EventView {
                 .sheet(isPresented: $showingInfoView){
                     AcessibilityTagInformationView()
                 }
+            }
+            HStack{
+                Image(event.acctag.rawValue)
+                    .resizable()
+                    .frame(width: 48, height: 47)
             }
         }
     }

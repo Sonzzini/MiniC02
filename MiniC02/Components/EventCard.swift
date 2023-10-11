@@ -15,7 +15,7 @@ struct EventCard: View {
 	
 	var body: some View {
 		NavigationStack {
-			NavigationLink(destination: EventView(event: event, salvo: $salvo)) {
+            NavigationLink(destination: EventView(event: event, salvo: $salvo, tag: event.acctag)) {
 				
 
 					
