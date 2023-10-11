@@ -20,7 +20,6 @@ struct EventPostView: View {
     @State private var neighborhood: String = "" 	// ON
     @State private var hostname: String = "" 			// OFF
     @State private var imagename: String = "image1" // OFF
-//    @State private var acctag: String = "1" 			// OFF
     @State private var selectedAccessibilityTag: AccessibilityTag = .ClosedCaptions
     
     @EnvironmentObject var eventC: EventCRU
