@@ -19,6 +19,7 @@ struct AcessibilityTagInformationView: View {
                     ForEach(AccessibilityTag.allCases, id: \.self) { tag in
                         TagInfoItem(tag: tag)
                             .padding(.horizontal, 15)
+                            .foregroundStyle(Color("MainTextColor"))
                     }
                     
                    
