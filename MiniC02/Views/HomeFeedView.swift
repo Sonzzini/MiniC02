@@ -22,7 +22,7 @@ struct HomeFeedView: View {
 				VStack(spacing: 0) {
 					
 					
-					ForEach(eventC.events) { event in
+					ForEach(eventC.events.reversed()) { event in
 						EventCard(event: event)
 							.padding(.bottom)
 						

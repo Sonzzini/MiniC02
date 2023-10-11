@@ -35,6 +35,7 @@ struct HomePresenceView: View {
 				}
 				.frame(maxWidth: .infinity)
 				.padding(.top)
+				.padding(.bottom, 20)
 				
 			}
 
