@@ -51,22 +51,22 @@ struct EventPostView: View {
                     TextField("Horário", text: $time)
                     TextField("Local", text: $location)
                     TextField("Bairro", text: $neighborhood)
-                } header: {
-                    Text("Informações")
                 }
                 
                 Section {
                     
-                    Picker("Tag de Acessibilidade:", selection: $selectedAccessibilityTag) {
+                    Picker("", selection: $selectedAccessibilityTag) {
                         ForEach(AccessibilityTag.allCases, id: \.self) {
                             Text($0.label)
                         }
                     }
+                } header: {
+                    Text("Selecione as Acessibilidades do evento:")
                 }
                 
                 Section {
                     
-                    TextField("Descrição", text: $desc)
+                    TextField("Venha celebrar...", text: $desc)
                         .textFieldStyle(.plain)
                     
                 } header: {
@@ -83,7 +83,7 @@ struct EventPostView: View {
                         .foregroundStyle(Color("DarkYellow"))
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Criar") {
+                    Button (action: {
                         let event = EventModel(
                             title: title,
                             desc: desc,
@@ -97,13 +97,17 @@ struct EventPostView: View {
                         
                         eventC.postEvent(event: event)
                         dismiss()
-                    }
+                    }, label: {
+                        Text("Criar")
+                            .font(.custom("SF Pro", size: 16))
+                            .foregroundStyle(Color("DarkBlue"))
+                    })
                 }
             }
         }
-        
     }
 }
+
 
 #Preview {
     EventPostView()
