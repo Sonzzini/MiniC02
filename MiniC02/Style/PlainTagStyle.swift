@@ -14,6 +14,7 @@ struct PlainTagStyle: ButtonStyle {
         configuration.label
             .font(.custom("SF Pro", size: 15))
             .padding()
+            .foregroundStyle(Color("BG"))
             .background(isSelected ? Color("DarkYellow"): Color("LightGray"))
             .cornerRadius(50)
             .overlay(
