@@ -25,7 +25,13 @@ struct HomeView: View {
 	var body: some View {
 		NavigationStack {
 			ScrollView {
-				VStack {
+				VStack(alignment: .leading) {
+					
+					Text("Hoje")
+						.font(.largeTitle)
+						.bold()
+						.foregroundStyle(Color("DarkBlue"))
+						.padding(.leading)
 					
 					Subtitle
 					
@@ -54,7 +60,6 @@ struct HomeView: View {
 			.background(
 				Color(red: 0.95, green: 0.95, blue: 0.95)
 			)
-			.navigationTitle("Hoje")
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink(destination: EventPostView()) {
