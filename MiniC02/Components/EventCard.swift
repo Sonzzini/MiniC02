@@ -15,7 +15,7 @@ struct EventCard: View {
 	
 	var body: some View {
 		NavigationStack {
-			NavigationLink(destination: EventView(event: event, salvo: $salvo)) {
+            NavigationLink(destination: EventView(event: event, salvo: $salvo, tag: event.acctag)) {
 				
 
 					
@@ -32,17 +32,19 @@ struct EventCard: View {
 						
 						ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
 							
-							RoundedCorner(radius: 0, corners: [.bottomLeft, .bottomRight])
-								.fill(Color.white)
-							
+							RoundedCorner(radius: 10, corners: [.bottomLeft, .bottomRight])
+								.fill(Color("BG"))
+								.shadow(color: Color("BG"), radius: 5, x: 0, y: 5)
 							
 							HStack {
 								VStack(alignment: .leading) {
 									Text(event.title)
+                                        .foregroundStyle(Color("MainTextColor"))
 										.font(.title2)
 										.fontWeight(.semibold)
 									
 									Text(event.date + " - " + event.time)
+                                        .foregroundStyle(Color("MainTextColor"))
 								}
 								.padding(.horizontal, 10)
 								
@@ -59,6 +61,7 @@ struct EventCard: View {
 						
 						
 					}
+                    .background(Color("BG"))
 					.frame(width: 361, height: 300)
 					.clipShape(RoundedCorner(radius: 15, corners: [.allCorners]))
 					.background(
@@ -110,7 +113,9 @@ extension EventCard {
 				.frame(height: 30)
 			
 			Text(event.hostname)
-				.font(.custom("SF-Pro", size: 18))
+                .foregroundStyle(Color("MainTextColor"))
+				.font(.custom("SF-Pro", size: 20))
+                
 			
 			Spacer()
 		}

@@ -14,6 +14,7 @@ struct EventView: View {
 	@State private var oneOpen: Bool = false
 	@State private var twoOpen: Bool = false
 	@State var showingInfoView: Bool = false
+    @State var tag: AccessibilityTag
 	
 	@Environment(\.dismiss) private var dismiss
 	
@@ -49,7 +50,7 @@ struct EventView: View {
 							print("eu vou")
 						}
 						.buttonStyle(PlainButtonStyle())
-						.padding(.vertical, 110)
+						.padding(.vertical, 20)
 						
 					}
 					.padding(.leading, 14)
@@ -86,6 +87,8 @@ extension EventView {
 			
 			Text(event.hostname)
 				.font(Font.custom("SF Pro", size: 17))
+                .foregroundStyle(Color("MainTextColor"))
+            
 			Spacer()
 			
 			Button {
@@ -106,15 +109,15 @@ extension EventView {
 				
 				if salvo{
 					Image(systemName: "bookmark.fill")
-						.font(.title)
+						.font(.title2)
 						.padding(.trailing, 14)
-						.foregroundColor(Color(red: 1, green: 0.79, blue: 0.25))
+						.foregroundColor(Color("DarkYellow"))
 				}
 				else {
 					Image(systemName: "bookmark")
-						.font(.title)
+						.font(.title2)
 						.padding(.trailing, 14)
-						.foregroundColor(Color(red: 1, green: 0.79, blue: 0.25))
+						.foregroundColor(Color("DarkYellow"))
 				}
 				
 			}
@@ -134,11 +137,12 @@ extension EventView {
 					.foregroundStyle(Color("DarkBlue"))
 				
 				Text(event.date)
-				
+                    .foregroundStyle(Color("MainTextColor"))
 				Image(systemName: "clock")
 					.foregroundStyle(Color("DarkBlue"))
 				
 				Text(event.time)
+                    .foregroundStyle(Color("MainTextColor"))
 			}
 			.padding(.vertical)
 			HStack{
@@ -146,6 +150,7 @@ extension EventView {
 					.foregroundStyle(Color("DarkBlue"))
 
 				Text(event.location + " - " + event.neighborhood)
+                    .foregroundStyle(Color("MainTextColor"))
 			}
 		}
 		.padding(.top)
@@ -155,13 +160,13 @@ extension EventView {
 		VStack(alignment: .leading) {
 			Text("Descrição")
 				.font(Font.custom("SF Pro Text", size: 17)
-					.weight(.semibold))
-				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
-				.padding(.top)
+                .weight(.semibold))
+				.foregroundColor(Color("DarkGray"))
 				.padding(.bottom, 5)
 			
 			Text(event.desc)
 				.font(Font.custom("SF Pro", size: 17))
+                .foregroundStyle(Color("MainTextColor"))
 		}
 	}
     
@@ -169,7 +174,7 @@ extension EventView {
         VStack(alignment: .leading){
             HStack{
                 Text("Acessibilidade")
-                    .foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
+                    .foregroundColor(Color("DarkGray"))
                 Button {
                     print("informacoes")
                     showingInfoView.toggle()
@@ -183,7 +188,9 @@ extension EventView {
                 }
             }
             HStack{
-               // ForEach( )
+                Image(event.acctag.rawValue)
+                    .resizable()
+                    .frame(width: 48, height: 47)
             }
         }
     }
