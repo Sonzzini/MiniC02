@@ -13,6 +13,7 @@ struct EventView: View {
 	@Binding var salvo: Bool
 	@State private var oneOpen: Bool = false
 	@State private var twoOpen: Bool = false
+	@State var showingInfoView: Bool = false
 	
 	@Environment(\.dismiss) private var dismiss
 	
