@@ -61,6 +61,7 @@ struct EventCard: View {
 						
 						
 					}
+                    .background(Color("BG"))
 					.frame(width: 361, height: 300)
 					.clipShape(RoundedCorner(radius: 15, corners: [.allCorners]))
 					.background(
