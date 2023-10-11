@@ -8,17 +8,17 @@
 import Foundation
 import SwiftUI
 
-enum AccessibilityTag: String, CaseIterable, Identifiable {
-    case ClosedCaptions = "icon-CLosed_Captions"
-    case InternationalDeaf = "icon-International_Deaf"
-    case InterpreteLibras = "icon-Interprete_Libras"
-    case Libras = "icon-Libras"
-    case OpenedCaptions = "icon-Opened_Captions"
-    case ProtecaoOuvidoObrigatoria = "icon-Protecao_Ouvido_Obrigatoria"
-    case SistemaAudicaoAssistida = "icon-Sistemas_Audicao_Assistida"
-    case Telebobina = "icon-Telebobina"
-    case TelefoneAmplificadorSonoro = "icon-Telefone Amplificador_Sonoro"
-    case TelefoneSurdos = "icon-Telefone_Surdos"
+enum AccessibilityTag: String, CaseIterable, Identifiable, Codable {
+    case ClosedCaptions = "Closed_Captions"
+    case InternationalDeaf = "Internacional_Deficiencia_Auditiva"
+    case InterpreteLibras = "Interprete_Libras"
+    case Libras = "Libras"
+    case OpenedCaptions = "Opened_Captions"
+    case ProtecaoOuvidoObrigatoria = "Protecao_Ouvido_Obrigatoria"
+    case SistemaAudicaoAssistida = "Sistemas_Audicao_Assistida"
+    case Telebobina = "Telebobina"
+    case TelefoneAmplificadorSonoro = "Telefone Amplificador_Sonoro"
+    case TelefoneSurdos = "Telefone_Surdos"
 
     var label: String {
         switch self {
@@ -37,3 +37,7 @@ enum AccessibilityTag: String, CaseIterable, Identifiable {
 
     var id: String { return self.rawValue }
 }
+
+
+//if let tag = AccessibilityTag(rawValue: "icon-Closed_Captions")
+//tag?.rawValue

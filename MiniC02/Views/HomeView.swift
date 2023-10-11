@@ -7,42 +7,59 @@
 
 import SwiftUI
 import UIKit
+import Aptabase
 
 struct HomeView: View {
 	
-	@Environment(\.managedObjectContext) var moc
-	
-	@EnvironmentObject var eventC : EventCRU
 	@EnvironmentObject var vm : ViewModel
-	
-	@State var firstLoginSheetIsPresented: Bool = false
-	
+	@EnvironmentObject var eventC : EventCRU
+	let screens = ["Feed", "Presença"]
+	@State var selectedIndex: Int = 0
 	let date = Date.now
-
+	
+	init() {
+		//		Aptabase.shared.trackEvent("app_started")
+		//		Aptabase.shared.trackEvent("screen_view", with: ["name": "Settings"])
+	}
+	
 	var body: some View {
 		NavigationStack {
 			ScrollView {
-				
-				Subtitle
-				
-				ForEach(eventC.events) { event in
-					EventCard(event: event)
+				VStack(alignment: .leading) {
+					
+					Text("Hoje")
+						.font(.largeTitle)
+						.bold()
+						.foregroundStyle(Color("DarkBlue"))
+						.padding(.leading)
+					
+					Subtitle
+					
+					SegmentedControlView(selectedIndex: $selectedIndex, titles: screens)
 						.padding(.bottom)
 				}
+				.background(
+					
+					Color.white
+					
+				)
+				
+				if eventC.events.isEmpty {
+					Text("Carregando eventos...")
+						.padding(.top, 250)
+				}
+				
+				if selectedIndex == 0 {
+					HomeFeedView()
+				} else {
+					HomePresenceView()
+				}
+				
+				
 			}
-			.onAppear {
-				
-				eventC.getEvents()
-				
-				vm.setupController(firstLoginSheetIsPresented: &firstLoginSheetIsPresented)
-				
-				
-				UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
-				UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
-
-				
-			}
-			.navigationTitle("Hoje")
+			.background(
+				Color(red: 0.95, green: 0.95, blue: 0.95)
+			)
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink(destination: EventPostView()) {
@@ -53,7 +70,7 @@ struct HomeView: View {
 				
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink(destination: ProfileView()) {
-
+						
 						if !vm.profiles.isEmpty {
 							Image(vm.profiles[0].imagename ?? "sabainigabriel")
 						}
@@ -64,18 +81,21 @@ struct HomeView: View {
 				}
 			}
 		}
-		.fullScreenCover(isPresented: $firstLoginSheetIsPresented) {
-			TutorialView(sheetIsPresented: $firstLoginSheetIsPresented)
+		
+		.onAppear {
+			UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
+			UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
 		}
 		
 	}
-		
+	
 }
 
 //#Preview {
 //		HomeView()
 //			.environmentObject(EventCRU())
 //}
+
 
 extension HomeView {
 	

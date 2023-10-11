@@ -10,9 +10,13 @@ import SwiftUI
 struct EventView: View {
 	
 	var event: EventModel
-	@State var salvo: Bool = false
-    
+	@Binding var salvo: Bool
+	@State private var oneOpen: Bool = false
+	@State private var twoOpen: Bool = false
+	
 	@Environment(\.dismiss) private var dismiss
+	
+	@EnvironmentObject var vm : ViewModel
 	
 	var body: some View {
 		NavigationStack {
@@ -30,7 +34,7 @@ struct EventView: View {
 						Text(event.title)
 							.font(Font.custom("SF Pro", size: 28))
 							.padding(.top, 14)
-                            .bold()
+							.bold()
 						
 						EventDescription
                             .padding(.vertical)
@@ -38,8 +42,8 @@ struct EventView: View {
                         EventAcessibility
 						
 						EventInfo
-                            .padding(.vertical)
-
+							.padding(.vertical)
+						
 						Button("Eu vou") {
 							print("eu vou")
 						}
@@ -69,9 +73,9 @@ struct EventView: View {
 	}
 }
 
-#Preview {
-	EventView(event: EventModel(title: "Aniversário do Sabaini", desc: "", date: "19/09/2023 (quarta-feira)", time: "19h", location: "Rua Lacerda de Almeida, 130", neighborhood: "Higienópolis", hostname: "sabainigabriel", imagename: "image2", acctag: "acc1"))
-}
+//#Preview {
+//    EventView(event: EventModel(title: "Aniversário do Sabaini", desc: "", date: "19/09/2023 (quarta-feira)", time: "19h", location: "Rua Lacerda de Almeida, 130", neighborhood: "Higienópolis", hostname: "sabainigabriel", imagename: "image2", acctag: .ClosedCaptions))
+//}
 
 extension EventView {
 	
@@ -84,7 +88,13 @@ extension EventView {
 			Spacer()
 			
 			Button {
-				print("funcionando")
+				
+				if !salvo {
+					vm.saveEventToProfile(event: event)
+				}
+				else if salvo {
+					vm.unsaveEventFromProfile(event: event)
+				}
 				
 				withAnimation(.linear(duration: 0.3)) {
 					salvo.toggle()
@@ -129,13 +139,20 @@ extension EventView {
 			
 			HStack{
 				Image(systemName: "calendar")
+					.foregroundStyle(Color("DarkBlue"))
+				
 				Text(event.date)
+				
 				Image(systemName: "clock")
+					.foregroundStyle(Color("DarkBlue"))
+				
 				Text(event.time)
 			}
-            .padding(.vertical)
+			.padding(.vertical)
 			HStack{
 				Image(systemName: "mappin")
+					.foregroundStyle(Color("DarkBlue"))
+
 				Text(event.location + " - " + event.neighborhood)
 			}
 		}
