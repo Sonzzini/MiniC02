@@ -15,29 +15,28 @@ struct EventCard: View {
 	var body: some View {
 		NavigationStack {
 			NavigationLink(destination: EventView(event: event)) {
-				
-				VStack(alignment: .leading) {
-					
-					if !onYourProfile {
-						ImageWithName
-					}
 					
 					VStack(spacing: 0) {
                         
-                        //foto e usuario q eu trouxe
-                        
-                        HStack {
-                            Image(event.hostname)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 30)
-                            
-                            Text(event.hostname)
-                                .font(.custom("SF-Pro", size: 18))
-                               
-                            
-                            Spacer()
+                        if !onYourProfile {
+                            ImageWithName
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 5)
                         }
+//                        //foto e usuario q eu trouxe
+//                        
+//                        HStack {
+//                            Image(event.hostname)
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(height: 30)
+//                            
+//                            Text(event.hostname)
+//                                .font(.custom("SF-Pro", size: 18))
+//                               
+//                            
+//                            Spacer()
+//                        }
 						
 						eventImage
 						
@@ -70,16 +69,13 @@ struct EventCard: View {
                         
 						
 					}
-                    .clipShape(RoundedCorner(radius: 25, corners: [.allCorners]))
-                    .background(
-                        RoundedRectangle(cornerRadius: 25.0) // se mudar esse raio, mudar no RoundedCorner também
-                            .fill(.white)
-//                            .frame(width: 35, height: 70)
-                            .shadow(color: .gray, radius: 4, x: 0, y: 0)
-                    )
-					
-				}
 				.frame(width: 361, height: 300)
+                .clipShape(RoundedCorner(radius: 15, corners: [.allCorners]))
+                .background(
+                    RoundedCorner(radius: 15, corners: [.allCorners])
+                        .fill(.white)
+                        .shadow(radius: 10)
+                )
                 
                 
 				
@@ -117,13 +113,13 @@ struct RoundedCorner: Shape {
 extension EventCard {
 	private var ImageWithName: some View {
 		HStack {
-//			Image(event.hostname)
-//				.resizable()
-//				.scaledToFit()
-//				.frame(height: 30)
-//			
-//			Text(event.hostname)
-//				.font(.custom("SF-Pro", size: 18))
+			Image(event.hostname)
+				.resizable()
+				.scaledToFit()
+				.frame(height: 30)
+			
+			Text(event.hostname)
+				.font(.custom("SF-Pro", size: 18))
 			
 			Spacer()
 		}
