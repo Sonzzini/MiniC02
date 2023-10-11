@@ -10,27 +10,31 @@ import SwiftUI
 struct EventCard: View {
 	
 	var event: EventModel
+	@State var salvo: Bool = false
 	var onYourProfile: Bool = false
 	
 	var body: some View {
 		NavigationStack {
-			NavigationLink(destination: EventView(event: event)) {
+			NavigationLink(destination: EventView(event: event, salvo: $salvo)) {
 				
-				VStack(alignment: .leading) {
-					
-					if !onYourProfile {
-						ImageWithName
-					}
+
 					
 					VStack(spacing: 0) {
+						
+						if !onYourProfile {
+							ImageWithName
+								.padding(.vertical, 10)
+								.padding(.horizontal, 5)
+						}
+
 						
 						eventImage
 						
 						ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
 							
-							RoundedCorner(radius: 10, corners: [.bottomLeft, .bottomRight])
+							RoundedCorner(radius: 0, corners: [.bottomLeft, .bottomRight])
 								.fill(Color.white)
-								.shadow(color: .gray, radius: 5, x: 0, y: 5)
+							
 							
 							HStack {
 								VStack(alignment: .leading) {
@@ -45,22 +49,31 @@ struct EventCard: View {
 								// MARK: Event accessibility tags or whatever the design team is up to
 								Spacer()
 								
-                                Image(event.acctag.rawValue)
+								Image(event.acctag.rawValue)
 									.resizable()
 									.frame(width: 35, height: 35)
 									.padding(.trailing)
 							}
+							
 						}
 						
+						
 					}
+					.frame(width: 361, height: 300)
+					.clipShape(RoundedCorner(radius: 15, corners: [.allCorners]))
+					.background(
+						RoundedCorner(radius: 15, corners: [.allCorners])
+							.fill(.white)
+							.shadow(radius: 5)
+					)
 					
-				}
-				.frame(width: 361, height: 276)
+					
+					
 				
 			}
+			.foregroundStyle(.black)
+			
 		}
-		.foregroundStyle(.black)
-		
 	}
 }
 
@@ -94,10 +107,10 @@ extension EventCard {
 			Image(event.hostname)
 				.resizable()
 				.scaledToFit()
-				.frame(height: 25)
+				.frame(height: 30)
 			
 			Text(event.hostname)
-				.font(.custom("SF-Pro", size: 20))
+				.font(.custom("SF-Pro", size: 18))
 			
 			Spacer()
 		}
