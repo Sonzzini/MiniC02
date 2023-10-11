@@ -8,75 +8,70 @@
 import SwiftUI
 
 struct EventCard: View {
-	
-	var event: EventModel
-	@State var salvo: Bool = false
-	var onYourProfile: Bool = false
-	
-	var body: some View {
-		NavigationStack { 
-			NavigationLink(destination: EventView(event: event, salvo: $salvo)) {
-				
-				VStack(alignment: .leading) {
-					
-					if !onYourProfile {
-						ImageWithName
-					}
-					
-					VStack(spacing: 0) {
+    
+    var event: EventModel
+    @State var salvo: Bool = false
+    var onYourProfile: Bool = false
+    
+    var body: some View {
+        NavigationStack { 
+            NavigationLink(destination: EventView(event: event, salvo: $salvo)) {
+                
+                
+                VStack(spacing: 0) {
+                    
+                    if !onYourProfile {
+                        ImageWithName
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 5)
+                    }
+                    //                        //foto e usuario q eu trouxe
+                    //                        
+                    //                        HStack {
+                    //                            Image(event.hostname)
+                    //                                .resizable()
+                    //                                .scaledToFit()
+                    //                                .frame(height: 30)
+                    //                            
+                    //                            Text(event.hostname)
+                    //                                .font(.custom("SF-Pro", size: 18))
+                    //                               
+                    //                            
+                    //                            Spacer()
+                    //                        }
+                    
+                    eventImage
+                    
+                    ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
                         
-                        if !onYourProfile {
-                            ImageWithName
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 5)
-                        }
-//                        //foto e usuario q eu trouxe
-//                        
-//                        HStack {
-//                            Image(event.hostname)
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(height: 30)
-//                            
-//                            Text(event.hostname)
-//                                .font(.custom("SF-Pro", size: 18))
-//                               
-//                            
-//                            Spacer()
-//                        }
-						
-						eventImage
-						
-						ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
-							
-							RoundedCorner(radius: 0, corners: [.bottomLeft, .bottomRight])
-								.fill(Color.white)
+                        RoundedCorner(radius: 0, corners: [.bottomLeft, .bottomRight])
+                            .fill(Color.white)
+                        
+                        
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(event.title)
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
                                 
-							
-							HStack {
-								VStack(alignment: .leading) {
-									Text(event.title)
-										.font(.title2)
-										.fontWeight(.semibold)
-									
-									Text(event.date + " - " + event.time)
-								}
-								.padding(.horizontal, 10)
-								
-								// MARK: Event accessibility tags or whatever the design team is up to
-								Spacer()
-								
-                                Image(event.acctag.rawValue)
-									.resizable()
-									.frame(width: 35, height: 70)
-									.padding(.trailing)
-							}
+                                Text(event.date + " - " + event.time)
+                            }
+                            .padding(.horizontal, 10)
                             
-						}
+                            // MARK: Event accessibility tags or whatever the design team is up to
+                            Spacer()
+                            
+                            Image(event.acctag.rawValue)
+                                .resizable()
+                                .frame(width: 35, height: 70)
+                                .padding(.trailing)
+                        }
                         
-						
-					}
-				.frame(width: 361, height: 300)
+                    }
+                    
+                    
+                }
+                .frame(width: 361, height: 300)
                 .clipShape(RoundedCorner(radius: 15, corners: [.allCorners]))
                 .background(
                     RoundedCorner(radius: 15, corners: [.allCorners])
@@ -85,11 +80,12 @@ struct EventCard: View {
                 )
                 
                 
-				
-			}
-		}
-		.foregroundStyle(.black)
-		
+                
+                
+            }
+            .foregroundStyle(.black)
+            
+        }
     }
 }
 
