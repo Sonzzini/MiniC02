@@ -14,36 +14,19 @@ struct EventCard: View {
 	var onYourProfile: Bool = false
 	
 	var body: some View {
-		NavigationStack { 
+		NavigationStack {
 			NavigationLink(destination: EventView(event: event, salvo: $salvo)) {
 				
-				VStack(alignment: .leading) {
-					
-					if !onYourProfile {
-						ImageWithName
-					}
+
 					
 					VStack(spacing: 0) {
-                        
-                        if !onYourProfile {
-                            ImageWithName
-                                .padding(.vertical, 10)
-                                .padding(.horizontal, 5)
-                        }
-//                        //foto e usuario q eu trouxe
-//                        
-//                        HStack {
-//                            Image(event.hostname)
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(height: 30)
-//                            
-//                            Text(event.hostname)
-//                                .font(.custom("SF-Pro", size: 18))
-//                               
-//                            
-//                            Spacer()
-//                        }
+						
+						if !onYourProfile {
+							ImageWithName
+								.padding(.vertical, 10)
+								.padding(.horizontal, 5)
+						}
+
 						
 						eventImage
 						
@@ -51,7 +34,7 @@ struct EventCard: View {
 							
 							RoundedCorner(radius: 0, corners: [.bottomLeft, .bottomRight])
 								.fill(Color.white)
-                                
+							
 							
 							HStack {
 								VStack(alignment: .leading) {
@@ -66,31 +49,32 @@ struct EventCard: View {
 								// MARK: Event accessibility tags or whatever the design team is up to
 								Spacer()
 								
-                                Image(event.acctag.rawValue)
+								Image(event.acctag.rawValue)
 									.resizable()
-									.frame(width: 35, height: 70)
+									.frame(width: 35, height: 35)
 									.padding(.trailing)
 							}
-                            
+							
 						}
-                        
+						
 						
 					}
-				.frame(width: 361, height: 300)
-                .clipShape(RoundedCorner(radius: 15, corners: [.allCorners]))
-                .background(
-                    RoundedCorner(radius: 15, corners: [.allCorners])
-                        .fill(.white)
-                        .shadow(radius: 10)
-                )
-                
-                
+					.frame(width: 361, height: 300)
+					.clipShape(RoundedCorner(radius: 15, corners: [.allCorners]))
+					.background(
+						RoundedCorner(radius: 15, corners: [.allCorners])
+							.fill(.white)
+							.shadow(radius: 5)
+					)
+					
+					
+					
 				
 			}
+			.foregroundStyle(.black)
+			
 		}
-		.foregroundStyle(.black)
-		
-    }
+	}
 }
 
 #Preview {

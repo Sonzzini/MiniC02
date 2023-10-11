@@ -17,21 +17,27 @@ struct HomePresenceView: View {
 		NavigationStack {
 			ScrollView {
 				
-				if eventsPresence.isEmpty {
-					VStack {
-						Image("Frown")
-							.padding(.bottom, 50)
-						
-						Text("Nenhum evento...")
+				VStack {
+					if eventsPresence.isEmpty {
+						VStack {
+							Image("Frown")
+								.padding(.bottom, 50)
+							
+							Text("Nenhum evento...")
+						}
+						.padding(.top, 100)
 					}
-					.padding(.top, 100)
+					
+					ForEach(eventsPresence) { event in
+						EventCard(event: event, salvo: true)
+					}
+					
 				}
-				
-				ForEach(eventsPresence) { event in
-					EventCard(event: event, salvo: true)
-				}
+				.frame(maxWidth: .infinity)
+				.padding(.top)
 				
 			}
+
 			.onAppear {
 				eventC.getEvents()
 				vm.getIDs()
@@ -52,6 +58,7 @@ struct HomePresenceView: View {
 			
 			
 		}
+
 	}
 }
 
