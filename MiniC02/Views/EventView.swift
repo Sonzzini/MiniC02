@@ -11,6 +11,7 @@ struct EventView: View {
 	
 	var event: EventModel
 	@State var salvo: Bool = false
+    @State private var showingInfoView = false
     
 	@Environment(\.dismiss) private var dismiss
 	
@@ -118,15 +119,6 @@ extension EventView {
 					.weight(.semibold))
 				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
 			
-			// MARK: bagulho dos designers
-//			HStack{
-//				
-//				Image("icon-"+event.acctag)
-//					.resizable()
-//					.frame(width: 48, height: 48)
-//			}
-			// MARK: Acaba bagulho
-			
 			HStack{
 				Image(systemName: "calendar")
 				Text(event.date)
@@ -163,17 +155,19 @@ extension EventView {
                     .foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
                 Button {
                     print("informacoes")
-                    
-                    withAnimation(.linear(duration: 0.3)) {
-                    }
+                    showingInfoView.toggle()
                     
                 } label: {
                     Image(systemName: "info.circle.fill")
+                        .tint(Color("DarkBlue"))
+                }
+                .sheet(isPresented: $showingInfoView){
+                    AcessibilityTagInformationView()
                 }
             }
-//            HStack{
-//                ForEach( )
-//            }
+            HStack{
+               // ForEach( )
+            }
         }
     }
 }
