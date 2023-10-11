@@ -11,11 +11,11 @@
 		1995B7182AC7436200908B4B /* CadastroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B7172AC7436200908B4B /* CadastroView.swift */; };
 		1995B7232ACCA5C500908B4B /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1995B7222ACCA5C500908B4B /* SF-Pro.ttf */; };
 		1995B72A2ACCC0D500908B4B /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B7292ACCC0D400908B4B /* TagView.swift */; };
-		1995B72C2ACCC6EE00908B4B /* TagInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B72B2ACCC6EE00908B4B /* TagInformationView.swift */; };
 		1995B72C2ACCC6EE00908B4B /* AcessibilityTagInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1995B72B2ACCC6EE00908B4B /* AcessibilityTagInformationView.swift */; };
 		19F0B5BA2ACF46F80097E283 /* PlainTagStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F0B5B92ACF46F80097E283 /* PlainTagStyle.swift */; };
 		19F0B5BC2AD088E90097E283 /* TagButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F0B5BB2AD088E90097E283 /* TagButtonView.swift */; };
 		19F0B5BE2AD479B20097E283 /* IndexCircles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F0B5BD2AD479B20097E283 /* IndexCircles.swift */; };
+		2D985EB32AD7298D00AAE7D3 /* ProfileSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D985EB22AD7298D00AAE7D3 /* ProfileSheetView.swift */; };
 		B40309462ACE00EF00014998 /* TagInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40309452ACE00EF00014998 /* TagInfoItem.swift */; };
 		B4A2A6C62ABA3740002C4115 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C52ABA3740002C4115 /* EventView.swift */; };
 		B4A2A6C82ABA3748002C4115 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A2A6C72ABA3748002C4115 /* HomeView.swift */; };
@@ -51,11 +51,11 @@
 		1995B7222ACCA5C500908B4B /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		1995B7262ACCA70200908B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1995B7292ACCC0D400908B4B /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
-		1995B72B2ACCC6EE00908B4B /* TagInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInformationView.swift; sourceTree = "<group>"; };
 		1995B72B2ACCC6EE00908B4B /* AcessibilityTagInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcessibilityTagInformationView.swift; sourceTree = "<group>"; };
 		19F0B5B92ACF46F80097E283 /* PlainTagStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainTagStyle.swift; sourceTree = "<group>"; };
 		19F0B5BB2AD088E90097E283 /* TagButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButtonView.swift; sourceTree = "<group>"; };
 		19F0B5BD2AD479B20097E283 /* IndexCircles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexCircles.swift; sourceTree = "<group>"; };
+		2D985EB22AD7298D00AAE7D3 /* ProfileSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSheetView.swift; sourceTree = "<group>"; };
 		B40309452ACE00EF00014998 /* TagInfoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInfoItem.swift; sourceTree = "<group>"; };
 		B4A2A6C52ABA3740002C4115 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		B4A2A6C72ABA3748002C4115 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -131,6 +131,7 @@
 				1995B7172AC7436200908B4B /* CadastroView.swift */,
 				1995B7292ACCC0D400908B4B /* TagView.swift */,
 				1995B72B2ACCC6EE00908B4B /* AcessibilityTagInformationView.swift */,
+				2D985EB22AD7298D00AAE7D3 /* ProfileSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -304,6 +305,7 @@
 				1995B72A2ACCC0D500908B4B /* TagView.swift in Sources */,
 				B4B8A3B52ACF563F001CFFE0 /* DisclosureGroupImageStyle.swift in Sources */,
 				E938F5C32AD470FD0049874E /* HomePresenceView.swift in Sources */,
+				2D985EB32AD7298D00AAE7D3 /* ProfileSheetView.swift in Sources */,
 				B40309462ACE00EF00014998 /* TagInfoItem.swift in Sources */,
 				E94EA12D2AC4C126003D5DB8 /* EventPostView.swift in Sources */,
 				E938F57A2ACDFF4D0049874E /* ProfileView.swift in Sources */,
@@ -312,8 +314,8 @@
 				E938F5CD2AD499990049874E /* SegmentedControlView.swift in Sources */,
 				E938F5CF2AD499C50049874E /* UnderlineView.swift in Sources */,
 				E938F5D12AD499E40049874E /* ReacPreferenceKey.swift in Sources */,
-				1995B72C2ACCC6EE00908B4B /* TagInformationView.swift in Sources */,
-				1995B72C2ACCC6EE00908B4B /* TagInformationView.swift in Sources */,
+				1995B72C2ACCC6EE00908B4B /* AcessibilityTagInformationView.swift in Sources */,
+				1995B72C2ACCC6EE00908B4B /* AcessibilityTagInformationView.swift in Sources */,
 				19F0B5BE2AD479B20097E283 /* IndexCircles.swift in Sources */,
 				1995B72C2ACCC6EE00908B4B /* AcessibilityTagInformationView.swift in Sources */,
 				E938F5742ACB5FB50049874E /* EventCard.swift in Sources */,
