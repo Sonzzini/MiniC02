@@ -14,6 +14,8 @@ struct ProfileView: View {
 	@Environment(\.dismiss) private var dismiss
 	
 	@State var yourEvents: [EventModel] = []
+    
+    @State var sheetIsPresented = false
 	
 	@State var columns: [GridItem] = [
 		GridItem(.adaptive(minimum: 150, maximum: 550)),
@@ -110,9 +112,23 @@ struct ProfileView: View {
 						.foregroundStyle(Color("DarkBlue"))
 					})
 				}
+                
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(action: {
+                        sheetIsPresented.toggle()
+                    }) {
+                        Image(systemName: "ellipsis")
+                    }
+                }
 			}
 		}
 		.navigationBarBackButtonHidden(true)
+        
+        
+        .sheet(isPresented: $sheetIsPresented) {
+            ProfileSheetView()
+                .presentationDetents([.medium])
+        }
 		
 		
 		

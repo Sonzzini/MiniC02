@@ -10,11 +10,15 @@ import SwiftUI
 struct EventView: View {
 	
 	var event: EventModel
-	@State var salvo: Bool = false
-    @State private var oneOpen: Bool = false
-    @State private var twoOpen: Bool = false
-    
+	@Binding var salvo: Bool
+	@State private var oneOpen: Bool = false
+	@State private var twoOpen: Bool = false
+	@State var showingInfoView: Bool = false
+    @State var tag: AccessibilityTag
+	
 	@Environment(\.dismiss) private var dismiss
+	
+	@EnvironmentObject var vm : ViewModel
 	
 	var body: some View {
 		NavigationStack {
@@ -32,19 +36,21 @@ struct EventView: View {
 						Text(event.title)
 							.font(Font.custom("SF Pro", size: 28))
 							.padding(.top, 14)
-                            .bold()
+							.bold()
 						
 						EventDescription
                             .padding(.vertical)
+                        
+                        EventAcessibility
 						
 						EventInfo
-                            .padding(.vertical)
-
+							.padding(.vertical)
+						
 						Button("Eu vou") {
 							print("eu vou")
 						}
 						.buttonStyle(PlainButtonStyle())
-						.padding(.vertical, 110)
+						.padding(.vertical, 20)
 						
 					}
 					.padding(.leading, 14)
@@ -69,9 +75,9 @@ struct EventView: View {
 	}
 }
 
-#Preview {
-	EventView(event: EventModel(title: "Aniversário do Sabaini", desc: "", date: "19/09/2023 (quarta-feira)", time: "19h", location: "Rua Lacerda de Almeida, 130", neighborhood: "Higienópolis", hostname: "sabainigabriel", imagename: "image2", acctag: "acc1"))
-}
+//#Preview {
+//    EventView(event: EventModel(title: "Aniversário do Sabaini", desc: "", date: "19/09/2023 (quarta-feira)", time: "19h", location: "Rua Lacerda de Almeida, 130", neighborhood: "Higienópolis", hostname: "sabainigabriel", imagename: "image2", acctag: .ClosedCaptions))
+//}
 
 extension EventView {
 	
@@ -81,10 +87,18 @@ extension EventView {
 			
 			Text(event.hostname)
 				.font(Font.custom("SF Pro", size: 17))
+                .foregroundStyle(Color("MainTextColor"))
+            
 			Spacer()
 			
 			Button {
-				print("funcionando")
+				
+				if !salvo {
+					vm.saveEventToProfile(event: event)
+				}
+				else if salvo {
+					vm.unsaveEventFromProfile(event: event)
+				}
 				
 				withAnimation(.linear(duration: 0.3)) {
 					salvo.toggle()
@@ -95,15 +109,15 @@ extension EventView {
 				
 				if salvo{
 					Image(systemName: "bookmark.fill")
-						.font(.title)
+						.font(.title2)
 						.padding(.trailing, 14)
-						.foregroundColor(Color(red: 1, green: 0.79, blue: 0.25))
+						.foregroundColor(Color("DarkYellow"))
 				}
 				else {
 					Image(systemName: "bookmark")
-						.font(.title)
+						.font(.title2)
 						.padding(.trailing, 14)
-						.foregroundColor(Color(red: 1, green: 0.79, blue: 0.25))
+						.foregroundColor(Color("DarkYellow"))
 				}
 				
 			}
@@ -118,32 +132,25 @@ extension EventView {
 					.weight(.semibold))
 				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
 			
-			// MARK: bagulho dos designers
-//			VStack{
-//                DisclosureGroup("teste", isExpanded: $oneOpen){
-//                    Text(event.desc)
-//                }.disclosureGroupStyle(DisclosureGroupImageStyle(icon: event.acctag))
-//                
-//                
-//			}.padding()
-			HStack{
-				
-				Image("icon-"+event.acctag)
-					.resizable()
-					.frame(width: 48, height: 48)
-			}
-			// MARK: Acaba bagulho
-			
 			HStack{
 				Image(systemName: "calendar")
+					.foregroundStyle(Color("DarkBlue"))
+				
 				Text(event.date)
+                    .foregroundStyle(Color("MainTextColor"))
 				Image(systemName: "clock")
+					.foregroundStyle(Color("DarkBlue"))
+				
 				Text(event.time)
+                    .foregroundStyle(Color("MainTextColor"))
 			}
-            .padding(.vertical)
+			.padding(.vertical)
 			HStack{
 				Image(systemName: "mappin")
+					.foregroundStyle(Color("DarkBlue"))
+
 				Text(event.location + " - " + event.neighborhood)
+                    .foregroundStyle(Color("MainTextColor"))
 			}
 		}
 		.padding(.top)
@@ -153,13 +160,38 @@ extension EventView {
 		VStack(alignment: .leading) {
 			Text("Descrição")
 				.font(Font.custom("SF Pro Text", size: 17)
-					.weight(.semibold))
-				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
-				.padding(.top)
+                .weight(.semibold))
+				.foregroundColor(Color("DarkGray"))
 				.padding(.bottom, 5)
 			
 			Text(event.desc)
 				.font(Font.custom("SF Pro", size: 17))
+                .foregroundStyle(Color("MainTextColor"))
 		}
 	}
+    
+    private var EventAcessibility: some View {
+        VStack(alignment: .leading){
+            HStack{
+                Text("Acessibilidade")
+                    .foregroundColor(Color("DarkGray"))
+                Button {
+                    print("informacoes")
+                    showingInfoView.toggle()
+                    
+                } label: {
+                    Image(systemName: "info.circle.fill")
+                        .tint(Color("DarkBlue"))
+                }
+                .sheet(isPresented: $showingInfoView){
+                    AcessibilityTagInformationView()
+                }
+            }
+            HStack{
+                Image(event.acctag.rawValue)
+                    .resizable()
+                    .frame(width: 48, height: 47)
+            }
+        }
+    }
 }
