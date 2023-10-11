@@ -24,7 +24,9 @@ struct HomeView: View {
 	
 	var body: some View {
 		NavigationStack {
+
 			ScrollView {
+
 				VStack(alignment: .leading) {
 					
 					Text("Hoje")
@@ -36,13 +38,11 @@ struct HomeView: View {
 					Subtitle
 					
 					SegmentedControlView(selectedIndex: $selectedIndex, titles: screens)
-						.padding(.bottom)
+						.padding(.bottom, -8)
+				
 				}
-				.background(
-					
-					Color.white
-					
-				)
+
+
 				
 				if eventC.events.isEmpty {
 					Text("Carregando eventos...")
@@ -57,9 +57,7 @@ struct HomeView: View {
 				
 				
 			}
-			.background(
-				Color(red: 0.95, green: 0.95, blue: 0.95)
-			)
+
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink(destination: EventPostView()) {

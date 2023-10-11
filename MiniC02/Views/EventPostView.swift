@@ -20,13 +20,16 @@ struct EventPostView: View {
     @State private var neighborhood: String = "" 	// ON
     @State private var hostname: String = "" 			// OFF
     @State private var imagename: String = "image1" // OFF
-//    @State private var acctag: String = "1" 			// OFF
     @State private var selectedAccessibilityTag: AccessibilityTag = .ClosedCaptions
+    
+   
     
     @EnvironmentObject var eventC: EventCRU
     
     var body: some View {
+        
         NavigationStack {
+            
             Form {
                 
                 Section {
@@ -36,37 +39,39 @@ struct EventPostView: View {
                     }, label: {
                         Image(systemName: "plus")
                     })
+                    
                 } header: {
                     Text("Coloque uma foto/vídeo!")
                 }
                 
                 Section {
                     TextField("Nome do seu Evento", text: $title)
-                    DatePicker (
-                        "Start Date",
-                        selection: $date1,
-                        displayedComponents: [.date, .hourAndMinute]
-                    )
-                    .datePickerStyle(.wheel)
+//                    DatePicker (
+//                        "Start Date",
+//                        selection: $date1,
+//                        displayedComponents: [.date, .hourAndMinute]
+//                    )
+//                    .datePickerStyle(.wheel)
+                    TextField("Data", text: $date)
                     TextField("Horário", text: $time)
                     TextField("Local", text: $location)
                     TextField("Bairro", text: $neighborhood)
-                } header: {
-                    Text("Informações")
                 }
                 
                 Section {
                     
-                    Picker("Tag de Acessibilidade:", selection: $selectedAccessibilityTag) {
+                    Picker("", selection: $selectedAccessibilityTag) {
                         ForEach(AccessibilityTag.allCases, id: \.self) {
                             Text($0.label)
                         }
                     }
+                } header: {
+                    Text("Selecione as Acessibilidades do evento:")
                 }
                 
                 Section {
                     
-                    TextField("Descrição", text: $desc)
+                    TextField("Venha celebrar...", text: $desc)
                         .textFieldStyle(.plain)
                     
                 } header: {
@@ -83,7 +88,7 @@ struct EventPostView: View {
                         .foregroundStyle(Color("DarkYellow"))
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Criar") {
+                    Button (action: {
                         let event = EventModel(
                             title: title,
                             desc: desc,
@@ -97,13 +102,17 @@ struct EventPostView: View {
                         
                         eventC.postEvent(event: event)
                         dismiss()
-                    }
+                    }, label: {
+                        Text("Criar")
+                            .font(.custom("SF Pro", size: 16))
+                            .foregroundStyle(Color("DarkBlue"))
+                    })
                 }
             }
         }
-        
     }
 }
+
 
 #Preview {
 	EventPostView()

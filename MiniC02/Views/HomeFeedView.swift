@@ -19,14 +19,28 @@ struct HomeFeedView: View {
 	var body: some View {
 		NavigationStack {
 			ScrollView {
-				
-				
-				ForEach(eventC.events) { event in
-					EventCard(event: event)
-						.padding(.bottom)
+				VStack(spacing: 0) {
+					
+					
+					ForEach(eventC.events) { event in
+						EventCard(event: event)
+							.padding(.bottom)
+						
+					}
+
+
 				}
+				.frame(maxWidth: .infinity)
+				.padding(.top)
+				.background(
+					Color("BG")
+				)
+				
+				
 				
 			}
+
+
 			.onAppear {
 				
 				eventC.getEvents()
@@ -36,6 +50,7 @@ struct HomeFeedView: View {
 			}
 			
 		}
+
 		.fullScreenCover(isPresented: $firstLoginSheetIsPresented) {
 			TutorialView(sheetIsPresented: $firstLoginSheetIsPresented)
 		}
