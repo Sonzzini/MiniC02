@@ -115,6 +115,6 @@ struct EventPostView: View {
 
 
 #Preview {
-    EventPostView()
-        .environmentObject(EventCRU())
+	EventPostView()
+		.environmentObject(EventCRU())
 }
