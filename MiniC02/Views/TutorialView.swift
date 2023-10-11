@@ -8,20 +8,21 @@
 import SwiftUI
 
 struct TutorialView: View {
-	@Binding var sheetIsPresented: Bool
-	
-	@State var indexTutorial : Int = 0
-	var tutorialInformation : [String] = ["Seja Bem Vindo(a) ao \nSinale!", "Você poderá ver todos \n os eventos que a comunidade \n está organizando e confirmar \n sua presença!", "Você também pode criar o seu \n próprio evento e publicá-lo para \n que amigos e pessoas \n compareçam.", "Vamos começar nossa jornada!"]
-	
-	var body: some View {
-		NavigationStack {
-			TabView {
-				TutorialCore
-			}
-			.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-			.ignoresSafeArea()
-		}
-	}
+    @Binding var sheetIsPresented: Bool
+    @State var indexTutorial : Int = 0
+    @State var circleIndex: [Bool] = [false, false, false, false]
+    var tutorialInformation : [String] = ["Seja Bem Vindo(a) ao \nSinale!", "Você poderá ver todos \n os eventos que a comunidade \n está organizando e confirmar \n sua presença!", "Você também pode criar o seu \n próprio evento e publicá-lo para \n que amigos e pessoas \n compareçam.", "Vamos começar nossa jornada!"]
+    
+    
+    var body: some View {
+        NavigationStack {
+            TabView {
+                TutorialCore
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .ignoresSafeArea()
+        }
+    }
 }
 
 extension TutorialView {
@@ -29,7 +30,6 @@ extension TutorialView {
         NavigationStack {
             VStack {
                 VStack {
-                    Spacer(minLength: 105)
                     Image("hiLibras")
                         .padding(26)
                     Text(tutorialInformation[indexTutorial])
@@ -39,23 +39,48 @@ extension TutorialView {
                         .multilineTextAlignment(.center)
                         .kerning(-0.4)
                         .frame(width: 250, height: 86)
+                        .padding(.bottom, 110)
                 }
                 
-                ProgressCircles
+                HStack {
+                    ForEach(circleIndex.indices, id: \.self) { index in
+                        IndexCircles(indexTutorial: $indexTutorial, circleIndex: circleIndex)
+                            .overlay {
+                                if circleIndex[index] {
+                                    Circle()
+                                        .frame(width: 10)
+                                        .padding(.bottom, 15)
+                                        .foregroundStyle(Color("DarkBlue"))
+                                }
+                            }
+                    }
+                }
+                .onAppear {
+                    circleIndex[0].toggle()
+                    
+                }
                 
                 if (indexTutorial <= (tutorialInformation.count - 2)) {
                     Button("Continuar") {
                         indexTutorial += 1
+                        circleIndex[indexTutorial].toggle()
+                        if indexTutorial > 1 {
+                            circleIndex[indexTutorial-1].toggle()
+                        }
+                        if indexTutorial > 0 && indexTutorial == 1 {
+                            circleIndex[0].toggle()
+                        }
+                        
                     }
                     .buttonStyle(PlainButtonStyle())
-                    .padding(.vertical, 110)
+                    
                 } else {
                     NavigationLink("Continuar") {
-							  CadastroView(sheetIsPresented: $sheetIsPresented)
+                        CadastroView(sheetIsPresented: $sheetIsPresented)
                             .navigationBarBackButtonHidden(true)
                     }
                     .buttonStyle(PlainButtonStyle())
-                    .padding(.vertical, 110)
+                    
                 }
                 
             }
@@ -71,19 +96,4 @@ extension TutorialView {
             }
         }
     }
-    
-    private var ProgressCircles: some View {
-        HStack {
-            ForEach(tutorialInformation.indices, id: \.self) { index in
-                Circle()
-                    .frame(width: 10)
-                
-                // .onChange(of: variavel)
-                
-            }
-        }
-    }
 }
-
-
-
