@@ -29,16 +29,18 @@ struct EventCard: View {
 						ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
 							
 							RoundedCorner(radius: 10, corners: [.bottomLeft, .bottomRight])
-								.fill(Color.white)
-								.shadow(color: .gray, radius: 5, x: 0, y: 5)
+								.fill(Color("BG"))
+								.shadow(color: Color("BG"), radius: 5, x: 0, y: 5)
 							
 							HStack {
 								VStack(alignment: .leading) {
 									Text(event.title)
+                                        .foregroundStyle(Color("MainTextColor"))
 										.font(.title2)
 										.fontWeight(.semibold)
 									
 									Text(event.date + " - " + event.time)
+                                        .foregroundStyle(Color("MainTextColor"))
 								}
 								.padding(.horizontal, 10)
 								
@@ -97,7 +99,9 @@ extension EventCard {
 				.frame(height: 25)
 			
 			Text(event.hostname)
+                .foregroundStyle(Color("MainTextColor"))
 				.font(.custom("SF-Pro", size: 20))
+                
 			
 			Spacer()
 		}
