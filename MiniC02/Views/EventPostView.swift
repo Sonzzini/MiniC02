@@ -20,13 +20,16 @@ struct EventPostView: View {
     @State private var neighborhood: String = "" 	// ON
     @State private var hostname: String = "" 			// OFF
     @State private var imagename: String = "image1" // OFF
-//    @State private var acctag: String = "1" 			// OFF
     @State private var selectedAccessibilityTag: AccessibilityTag = .ClosedCaptions
+    
+   
     
     @EnvironmentObject var eventC: EventCRU
     
     var body: some View {
+        
         NavigationStack {
+            
             Form {
                 
                 Section {
@@ -36,18 +39,20 @@ struct EventPostView: View {
                     }, label: {
                         Image(systemName: "plus")
                     })
+                    
                 } header: {
                     Text("Coloque uma foto/vídeo!")
                 }
                 
                 Section {
                     TextField("Nome do seu Evento", text: $title)
-                    DatePicker (
-                        "Start Date",
-                        selection: $date1,
-                        displayedComponents: [.date, .hourAndMinute]
-                    )
-                    .datePickerStyle(.wheel)
+//                    DatePicker (
+//                        "Start Date",
+//                        selection: $date1,
+//                        displayedComponents: [.date, .hourAndMinute]
+//                    )
+//                    .datePickerStyle(.wheel)
+                    TextField("Data", text: $date)
                     TextField("Horário", text: $time)
                     TextField("Local", text: $location)
                     TextField("Bairro", text: $neighborhood)
