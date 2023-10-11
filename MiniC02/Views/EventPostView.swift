@@ -4,27 +4,26 @@
 //
 //  Created by Paulo Sonzzini Ribeiro de Souza on 27/09/23.
 //
-
+import Foundation
 import SwiftUI
 
 struct EventPostView: View {
-    
+    @EnvironmentObject var eventC: EventCRU
     @Environment(\.dismiss) private var dismiss
     
-    @State private var date1 = Date()
-    @State private var title: String = "" 				// ON
-    @State private var desc: String = "" 				// OFF
-    @State private var date: String = ""			// ON
-    @State private var time: String = "" 				// ON
-    @State private var location: String = "" 			// ON
-    @State private var neighborhood: String = "" 	// ON
-    @State private var hostname: String = "" 			// OFF
-    @State private var imagename: String = "image1" // OFF
     @State private var selectedAccessibilityTag: AccessibilityTag = .ClosedCaptions
     
-   
+    @State private var title: String = "" 				                // ON
+    @State private var desc: String =  ""			                    // OFF
+    @State private var date: String = ""		                        // ON
+    @State private var time: String = "" 				                // ON
+    @State private var location: String = "" 			                // ON
+    @State private var neighborhood: String = "" 	                    // ON
+    @State private var hostname: String = "" 			                // OFF
+    @State private var imagename: String = "image1"                     // OFF
     
-    @EnvironmentObject var eventC: EventCRU
+    @State var dateRaw = Date.now
+    let gbLocale = Locale(identifier: "pt_BR")
     
     var body: some View {
         
@@ -46,17 +45,16 @@ struct EventPostView: View {
                 
                 Section {
                     TextField("Nome do seu Evento", text: $title)
-//                    DatePicker (
-//                        "Start Date",
-//                        selection: $date1,
-//                        displayedComponents: [.date, .hourAndMinute]
-//                    )
-//                    .datePickerStyle(.wheel)
-                    TextField("Data", text: $date)
+                    DatePicker (
+                        "Dia",
+                        selection: $dateRaw,
+                        displayedComponents: [.date]
+                    )
                     TextField("Horário", text: $time)
                     TextField("Local", text: $location)
                     TextField("Bairro", text: $neighborhood)
                 }
+                .foregroundStyle(Color.gray)
                 
                 Section {
                     
@@ -89,16 +87,18 @@ struct EventPostView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button (action: {
+                        print("\(formatDate(rawdate: dateRaw))")
                         let event = EventModel(
                             title: title,
                             desc: desc,
-                            date: date,
+                            date: formatDate(rawdate: dateRaw),
                             time: time,
                             location: location,
                             neighborhood: neighborhood,
                             hostname: hostname,
                             imagename: imagename,
                             acctag:  selectedAccessibilityTag)
+                        
                         
                         eventC.postEvent(event: event)
                         dismiss()
@@ -113,8 +113,15 @@ struct EventPostView: View {
     }
 }
 
+extension EventPostView {
+    func formatDate(rawdate: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter.string(from: rawdate)
+    }
+}
 
 #Preview {
-	EventPostView()
-		.environmentObject(EventCRU())
+    EventPostView()
+        .environmentObject(EventCRU())
 }
