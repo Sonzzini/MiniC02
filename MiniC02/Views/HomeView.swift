@@ -14,6 +14,8 @@ struct HomeView: View {
 	@EnvironmentObject var vm : ViewModel
 	@EnvironmentObject var eventC : EventCRU
 	let screens = ["Feed", "Presença"]
+	let profilePicNames = ["biamoura_oficial", "Gabriel Fonseca", "gabrielk29", "Paulo Sonzzini", "paulosonzzini", "sabainigabriel"]
+	@State var isInPFPNames: Bool = false
 	@State var selectedIndex: Int = 0
 	let date = Date.now
 	
@@ -24,9 +26,9 @@ struct HomeView: View {
 	
 	var body: some View {
 		NavigationStack {
-
+			
 			ScrollView {
-
+				
 				VStack(alignment: .leading) {
 					
 					Text("Hoje")
@@ -39,10 +41,10 @@ struct HomeView: View {
 					
 					SegmentedControlView(selectedIndex: $selectedIndex, titles: screens)
 						.padding(.bottom, -8)
-				
+					
 				}
-
-
+				
+				
 				
 				if eventC.events.isEmpty {
 					Text("Carregando eventos...")
@@ -57,7 +59,7 @@ struct HomeView: View {
 				
 				
 			}
-
+			
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink(destination: EventPostView()) {
@@ -67,16 +69,17 @@ struct HomeView: View {
 				}
 				
 				ToolbarItem(placement: .topBarTrailing) {
-					NavigationLink(destination: ProfileView()) {
+					NavigationLink(destination: ProfileView(profilePicNames: profilePicNames, isInPFPNames: $isInPFPNames)) {
 						
 						if !vm.profiles.isEmpty {
 							Image(vm.profiles[0].imagename ?? "sabainigabriel")
 						}
-//						if (vm.profiles[0].imagename ?? "") not in assets
-						else {
+						
+						if !isInPFPNames {
 							Image(systemName: "person")
 								.foregroundColor(Color("DarkBlue"))
 						}
+						
 					}
 				}
 			}
@@ -85,16 +88,18 @@ struct HomeView: View {
 		.onAppear {
 			UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
 			UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
+			
+			for img in profilePicNames {
+				if img == vm.profiles[0].imagename {
+					isInPFPNames = true
+				}
+			}
+			
 		}
 		
 	}
 	
 }
-
-//#Preview {
-//		HomeView()
-//			.environmentObject(EventCRU())
-//}
 
 
 extension HomeView {

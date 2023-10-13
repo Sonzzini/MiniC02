@@ -1,3 +1,4 @@
+
 //
 //  ProfileView.swift
 //  MiniC02
@@ -13,9 +14,9 @@ struct ProfileView: View {
 	@EnvironmentObject var eventC : EventCRU
 	@Environment(\.dismiss) private var dismiss
 	
-	@State var yourEvents: [EventModel] = []
-    
-    @State var sheetIsPresented = false
+	@State var yourEventsList: [EventModel] = []
+	
+	@State var sheetIsPresented = false
 	
 	@State var columns: [GridItem] = [
 		GridItem(.adaptive(minimum: 150, maximum: 550)),
@@ -27,114 +28,138 @@ struct ProfileView: View {
 	let acctags = [""]
 	let hobbytags = [""]
 	
+	let profilePicNames: [String]
+	@Binding var isInPFPNames: Bool
+	
 	var body: some View {
 		NavigationStack {
 			ScrollView {
 				VStack(alignment: .leading) {
 					
-					HStack(alignment: .top) {
-						
-						VStack {
-							Image(vm.profiles[0].imagename ?? "sabainigabriel")
-								.resizable()
-								.frame(width: 100, height: 100, alignment: .center)
-							
-							HStack {
-								Image("InstagramIcon")
-								Image("FacebookIcon")
-							}
-						}
-						
-						VStack(alignment: .leading) {
-							
-							Text(vm.profiles[0].name ?? "sabainigabriel")
-								.font(.custom("SF Pro", size: 35))
-								.bold()
-							
-							Text("@" + (vm.profiles[0].username ?? "sabainigabriel"))
-								.foregroundStyle(.secondary)
-							
-						}
-						
-						
-					}
+					header
 					
-					Text("Identificação")
-						.font(.custom("SF Pro", size: 20))
-						.bold()
+					identification
 					
-					
-//					LazyVGrid(columns: columns) {
-						ForEach(vm.profiles) { profile in
-							ForEach(profile.tags) { tag in
-								Text(tag.name ?? "laur")
-									.padding(.horizontal)
-									.padding(.vertical, 5)
-									.background(Color("DarkBlue"))
-									.clipShape(RoundedRectangle(cornerRadius: 10))
-								
-							}
-						}
-//					}
-					
-					
-					
-					Text("Meus Eventos")
-						.font(.custom("SF Pro", size: 20))
-						.bold()
-						.onAppear {
-							for event in eventC.events {
-								if event.hostname == vm.profiles[0].username {
-									yourEvents.append(event)
-								}
-							}
-						}
-					
-					ForEach(yourEvents) { event in
-						EventCard(event: event, onYourProfile: true)
-							.padding(.vertical)
-					}
-					
+					yourEvents
 					
 				}
-				.padding(.horizontal)
+				.padding(.horizontal, 20)
+
 				
 			}
 			.toolbar {
 				ToolbarItem(placement: .cancellationAction) {
-					Button(action: {
-						dismiss()
-					}, label: {
-						HStack {
-							Image(systemName: "chevron.left")
-							Text("Início")
-						}
-						.foregroundStyle(Color("DarkBlue"))
-					})
+					backButton
 				}
-                
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(action: {
-                        sheetIsPresented.toggle()
-                    }) {
-                        Image(systemName: "ellipsis")
-                    }
-                }
+				
+				ToolbarItem(placement: .confirmationAction) {
+					sheetViewButton
+				}
 			}
 		}
 		.navigationBarBackButtonHidden(true)
-        
-        
-        .sheet(isPresented: $sheetIsPresented) {
-            ProfileSheetView()
-                .presentationDetents([.medium])
-        }
+		
+		
+		.sheet(isPresented: $sheetIsPresented) {
+			ProfileSheetView()
+				.presentationDetents([.medium])
+		}
 		
 		
 		
 	}
 }
 
-#Preview {
-	ProfileView()
+
+extension ProfileView {
+	
+	private var header: some View {
+		VStack(alignment: .leading) {
+			HStack(alignment: .top) {
+				
+				if isInPFPNames {
+					Image(vm.profiles[0].imagename ?? "person")
+						.resizable()
+						.frame(width: 100, height: 100)
+				} else {
+					Image(systemName: "person")
+						.resizable()
+						.scaledToFit()
+						.frame(width: 100, height: 100)
+						.foregroundStyle(Color("DarkBlue"))
+				}
+				
+				VStack(alignment: .leading) {
+					Text(vm.profiles[0].name ?? "User")
+						.font(.custom("SF Pro", size: 35))
+						.bold()
+					
+					Text("@" + (vm.profiles[0].username ?? "user"))
+						.foregroundStyle(.secondary)
+				}
+			}
+		}
+	}
+	
+	private var identification: some View {
+		VStack(alignment: .leading) {
+			Text("Identificação")
+				.font(.custom("SF Pro", size: 20))
+				.bold()
+			
+			ForEach(vm.profiles) { profile in
+				ForEach(profile.tags) { tag in
+					Text(tag.name ?? "laur")
+						.padding(.horizontal)
+						.padding(.vertical, 5)
+						.background(Color("DarkBlue"))
+						.clipShape(RoundedRectangle(cornerRadius: 10))
+					
+				}
+			}
+		}
+	}
+	
+	private var yourEvents: some View {
+		VStack(alignment: .leading) {
+			HStack {
+				Text("Meus Eventos")
+					.font(.custom("SF Pro", size: 20))
+					.bold()
+					.onAppear {
+						for event in eventC.events {
+							if event.hostname == vm.profiles[0].username {
+								yourEventsList.append(event)
+							}
+						}
+					}
+				Spacer()
+			}
+			
+			ForEach(yourEventsList) { event in
+				EventCard(event: event, onYourProfile: true)
+					.padding(.vertical)
+			}
+		}
+	}
+	
+	private var backButton: some View {
+		Button(action: {
+			dismiss()
+		}, label: {
+			HStack {
+				Image(systemName: "chevron.left")
+				Text("Início")
+			}
+			.foregroundStyle(Color("DarkBlue"))
+		})
+	}
+	
+	private var sheetViewButton: some View {
+		Button(action: {
+			sheetIsPresented.toggle()
+		}) {
+			Image(systemName: "ellipsis")
+		}
+	}
 }
