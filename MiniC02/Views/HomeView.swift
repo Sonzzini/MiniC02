@@ -72,8 +72,10 @@ struct HomeView: View {
 						if !vm.profiles.isEmpty {
 							Image(vm.profiles[0].imagename ?? "sabainigabriel")
 						}
+//						if (vm.profiles[0].imagename ?? "") not in assets
 						else {
 							Image(systemName: "person")
+								.foregroundColor(Color("DarkBlue"))
 						}
 					}
 				}

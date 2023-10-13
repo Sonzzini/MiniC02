@@ -150,6 +150,7 @@ struct EventPostView: View {
 			
 			.sheet(isPresented: $sheetIsPresented) {
 				ImagePickSheetView(imageIsPicked: $imageIsPicked, imageName: $imagename)
+					.presentationDragIndicator(.visible)
 			}
 		}
 		
@@ -182,8 +183,8 @@ extension EventPostView {
 					Image(imagename)
 						.resizable()
 						.scaledToFit()
-						.frame(width: 300)
-						.padding()
+						.frame(width: 360)
+						.clipShape(RoundedRectangle(cornerRadius: 12))
 				}
 			})
 		
