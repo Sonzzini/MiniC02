@@ -16,30 +16,43 @@ struct ImagePickSheetView: View {
 	
 	var body: some View {
 		NavigationStack {
-			ScrollView {
-				
-				LazyVGrid(columns: [GridItem(.flexible(minimum: 100, maximum: 150)), GridItem(.flexible(minimum: 100, maximum: 150))]) {
-					ForEach(1..<21) { num in
-						Button {
-							if !imageIsPicked {
-								imageIsPicked.toggle()
+			GeometryReader { g in
+				ScrollView {
+					
+					Text("Selecione uma foto para o seu evento!")
+						.font(.title3)
+						.bold()
+						.padding(.top, 20)
+						.padding(.vertical, 30)
+					
+					
+					LazyVGrid(columns: [GridItem(.flexible(minimum: 0, maximum: 160)), GridItem(.flexible(minimum: 0, maximum: 160)), GridItem(.flexible(minimum: 0, maximum: 160))], spacing: 10) {
+						ForEach(1..<21) { num in
+							Button {
+								if !imageIsPicked {
+									imageIsPicked.toggle()
+								}
+								imageName = "image\(num)"
+								dismiss()
+							} label: {
+								Image("image\(num)")
+									.resizable()
+									.scaledToFill()
+									.frame(width: g.size.width / 3.2, height: g.size.width / 3.2)
+									.clipped()
+									.clipShape(RoundedRectangle(cornerRadius: 8))
+								
 							}
-							imageName = "image\(num)"
-							dismiss()
-						} label: {
-							Image("image\(num)")
-								.resizable()
-								.scaledToFit()
-								.frame(width: 150)
 						}
-
-						
-
 					}
+					
 				}
-				.padding(.vertical)
+				.scrollIndicators(.hidden)
+				
 				
 			}
+			.padding(.horizontal, 10)
+			
 		}
 	}
 }
