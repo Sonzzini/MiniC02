@@ -11,10 +11,11 @@ struct EventView: View {
 	
 	var event: EventModel
 	@Binding var salvo: Bool
+	@Binding var confirmed: Bool
 	@State private var oneOpen: Bool = false
 	@State private var twoOpen: Bool = false
 	@State var showingInfoView: Bool = false
-    @State var tag: AccessibilityTag
+	@State var tag: AccessibilityTag
 	
 	@Environment(\.dismiss) private var dismiss
 	
@@ -39,15 +40,32 @@ struct EventView: View {
 							.bold()
 						
 						EventDescription
-                            .padding(.vertical)
-                        
-                        EventAcessibility
+							.padding(.vertical)
+						
+						EventAcessibility
+						
 						
 						EventInfo
 							.padding(.vertical)
 						
-						Button("Eu vou") {
-							print("eu vou")
+						
+						
+						Button {
+							
+							if !confirmed {
+								vm.saveConfirmedEventToProfile(event: event)
+							} else if confirmed {
+								vm.unsaveConfirmedEventFromProfile(event: event)
+							}
+							
+							confirmed.toggle()
+							
+						} label: {
+							if !confirmed {
+								Text("Eu vou")
+							} else {
+								Text("Confirmado!")
+							}
 						}
 						.buttonStyle(PlainButtonStyle())
 						.padding(.vertical, 20)
@@ -87,8 +105,8 @@ extension EventView {
 			
 			Text(event.hostname)
 				.font(Font.custom("SF Pro", size: 17))
-                .foregroundStyle(Color("MainTextColor"))
-            
+				.foregroundStyle(Color("MainTextColor"))
+			
 			Spacer()
 			
 			Button {
@@ -137,20 +155,20 @@ extension EventView {
 					.foregroundStyle(Color("DarkBlue"))
 				
 				Text(event.date)
-                    .foregroundStyle(Color("MainTextColor"))
+					.foregroundStyle(Color("MainTextColor"))
 				Image(systemName: "clock")
 					.foregroundStyle(Color("DarkBlue"))
 				
 				Text(event.time)
-                    .foregroundStyle(Color("MainTextColor"))
+					.foregroundStyle(Color("MainTextColor"))
 			}
 			.padding(.vertical)
 			HStack{
 				Image(systemName: "mappin")
 					.foregroundStyle(Color("DarkBlue"))
-
+				
 				Text(event.location + " - " + event.neighborhood)
-                    .foregroundStyle(Color("MainTextColor"))
+					.foregroundStyle(Color("MainTextColor"))
 			}
 		}
 		.padding(.top)
@@ -160,38 +178,38 @@ extension EventView {
 		VStack(alignment: .leading) {
 			Text("Descrição")
 				.font(Font.custom("SF Pro Text", size: 17)
-                .weight(.semibold))
+					.weight(.semibold))
 				.foregroundColor(Color("DarkGray"))
 				.padding(.bottom, 5)
 			
 			Text(event.desc)
 				.font(Font.custom("SF Pro", size: 17))
-                .foregroundStyle(Color("MainTextColor"))
+				.foregroundStyle(Color("MainTextColor"))
 		}
 	}
-    
-    private var EventAcessibility: some View {
-        VStack(alignment: .leading){
-            HStack{
-                Text("Acessibilidade")
-                    .foregroundColor(Color("DarkGray"))
-                Button {
-                    print("informacoes")
-                    showingInfoView.toggle()
-                    
-                } label: {
-                    Image(systemName: "info.circle.fill")
-                        .tint(Color("DarkBlue"))
-                }
-                .sheet(isPresented: $showingInfoView){
-                    AcessibilityTagInformationView()
-                }
-            }
-            HStack{
-                Image(event.acctag.rawValue)
-                    .resizable()
-                    .frame(width: 48, height: 47)
-            }
-        }
-    }
+	
+	private var EventAcessibility: some View {
+		VStack(alignment: .leading){
+			HStack{
+				Text("Acessibilidade")
+					.foregroundColor(Color("DarkGray"))
+				Button {
+					print("informacoes")
+					showingInfoView.toggle()
+					
+				} label: {
+					Image(systemName: "info.circle.fill")
+						.tint(Color("DarkBlue"))
+				}
+				.sheet(isPresented: $showingInfoView){
+					AcessibilityTagInformationView()
+				}
+			}
+			HStack{
+				Image(event.acctag.rawValue)
+					.resizable()
+					.frame(width: 48, height: 47)
+			}
+		}
+	}
 }

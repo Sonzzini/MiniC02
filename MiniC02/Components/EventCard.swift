@@ -16,18 +16,34 @@ struct EventCard: View {
 	let profilePicNames = ["biamoura_oficial", "Gabriel Fonseca", "gabrielk29", "Paulo Sonzzini", "paulosonzzini", "sabainigabriel"]
 	@State var isInPFPNames = false
 	
+	@State var EuVou: Bool = false
+	
 	var body: some View {
 		NavigationStack {
-            NavigationLink(destination: EventView(event: event, salvo: $salvo, tag: event.acctag)) {
+			NavigationLink(destination: EventView(event: event, salvo: $salvo, confirmed: $EuVou, tag: event.acctag)) {
 				
-
-					
 					VStack(spacing: 0) {
 						
-						if !onYourProfile {
-							ImageWithName
-								.padding(.vertical, 10)
-								.padding(.horizontal, 5)
+						HStack {
+							if !onYourProfile {
+								ImageWithName
+									.padding(.vertical, 10)
+									.padding(.horizontal, 5)
+							}
+							
+							Spacer()
+							
+							if salvo {
+								Image(systemName: "bookmark.fill")
+									.foregroundStyle(.yellow)
+									.padding(.trailing)
+							}
+							else if EuVou {
+								Image(systemName: "checkmark.circle.fill")
+									.foregroundStyle(Color("DarkBlue"))
+									.padding(.trailing)
+							}
+							
 						}
 
 						
