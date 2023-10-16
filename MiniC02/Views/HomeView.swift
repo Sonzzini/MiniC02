@@ -90,8 +90,10 @@ struct HomeView: View {
 			UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
 			
 			for img in profilePicNames {
-				if img == vm.profiles[0].imagename {
-					isInPFPNames = true
+				if !vm.profiles.isEmpty {
+					if img == vm.profiles[0].imagename {
+						isInPFPNames = true
+					}
 				}
 			}
 			

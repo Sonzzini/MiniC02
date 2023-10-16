@@ -15,6 +15,7 @@ class ViewModel: ObservableObject {
 	@Published var profiles: [Profile] = []
 	@Published var tags: [Tag] = []
 	@Published var ids: [EventPresenceIDs] = []
+	@Published var confirmedIDs: [EventConfirmedPresenceIDs] = []
 	@Published var controller: [Controller] = []
 	@Published var context: NSManagedObjectContext
 	
@@ -24,6 +25,7 @@ class ViewModel: ObservableObject {
 		getTags()
 		getProfile()
 		getIDs()
+		getConfirmedIDs()
 	}
 	
 	func getProfile() {
@@ -32,6 +34,10 @@ class ViewModel: ObservableObject {
 	
 	func getTags() {
 		tags = CoreDataController.shared.getTags()
+	}
+	
+	func getConfirmedIDs() {
+		confirmedIDs = CoreDataController.shared.getConfirmedIDs()
 	}
 	
 	func getIDs() {
@@ -110,6 +116,7 @@ class ViewModel: ObservableObject {
 		if !profiles.isEmpty {
 			let eventObj = EventPresenceIDs(context: context)
 			eventObj.id = event.id
+			eventObj.date = Date.now
 			eventObj.eventIDstoProfile = profiles[0]
 			
 			try? context.save()
@@ -133,6 +140,37 @@ class ViewModel: ObservableObject {
 			}
 		}
 		
+	}
+	
+	
+	func saveConfirmedEventToProfile(event: EventModel) {
+		getProfile()
+		
+		if !profiles.isEmpty {
+			let eventObj = EventConfirmedPresenceIDs(context: context)
+			eventObj.id = event.id
+			eventObj.date = Date.now
+			eventObj.confirmedEventsToProfile = profiles[0]
+			
+			try? context.save()
+			
+			confirmedIDs.insert(eventObj, at: 0)
+		}
+	}
+	
+	func unsaveConfirmedEventFromProfile(event: EventModel) {
+		getProfile()
+		
+		if !profiles.isEmpty {
+			let eventId = event.id
+			for id in confirmedIDs {
+				if id.id == eventId {
+					context.delete(id)
+					
+					try? context.save()
+				}
+			}
+		}
 	}
 	
 	
