@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Aptabase
 
 struct EventView: View {
 	
@@ -48,6 +49,7 @@ struct EventView: View {
 						
 						Button("Eu vou") {
 							print("eu vou")
+                            Aptabase.shared.trackEvent("Botao Eu Vou", with: ["Eventos": event.title])
 						}
 						.buttonStyle(PlainButtonStyle())
 						.padding(.vertical, 20)
@@ -95,9 +97,11 @@ extension EventView {
 				
 				if !salvo {
 					vm.saveEventToProfile(event: event)
+                    Aptabase.shared.trackEvent("Botao Salvar", with: ["Eventos": event.title])
 				}
 				else if salvo {
 					vm.unsaveEventFromProfile(event: event)
+                    Aptabase.shared.trackEvent("Botao Dessalvar", with: ["Eventos": event.title])
 				}
 				
 				withAnimation(.linear(duration: 0.3)) {
@@ -176,6 +180,7 @@ extension EventView {
                 Text("Acessibilidade")
                     .foregroundColor(Color("DarkGray"))
                 Button {
+                    Aptabase.shared.trackEvent("Informações", with: ["Eventos": event.title])
                     print("informacoes")
                     showingInfoView.toggle()
                     

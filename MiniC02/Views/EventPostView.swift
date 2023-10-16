@@ -6,6 +6,7 @@
 //
 import Foundation
 import SwiftUI
+import Aptabase
 
 struct EventPostView: View {
 	
@@ -31,6 +32,10 @@ struct EventPostView: View {
 	@State var imageIsPicked: Bool = false
 	
 	@EnvironmentObject var eventC: EventCRU
+    
+    init() {
+                Aptabase.shared.trackEvent("Abriram a EventPostView")
+    }
 	
 	var body: some View {
 		
@@ -117,7 +122,7 @@ struct EventPostView: View {
 									hostname: hostname,
 									imagename: imagename,
 									acctag:  selectedAccessibilityTag)
-								
+                                    Aptabase.shared.trackEvent("Enviaram o evento")
 								
 								eventC.postEvent(event: event)
 								dismiss()
