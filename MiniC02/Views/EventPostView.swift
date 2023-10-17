@@ -35,6 +35,10 @@ struct EventPostView: View {
     
     @EnvironmentObject var eventC: EventCRU
     
+	init() {
+		Aptabase.shared.trackEvent("Abriram a EventPostView")
+	}
+	
     var body: some View {
         
         NavigationStack {
@@ -127,6 +131,8 @@ struct EventPostView: View {
                                     hostname: hostname,
                                     imagename: imagename,
                                     acctag:  selectedAccessibilityTag)
+										 
+										 Aptabase.shared.trackEvent("Enviaram o evento")
                                 
                                 
                                 eventC.postEvent(event: event)

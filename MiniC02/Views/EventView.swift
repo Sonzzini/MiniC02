@@ -59,8 +59,12 @@ struct EventView: View {
 							
 							if !confirmed {
 								vm.saveConfirmedEventToProfile(event: event)
+								Aptabase.shared.trackEvent("Botao Eu Vou", with: ["Eventos": event.title])
+
 							} else if confirmed {
 								vm.unsaveConfirmedEventFromProfile(event: event)
+								Aptabase.shared.trackEvent("Botao Desconfirmou", with: ["Eventos": event.title])
+
 							}
 							
 							confirmed.toggle()
@@ -154,9 +158,13 @@ extension EventView {
 				
 				if !salvo {
 					vm.saveEventToProfile(event: event)
+					Aptabase.shared.trackEvent("Botao Salvar", with: ["Eventos": event.title])
+
 				}
 				else if salvo {
 					vm.unsaveEventFromProfile(event: event)
+					Aptabase.shared.trackEvent("Botao Dessalvar", with: ["Eventos": event.title])
+
 				}
 				
 				withAnimation(.linear(duration: 0.3)) {
@@ -237,6 +245,7 @@ extension EventView {
 				Button {
 					print("informacoes")
 					showingInfoView.toggle()
+					Aptabase.shared.trackEvent("Informações", with: ["Eventos": event.title])
 					
 				} label: {
 					Image(systemName: "info.circle.fill")
