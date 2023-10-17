@@ -8,71 +8,86 @@
 import SwiftUI
 
 struct EventView: View {
-	
-	var event: EventModel
-	@Binding var salvo: Bool
-	@State private var oneOpen: Bool = false
-	@State private var twoOpen: Bool = false
-	@State var showingInfoView: Bool = false
+    
+    var event: EventModel
+    @Binding var salvo: Bool
+    @State private var oneOpen: Bool = false
+    @State private var twoOpen: Bool = false
+    @State var showingInfoView: Bool = false
     @State var tag: AccessibilityTag
-	
-	@Environment(\.dismiss) private var dismiss
-	
-	@EnvironmentObject var vm : ViewModel
-	
-	var body: some View {
-		NavigationStack {
-			ScrollView{
-				
-				VStack(alignment: .leading){
-					Image(event.imagename)
-						.resizable()
-						.scaledToFit()
-					
-					VStack(alignment: .leading){
-						
-						EventHeaderWithSave
-						
-						Text(event.title)
-							.font(Font.custom("SF Pro", size: 28))
-							.padding(.top, 14)
-							.bold()
-						
-						EventDescription
+    
+    @Environment(\.dismiss) private var dismiss
+    
+    @EnvironmentObject var vm : ViewModel
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView{
+                
+                VStack(alignment: .leading){
+                    Image(event.imagename)
+                        .resizable()
+                        .scaledToFit()
+                    
+                    VStack(alignment: .leading){
+                        
+                        EventHeaderWithSave
+                        
+                        Text(event.title)
+                            .font(Font.custom("SF Pro", size: 28))
+                            .padding(.top, 14)
+                            .bold()
+                        
+                        EventDescription
                             .padding(.vertical)
                         
                         EventAcessibility
-						
-						EventInfo
-							.padding(.vertical)
-						
-						Button("Eu vou") {
-							print("eu vou")
-						}
-						.buttonStyle(PlainButtonStyle())
-						.padding(.vertical, 20)
-						
-					}
-					.padding(.leading, 14)
-					
-				}
-			}
-			.toolbar {
-				ToolbarItem(placement: .cancellationAction) {
-					Button(action: {
-						dismiss()
-					}, label: {
-						HStack {
-							Image(systemName: "chevron.left")
-							Text("Início")
-						}
-					})
-					.foregroundStyle(Color("DarkBlue"))
-				}
-			}
-		}
-		.navigationBarBackButtonHidden(true)
-	}
+                        
+                        EventInfo
+                            .padding(.vertical)
+                        
+                        Button("Eu vou") {
+                            
+                            // Aqui eu só vomitei tudo que eu tinha do arquivo teste com o Saba
+                            var dateComponents = DateComponents()
+                            dateComponents.calendar = Calendar.current
+                            
+                            let content = UNMutableNotificationContent()
+                            // Essa título eu converser com a Beatriz para fazer
+                            content.title = "Você tem um evento próximo!"
+                            content.subtitle = "\(event.time) - \(event.date)"
+                            content.sound = UNNotificationSound.default
+                            
+                            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+                            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                            UNUserNotificationCenter.current().add(request)
+                            
+                            print("eu vou")
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(.vertical, 20)
+                        
+                    }
+                    .padding(.leading, 14)
+                    
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(action: {
+                        dismiss()
+                    }, label: {
+                        HStack {
+                            Image(systemName: "chevron.left")
+                            Text("Início")
+                        }
+                    })
+                    .foregroundStyle(Color("DarkBlue"))
+                }
+            }
+        }
+        .navigationBarBackButtonHidden(true)
+    }
 }
 
 //#Preview {
@@ -80,95 +95,95 @@ struct EventView: View {
 //}
 
 extension EventView {
-	
-	private var EventHeaderWithSave: some View {
-		HStack{
-			Image(event.hostname)
-			
-			Text(event.hostname)
-				.font(Font.custom("SF Pro", size: 17))
+    
+    private var EventHeaderWithSave: some View {
+        HStack{
+            Image(event.hostname)
+            
+            Text(event.hostname)
+                .font(Font.custom("SF Pro", size: 17))
                 .foregroundStyle(Color("MainTextColor"))
             
-			Spacer()
-			
-			Button {
-				
-				if !salvo {
-					vm.saveEventToProfile(event: event)
-				}
-				else if salvo {
-					vm.unsaveEventFromProfile(event: event)
-				}
-				
-				withAnimation(.linear(duration: 0.3)) {
-					salvo.toggle()
-				}
-				
-			} label: {
-				
-				
-				if salvo{
-					Image(systemName: "bookmark.fill")
-						.font(.title2)
-						.padding(.trailing, 14)
-						.foregroundColor(Color("DarkYellow"))
-				}
-				else {
-					Image(systemName: "bookmark")
-						.font(.title2)
-						.padding(.trailing, 14)
-						.foregroundColor(Color("DarkYellow"))
-				}
-				
-			}
-		}
-		.padding(.bottom, 0)
-	}
-	
-	private var EventInfo: some View {
-		VStack(alignment: .leading) {
-			Text("Informações")
-				.font(Font.custom("SF Pro Text", size: 17)
-					.weight(.semibold))
-				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
-			
-			HStack{
-				Image(systemName: "calendar")
-					.foregroundStyle(Color("DarkBlue"))
-				
-				Text(event.date)
+            Spacer()
+            
+            Button {
+                
+                if !salvo {
+                    vm.saveEventToProfile(event: event)
+                }
+                else if salvo {
+                    vm.unsaveEventFromProfile(event: event)
+                }
+                
+                withAnimation(.linear(duration: 0.3)) {
+                    salvo.toggle()
+                }
+                
+            } label: {
+                
+                
+                if salvo{
+                    Image(systemName: "bookmark.fill")
+                        .font(.title2)
+                        .padding(.trailing, 14)
+                        .foregroundColor(Color("DarkYellow"))
+                }
+                else {
+                    Image(systemName: "bookmark")
+                        .font(.title2)
+                        .padding(.trailing, 14)
+                        .foregroundColor(Color("DarkYellow"))
+                }
+                
+            }
+        }
+        .padding(.bottom, 0)
+    }
+    
+    private var EventInfo: some View {
+        VStack(alignment: .leading) {
+            Text("Informações")
+                .font(Font.custom("SF Pro Text", size: 17)
+                    .weight(.semibold))
+                .foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
+            
+            HStack{
+                Image(systemName: "calendar")
+                    .foregroundStyle(Color("DarkBlue"))
+                
+                Text(event.date)
                     .foregroundStyle(Color("MainTextColor"))
-				Image(systemName: "clock")
-					.foregroundStyle(Color("DarkBlue"))
-				
-				Text(event.time)
+                Image(systemName: "clock")
+                    .foregroundStyle(Color("DarkBlue"))
+                
+                Text(event.time)
                     .foregroundStyle(Color("MainTextColor"))
-			}
-			.padding(.vertical)
-			HStack{
-				Image(systemName: "mappin")
-					.foregroundStyle(Color("DarkBlue"))
-
-				Text(event.location + " - " + event.neighborhood)
+            }
+            .padding(.vertical)
+            HStack{
+                Image(systemName: "mappin")
+                    .foregroundStyle(Color("DarkBlue"))
+                
+                Text(event.location + " - " + event.neighborhood)
                     .foregroundStyle(Color("MainTextColor"))
-			}
-		}
-		.padding(.top)
-	}
-	
-	private var EventDescription: some View {
-		VStack(alignment: .leading) {
-			Text("Descrição")
-				.font(Font.custom("SF Pro Text", size: 17)
-                .weight(.semibold))
-				.foregroundColor(Color("DarkGray"))
-				.padding(.bottom, 5)
-			
-			Text(event.desc)
-				.font(Font.custom("SF Pro", size: 17))
+            }
+        }
+        .padding(.top)
+    }
+    
+    private var EventDescription: some View {
+        VStack(alignment: .leading) {
+            Text("Descrição")
+                .font(Font.custom("SF Pro Text", size: 17)
+                    .weight(.semibold))
+                .foregroundColor(Color("DarkGray"))
+                .padding(.bottom, 5)
+            
+            Text(event.desc)
+                .font(Font.custom("SF Pro", size: 17))
                 .foregroundStyle(Color("MainTextColor"))
-		}
-	}
+        }
+    }
     
     private var EventAcessibility: some View {
         VStack(alignment: .leading){

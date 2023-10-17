@@ -16,11 +16,7 @@ struct EventCard: View {
 	var body: some View {
 		NavigationStack {
             NavigationLink(destination: EventView(event: event, salvo: $salvo, tag: event.acctag)) {
-				
-
-					
 					VStack(spacing: 0) {
-						
 						if !onYourProfile {
 							ImageWithName
 								.padding(.vertical, 10)

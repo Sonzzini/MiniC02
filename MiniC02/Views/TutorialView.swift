@@ -79,10 +79,8 @@ extension TutorialView {
                         CadastroView(sheetIsPresented: $sheetIsPresented)
                             .navigationBarBackButtonHidden(true)
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    
+                    .buttonStyle(PlainButtonStyle()) 
                 }
-                
             }
         }
         .toolbar {
