@@ -19,10 +19,10 @@ struct HomeView: View {
 	@State var selectedIndex: Int = 0
 	let date = Date.now
 	
-	init() {
+//	init() {
 		//		Aptabase.shared.trackEvent("app_started")
 		//		Aptabase.shared.trackEvent("screen_view", with: ["name": "Settings"])
-	}
+//	}
 	
 	var body: some View {
 		NavigationStack {

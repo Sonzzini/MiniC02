@@ -7,6 +7,7 @@
 
 import SwiftUI
 import NotificationCenter
+import Aptabase
 
 struct EventView: View {
 	
