@@ -66,7 +66,7 @@ struct EventPostView: View {
                             .foregroundStyle(Color.secondary.opacity(0.5))
                             
                             DatePicker (
-                                "Hotário",
+                                "Horário",
                                 selection: $timeRaw,
                                 displayedComponents: [.hourAndMinute]
                             )

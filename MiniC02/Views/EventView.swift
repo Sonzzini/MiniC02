@@ -6,8 +6,11 @@
 //
 
 import SwiftUI
+import NotificationCenter
 
 struct EventView: View {
+	
+	@EnvironmentObject var eventC : EventCRU
 	
 	var event: EventModel
 	@Binding var salvo: Bool
@@ -61,6 +64,18 @@ struct EventView: View {
 							
 							confirmed.toggle()
 							
+							// Aqui eu só vomitei tudo que eu tinha do arquivo teste com o Saba
+							var dateComponents = DateComponents()
+							dateComponents.calendar = Calendar.current
+							let content = UNMutableNotificationContent()
+							// Essa título eu converser com a Beatriz para fazer
+							content.title = "Você tem um evento próximo!"
+							content.subtitle = "\(event.time) - \(event.date)"
+							content.sound = UNNotificationSound.default
+							let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+							let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+							UNUserNotificationCenter.current().add(request)
+							
 						} label: {
 							if !confirmed {
 								Text("Eu vou")
@@ -87,6 +102,24 @@ struct EventView: View {
 						}
 					})
 					.foregroundStyle(Color("DarkBlue"))
+				}
+				
+				if event.hostname == vm.profiles[0].username {
+					ToolbarItem(placement: .topBarTrailing) {
+						Menu {
+							Button("Deletar", role: .destructive) {
+								
+								eventC.deleteEvent(event: event)
+								dismiss()
+								
+							}
+							
+							
+						} label: {
+							Image(systemName: "ellipsis")
+								.foregroundStyle(Color("DarkBlue"))
+						}
+					}
 				}
 			}
 		}

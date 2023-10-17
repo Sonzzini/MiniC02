@@ -22,85 +22,87 @@ struct EventCard: View {
 		NavigationStack {
 			NavigationLink(destination: EventView(event: event, salvo: $salvo, confirmed: $EuVou, tag: event.acctag, isInPFPNames: isInPFPNames)) {
 				
-					VStack(spacing: 0) {
-						
-						HStack {
-							if !onYourProfile {
-								ImageWithName
-									.padding(.vertical, 10)
-									.padding(.horizontal, 5)
-							}
-							
-							Spacer()
-							
-							if salvo {
-								Image(systemName: "bookmark.fill")
-									.foregroundStyle(.yellow)
-									.padding(.trailing)
-							}
-							else if EuVou {
-								Image(systemName: "checkmark.circle.fill")
-									.foregroundStyle(Color("DarkBlue"))
-									.padding(.trailing)
-							}
-							
+				VStack(spacing: 0) {
+					
+					HStack {
+						if !onYourProfile {
+							ImageWithName
+								.padding(.vertical, 10)
+								.padding(.horizontal, 5)
 						}
-
 						
-						eventImage
+						Spacer()
 						
-						ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
-							
-							RoundedCorner(radius: 10, corners: [.bottomLeft, .bottomRight])
-								.fill(Color("BG"))
-								.shadow(color: Color("BG"), radius: 5, x: 0, y: 5)
-							
-							HStack {
-								VStack(alignment: .leading) {
-									Text(event.title)
-                                        .foregroundStyle(Color("MainTextColor"))
-										.font(.title2)
-										.fontWeight(.semibold)
-									
-									Text(event.date + " - " + event.time)
-                                        .foregroundStyle(Color("MainTextColor"))
-								}
-								.padding(.horizontal, 10)
-								
-								// MARK: Event accessibility tags or whatever the design team is up to
-								Spacer()
-								
-								Image(event.acctag.rawValue)
-									.resizable()
-									.frame(width: 35, height: 35)
-									.padding(.trailing)
-							}
-							
+						if salvo {
+							Image(systemName: "bookmark.fill")
+								.foregroundStyle(.yellow)
+								.padding(.trailing)
+						}
+						else if EuVou {
+							Image(systemName: "checkmark.circle.fill")
+								.foregroundStyle(Color("DarkBlue"))
+								.padding(.trailing)
 						}
 						
 						
 					}
-                    .background(Color("BG"))
-						  .frame(width: 361, height: onYourProfile ? 250 : 300)
-					.clipShape(RoundedCorner(radius: 15, corners: [.allCorners]))
-					.background(
-						RoundedCorner(radius: 15, corners: [.allCorners])
-							.fill(.white)
-							.shadow(radius: 5)
-					)
 					
 					
+					eventImage
 					
+					
+					ZStack(alignment: Alignment(horizontal: .leading, vertical: .center)) {
+						
+						RoundedCorner(radius: 10, corners: [.bottomLeft, .bottomRight])
+							.fill(Color("CardBG")) // MARK: Parte de baixo do card
+						
+						HStack {
+							VStack(alignment: .leading) {
+								Text(event.title)
+									.foregroundStyle(Color("MainTextColor"))
+									.font(.title2)
+									.fontWeight(.semibold)
+								
+								Text(event.date + " - " + event.time)
+									.foregroundStyle(Color("MainTextColor"))
+							}
+							.padding(.horizontal, 10)
+							
+							Spacer()
+							
+							Image(event.acctag.rawValue)
+								.resizable()
+								.frame(width: 35, height: 35)
+								.padding(.trailing)
+						}
+						
+						
+						
+					}
+					
+					
+				}
+				.background(Color("CardBG")) // MARK: parte de cima do card
+				.frame(width: 361, height: onYourProfile ? 250 : 300)
+				.clipShape(RoundedCorner(radius: 15, corners: [.allCorners]))
+				.background(
+					RoundedCorner(radius: 15, corners: [.allCorners])
+						.shadow(radius: 2)
+				)
+				
+				
+				
 				
 			}
 			.foregroundStyle(.black)
 			
 		}
+		
 	}
 }
 
 #Preview {
-    EventCard(event: EventModel(title: "Aniversário do Sabaini", desc: "", date: "19/09/2023 (quarta-feira)", time: "19h", location: "Rua Lacerda de Almeida, 130", neighborhood: "Higienópolis", hostname: "sabainigabriel", imagename: "image2", acctag: .ClosedCaptions))
+	EventCard(event: EventModel(title: "Aniversário do Sabaini", desc: "", date: "19/09/2023 (quarta-feira)", time: "19h", location: "Rua Lacerda de Almeida, 130", neighborhood: "Higienópolis", hostname: "sabainigabriel", imagename: "image2", acctag: .ClosedCaptions))
 }
 
 
@@ -143,9 +145,9 @@ extension EventCard {
 			}
 			
 			Text(event.hostname)
-                .foregroundStyle(Color("MainTextColor"))
+				.foregroundStyle(Color("MainTextColor"))
 				.font(.custom("SF-Pro", size: 20))
-                
+			
 			
 			Spacer()
 		}

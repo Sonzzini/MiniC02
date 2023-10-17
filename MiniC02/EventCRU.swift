@@ -94,17 +94,37 @@ class EventCRU: ObservableObject {
 	}
 	
 	
+	func deleteEvent(event: EventModel) {
+
+		guard let url = URL(string: ("\(baseURL)/events/\(event.id ?? "")")) else { fatalError("Missing URL") }
+		print(url)
+		
+		var request = URLRequest(url: url)
+		request.httpMethod = "DELETE"
+		
+		//let response = try await URLSession.shared.data(for: request)
+		
+		URLSession.shared.dataTask(with: request) { data, response, error in
+			guard error == nil else {
+				print("Error calling DELETE")
+				print(error!)
+				return
+			}
+			guard let data = data else {
+				print("Error: Did not receive data")
+				return
+			}
+			guard let response = response as? HTTPURLResponse, (200..<299) ~= response.statusCode else {
+				print("Error: HTTP request failed")
+				return
+			}
+		}.resume()
+
+	}
+	
+	
 	
 	
 	
 }
 
-/*
-private extension EventCRU {
-	enum EventError: Error {
-		case invalidURL
-		case invalidData
-		case failedToDecode
-	}
-}
-*/

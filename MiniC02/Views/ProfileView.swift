@@ -58,7 +58,7 @@ struct ProfileView: View {
 						SavedEventsView()
 					} label: {
 						Image(systemName: "bookmark")
-							.foregroundStyle(Color("DarkYellow"))
+							.foregroundStyle(Color("DarkBlue"))
 					}
 
 				}
@@ -140,6 +140,7 @@ extension ProfileView {
 					.font(.custom("SF Pro", size: 20))
 					.bold()
 					.onAppear {
+						yourEventsList = []
 						for event in eventC.events {
 							if event.hostname == vm.profiles[0].username {
 								yourEventsList.append(event)

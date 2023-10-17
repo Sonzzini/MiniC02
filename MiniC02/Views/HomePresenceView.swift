@@ -21,10 +21,16 @@ struct HomePresenceView: View {
 				VStack {
 					if eventsPresence.isEmpty {
 						VStack {
-							Image("Frown")
-								.padding(.bottom, 50)
+							Image("EmptyIcon")
+								.resizable()
+								.scaledToFit()
+								.frame(width: 150)
 							
 							Text("Nenhum evento...")
+								.font(.title3)
+								.bold()
+								.foregroundStyle(Color("EmptyColor"))
+								
 						}
 						.padding(.top, 100)
 					}
@@ -47,15 +53,7 @@ struct HomePresenceView: View {
 				
 				eventsPresence = []
 				
-//				for id in vm.ids {
-//					for event in eventC.events {
-//						if event.id == id.id {
-//							eventsPresence.append(event)
-//							eventStatus.append(0) // MARK: 0 = BOOKMARK
-//							print(event.title)
-//						}
-//					}
-//				}
+
 				
 				for id in vm.confirmedIDs {
 					for event in eventC.events {
