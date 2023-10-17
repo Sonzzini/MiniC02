@@ -70,9 +70,11 @@ struct EventView: View {
                                 Text("Confirmado!")
                             }
                         }
-                        .padding(.leading, 14)
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(.vertical, 20)
                         
                     }
+                    .padding(.leading, 14)
                 }
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
