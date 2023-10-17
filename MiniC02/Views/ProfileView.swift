@@ -160,6 +160,7 @@ extension ProfileView {
 			sheetIsPresented.toggle()
 		}) {
 			Image(systemName: "ellipsis")
+				.foregroundStyle(Color("DarkBlue"))
 		}
 	}
 }
