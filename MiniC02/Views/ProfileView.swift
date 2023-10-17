@@ -53,7 +53,17 @@ struct ProfileView: View {
 					backButton
 				}
 				
-				ToolbarItem(placement: .confirmationAction) {
+				ToolbarItem(placement: .topBarTrailing) {
+					NavigationLink {
+						SavedEventsView()
+					} label: {
+						Image(systemName: "bookmark")
+							.foregroundStyle(Color("DarkYellow"))
+					}
+
+				}
+				
+				ToolbarItem(placement: .topBarTrailing) {
 					sheetViewButton
 				}
 			}
