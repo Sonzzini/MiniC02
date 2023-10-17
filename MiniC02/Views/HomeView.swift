@@ -109,16 +109,16 @@ struct HomeView: View {
 
 
 extension HomeView {
-	
-	private var Subtitle: some View {
-		HStack {
-			Text(date, style: .date)
-				.foregroundStyle(Color("DarkYellow"))
-				.font(.system(size: 27, weight: .semibold))
-				.padding(.horizontal)
-			
-			Spacer()
-		}
-		.environment(\.locale, Locale(identifier: "pt"))
-	}
+    
+    private var Subtitle: some View {
+        HStack {
+            Text(date, style: .date)
+                .foregroundStyle(Color("DarkYellow"))
+                .font(.system(size: 27, weight: .semibold))
+                .padding(.horizontal)
+            
+            Spacer()
+        }
+        .environment(\.locale, Locale(identifier: "pt"))
+    }
 }
