@@ -20,7 +20,7 @@ struct EventCard: View {
 	
 	var body: some View {
 		NavigationStack {
-			NavigationLink(destination: EventView(event: event, salvo: $salvo, confirmed: $EuVou, tag: event.acctag)) {
+			NavigationLink(destination: EventView(event: event, salvo: $salvo, confirmed: $EuVou, tag: event.acctag, isInPFPNames: isInPFPNames)) {
 				
 					VStack(spacing: 0) {
 						
@@ -81,7 +81,7 @@ struct EventCard: View {
 						
 					}
                     .background(Color("BG"))
-					.frame(width: 361, height: 300)
+						  .frame(width: 361, height: onYourProfile ? 250 : 300)
 					.clipShape(RoundedCorner(radius: 15, corners: [.allCorners]))
 					.background(
 						RoundedCorner(radius: 15, corners: [.allCorners])
@@ -139,6 +139,7 @@ extension EventCard {
 					.frame(height: 20)
 					.padding(5)
 					.clipShape(Circle())
+					.foregroundStyle(Color("DarkBlue"))
 			}
 			
 			Text(event.hostname)

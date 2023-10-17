@@ -16,6 +16,7 @@ struct EventView: View {
 	@State private var twoOpen: Bool = false
 	@State var showingInfoView: Bool = false
 	@State var tag: AccessibilityTag
+	@State var isInPFPNames = false
 	
 	@Environment(\.dismiss) private var dismiss
 	
@@ -101,7 +102,13 @@ extension EventView {
 	
 	private var EventHeaderWithSave: some View {
 		HStack{
-			Image(event.hostname)
+			
+			if isInPFPNames {
+				Image(event.hostname)
+			} else {
+				Image(systemName: "person.fill")
+					.foregroundStyle(Color("DarkBlue"))
+			}
 			
 			Text(event.hostname)
 				.font(Font.custom("SF Pro", size: 17))

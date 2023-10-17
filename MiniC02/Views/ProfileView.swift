@@ -39,6 +39,7 @@ struct ProfileView: View {
 					header
 					
 					identification
+						.padding(.bottom)
 					
 					yourEvents
 					
@@ -78,9 +79,11 @@ extension ProfileView {
 			HStack(alignment: .top) {
 				
 				if isInPFPNames {
-					Image(vm.profiles[0].imagename ?? "person")
+					Image("Paulo Sonzzini")
 						.resizable()
+						.scaledToFit()
 						.frame(width: 100, height: 100)
+						.clipShape(Circle())
 				} else {
 					Image(systemName: "person")
 						.resizable()
@@ -121,7 +124,7 @@ extension ProfileView {
 	}
 	
 	private var yourEvents: some View {
-		VStack(alignment: .leading) {
+		VStack(alignment: .leading, spacing: -5) {
 			HStack {
 				Text("Meus Eventos")
 					.font(.custom("SF Pro", size: 20))

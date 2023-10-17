@@ -71,11 +71,13 @@ struct HomeView: View {
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink(destination: ProfileView(profilePicNames: profilePicNames, isInPFPNames: $isInPFPNames)) {
 						
-						if !vm.profiles.isEmpty {
-							Image(vm.profiles[0].imagename ?? "sabainigabriel")
-						}
-						
-						if !isInPFPNames {
+						if !vm.profiles.isEmpty && isInPFPNames {
+							Image(vm.profiles[0].imagename ?? "Paulo Sonzzini")
+								.resizable()
+								.scaledToFit()
+								.frame(width: 25)
+								.clipShape(Circle())
+						} else {
 							Image(systemName: "person")
 								.foregroundColor(Color("DarkBlue"))
 						}
@@ -89,12 +91,14 @@ struct HomeView: View {
 			UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
 			UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
 			
-			for img in profilePicNames {
-				if !vm.profiles.isEmpty {
+			if !vm.profiles.isEmpty {
+				
+				for img in profilePicNames {
 					if img == vm.profiles[0].imagename {
 						isInPFPNames = true
 					}
 				}
+				
 			}
 			
 		}
