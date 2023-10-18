@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct TagButton: Identifiable {
 	let id = UUID()
@@ -46,12 +47,17 @@ struct TagView: View {
 					}
 					.padding()
 				}
-				
+                
 				Button("Continuar") {
-					
-					
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                        if success {
+                            print("All set!")
+                        } else if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    }
+                    
 					vm.setupProfile(name: name, tags: tags)
-					
 					sheetIsPresented.toggle()
 				}
 				.buttonStyle(PlainButtonStyle())

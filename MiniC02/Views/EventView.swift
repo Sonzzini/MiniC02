@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import NotificationCenter
+import Aptabase
 
 struct EventView: View {
 	
+	@EnvironmentObject var eventC : EventCRU
+	
 	var event: EventModel
 	@Binding var salvo: Bool
+	@Binding var confirmed: Bool
 	@State private var oneOpen: Bool = false
 	@State private var twoOpen: Bool = false
 	@State var showingInfoView: Bool = false
-    @State var tag: AccessibilityTag
+	@State var tag: AccessibilityTag
+	@State var isInPFPNames = false
 	
 	@Environment(\.dismiss) private var dismiss
 	
@@ -39,15 +45,48 @@ struct EventView: View {
 							.bold()
 						
 						EventDescription
-                            .padding(.vertical)
-                        
-                        EventAcessibility
+							.padding(.vertical)
+						
+						EventAcessibility
+						
 						
 						EventInfo
 							.padding(.vertical)
 						
-						Button("Eu vou") {
-							print("eu vou")
+						
+						
+						Button {
+							
+							if !confirmed {
+								vm.saveConfirmedEventToProfile(event: event)
+								Aptabase.shared.trackEvent("Botao Eu Vou", with: ["Eventos": event.title])
+
+							} else if confirmed {
+								vm.unsaveConfirmedEventFromProfile(event: event)
+								Aptabase.shared.trackEvent("Botao Desconfirmou", with: ["Eventos": event.title])
+
+							}
+							
+							confirmed.toggle()
+							
+							// Aqui eu só vomitei tudo que eu tinha do arquivo teste com o Saba
+							var dateComponents = DateComponents()
+							dateComponents.calendar = Calendar.current
+							let content = UNMutableNotificationContent()
+							// Essa título eu converser com a Beatriz para fazer
+							content.title = "Você tem um evento próximo!"
+							content.subtitle = "\(event.time) - \(event.date)"
+							content.sound = UNNotificationSound.default
+							let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+							let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+							UNUserNotificationCenter.current().add(request)
+							
+						} label: {
+							if !confirmed {
+								Text("Eu vou")
+							} else {
+								Text("Confirmado!")
+							}
 						}
 						.buttonStyle(PlainButtonStyle())
 						.padding(.vertical, 20)
@@ -69,6 +108,24 @@ struct EventView: View {
 					})
 					.foregroundStyle(Color("DarkBlue"))
 				}
+				
+				if event.hostname == vm.profiles[0].username {
+					ToolbarItem(placement: .topBarTrailing) {
+						Menu {
+							Button("Deletar", role: .destructive) {
+								
+								eventC.deleteEvent(event: event)
+								dismiss()
+								
+							}
+							
+							
+						} label: {
+							Image(systemName: "ellipsis")
+								.foregroundStyle(Color("DarkBlue"))
+						}
+					}
+				}
 			}
 		}
 		.navigationBarBackButtonHidden(true)
@@ -83,21 +140,31 @@ extension EventView {
 	
 	private var EventHeaderWithSave: some View {
 		HStack{
-			Image(event.hostname)
+			
+			if isInPFPNames {
+				Image(event.hostname)
+			} else {
+				Image(systemName: "person.fill")
+					.foregroundStyle(Color("DarkBlue"))
+			}
 			
 			Text(event.hostname)
 				.font(Font.custom("SF Pro", size: 17))
-                .foregroundStyle(Color("MainTextColor"))
-            
+				.foregroundStyle(Color("MainTextColor"))
+			
 			Spacer()
 			
 			Button {
 				
 				if !salvo {
 					vm.saveEventToProfile(event: event)
+					Aptabase.shared.trackEvent("Botao Salvar", with: ["Eventos": event.title])
+
 				}
 				else if salvo {
 					vm.unsaveEventFromProfile(event: event)
+					Aptabase.shared.trackEvent("Botao Dessalvar", with: ["Eventos": event.title])
+
 				}
 				
 				withAnimation(.linear(duration: 0.3)) {
@@ -137,20 +204,20 @@ extension EventView {
 					.foregroundStyle(Color("DarkBlue"))
 				
 				Text(event.date)
-                    .foregroundStyle(Color("MainTextColor"))
+					.foregroundStyle(Color("MainTextColor"))
 				Image(systemName: "clock")
 					.foregroundStyle(Color("DarkBlue"))
 				
 				Text(event.time)
-                    .foregroundStyle(Color("MainTextColor"))
+					.foregroundStyle(Color("MainTextColor"))
 			}
 			.padding(.vertical)
 			HStack{
 				Image(systemName: "mappin")
 					.foregroundStyle(Color("DarkBlue"))
-
+				
 				Text(event.location + " - " + event.neighborhood)
-                    .foregroundStyle(Color("MainTextColor"))
+					.foregroundStyle(Color("MainTextColor"))
 			}
 		}
 		.padding(.top)
@@ -160,38 +227,39 @@ extension EventView {
 		VStack(alignment: .leading) {
 			Text("Descrição")
 				.font(Font.custom("SF Pro Text", size: 17)
-                .weight(.semibold))
+					.weight(.semibold))
 				.foregroundColor(Color("DarkGray"))
 				.padding(.bottom, 5)
 			
 			Text(event.desc)
 				.font(Font.custom("SF Pro", size: 17))
-                .foregroundStyle(Color("MainTextColor"))
+				.foregroundStyle(Color("MainTextColor"))
 		}
 	}
-    
-    private var EventAcessibility: some View {
-        VStack(alignment: .leading){
-            HStack{
-                Text("Acessibilidade")
-                    .foregroundColor(Color("DarkGray"))
-                Button {
-                    print("informacoes")
-                    showingInfoView.toggle()
-                    
-                } label: {
-                    Image(systemName: "info.circle.fill")
-                        .tint(Color("DarkBlue"))
-                }
-                .sheet(isPresented: $showingInfoView){
-                    AcessibilityTagInformationView()
-                }
-            }
-            HStack{
-                Image(event.acctag.rawValue)
-                    .resizable()
-                    .frame(width: 48, height: 47)
-            }
-        }
-    }
+	
+	private var EventAcessibility: some View {
+		VStack(alignment: .leading){
+			HStack{
+				Text("Acessibilidade")
+					.foregroundColor(Color("DarkGray"))
+				Button {
+					print("informacoes")
+					showingInfoView.toggle()
+					Aptabase.shared.trackEvent("Informações", with: ["Eventos": event.title])
+					
+				} label: {
+					Image(systemName: "info.circle.fill")
+						.tint(Color("DarkBlue"))
+				}
+				.sheet(isPresented: $showingInfoView){
+					AcessibilityTagInformationView()
+				}
+			}
+			HStack{
+				Image(event.acctag.rawValue)
+					.resizable()
+					.frame(width: 48, height: 47)
+			}
+		}
+	}
 }

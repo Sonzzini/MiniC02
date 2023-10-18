@@ -3,7 +3,13 @@
     <entity name="Controller" representedClassName="Controller" syncable="YES" codeGenerationType="class">
         <attribute name="firstLogin" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="EventConfirmedPresenceIDs" representedClassName="EventConfirmedPresenceIDs" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <relationship name="confirmedEventsToProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="profileToConfirmedEvents" inverseEntity="Profile"/>
+    </entity>
     <entity name="EventPresenceIDs" representedClassName="EventPresenceIDs" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="eventIDstoProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="profileToEventIDs" inverseEntity="Profile"/>
     </entity>
@@ -12,6 +18,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="profileid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="profileToConfirmedEvents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventConfirmedPresenceIDs" inverseName="confirmedEventsToProfile" inverseEntity="EventConfirmedPresenceIDs"/>
         <relationship name="profileToEventIDs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventPresenceIDs" inverseName="eventIDstoProfile" inverseEntity="EventPresenceIDs"/>
         <relationship name="profileToTag" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="tagToProfile" inverseEntity="Tag"/>
     </entity>

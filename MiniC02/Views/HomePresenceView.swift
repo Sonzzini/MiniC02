@@ -12,6 +12,7 @@ struct HomePresenceView: View {
 	@EnvironmentObject var vm : ViewModel
 	@EnvironmentObject var eventC : EventCRU
 	@State var eventsPresence: [EventModel] = []
+	@State var eventStatus: [Int] = []
 	
 	var body: some View {
 		NavigationStack {
@@ -20,16 +21,23 @@ struct HomePresenceView: View {
 				VStack {
 					if eventsPresence.isEmpty {
 						VStack {
-							Image("Frown")
-								.padding(.bottom, 50)
+							Image("EmptyIcon")
+								.resizable()
+								.scaledToFit()
+								.frame(width: 150)
 							
 							Text("Nenhum evento...")
+								.font(.title3)
+								.bold()
+								.foregroundStyle(Color("EmptyColor"))
+								
 						}
 						.padding(.top, 100)
 					}
 					
-					ForEach(eventsPresence) { event in
-						EventCard(event: event, salvo: true)
+					ForEach(Array(eventsPresence.enumerated()), id:\.offset) { index, event in
+						EventCard(event: event, EuVou: true)
+						
 					}
 					
 				}
@@ -38,28 +46,34 @@ struct HomePresenceView: View {
 				.padding(.bottom, 20)
 				
 			}
-
+			
 			.onAppear {
 				eventC.getEvents()
 				vm.getIDs()
 				
 				eventsPresence = []
-				for id in vm.ids {
+				
+
+				
+				for id in vm.confirmedIDs {
 					for event in eventC.events {
 						if event.id == id.id {
 							eventsPresence.append(event)
+							eventStatus.append(1) // MARK: 1 = EU VOU!
 							print(event.title)
 						}
 					}
 				}
-				eventsPresence.reverse()
+				
+				//				eventsPresence.sort(by: {$0.date.compare($1.date) == .orderedDescending})
+				//				eventsPresence.sort
 				
 			}
-
+			
 			
 			
 		}
-
+		
 	}
 }
 

@@ -25,6 +25,10 @@ struct ProfileSheetView: View {
             }
             .font(.system(size: 23))
             .foregroundColor(Color.black)
+			  
+//			  NavigationLink(destination: <#T##Destination#>) {
+//				  <#code#>
+//			  }
             
         }
         Text("Sair")

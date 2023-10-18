@@ -22,6 +22,7 @@ extension Profile {
 	@NSManaged public var username: String?
 	@NSManaged public var profileToTag: Set<Tag>?
 	@NSManaged public var profileToEventIDs: Set<EventPresenceIDs>?
+	@NSManaged public var profileToConfirmedPresenceIDs: Set<EventConfirmedPresenceIDs>?
 	
 	public var tags: [Tag] {
 		let setOfTags = profileToTag
@@ -32,6 +33,13 @@ extension Profile {
 	
 	public var eventPresenceIDs: [EventPresenceIDs] {
 		let setOfIDs = profileToEventIDs
+		return setOfIDs!.sorted {
+			$0.id ?? "error" < $1.id ?? "error"
+		}
+	}
+	
+	public var eventConfirmedPresenceIDs: [EventConfirmedPresenceIDs] {
+		let setOfIDs = profileToConfirmedPresenceIDs
 		return setOfIDs!.sorted {
 			$0.id ?? "error" < $1.id ?? "error"
 		}
