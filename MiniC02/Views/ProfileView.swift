@@ -20,6 +20,8 @@ struct ProfileView: View {
 	@State var editProfileSheetIsOpened: Bool = false
 	@State var deleteAccountButton = false
 	
+	@State var goesToDeleteView = false
+	
 	@State var recadastrarSheetIsPresented = false
 	
 	@State var columns: [GridItem] = [
@@ -74,15 +76,21 @@ struct ProfileView: View {
 			.alert("Tem certeza que deseja continuar?", isPresented: $deleteAccountButton) {
 				Button("Cancelar", role: .cancel) { }
 				
+
 				NavigationLink {
 					DeleteConfirmationView(recadastrarSheetIsPresented: $recadastrarSheetIsPresented)
 				} label: {
 					Text("Deletar conta")
-						.foregroundStyle(.red)
 				}
-				
+
+
+
 				
 			}
+			.onAppear {
+				UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .red
+			}
+			
 		}
 		.navigationBarBackButtonHidden(true)
 		

@@ -27,6 +27,7 @@
 		E929530B2AE14AC9006D57F6 /* EditProfileSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E929530A2AE14AC9006D57F6 /* EditProfileSheetView.swift */; };
 		E929530D2AE14F6A006D57F6 /* PrettyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E929530C2AE14F6A006D57F6 /* PrettyTextField.swift */; };
 		E929530F2AE1A0FE006D57F6 /* DeleteConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E929530E2AE1A0FE006D57F6 /* DeleteConfirmationView.swift */; };
+		E92953112AE1C31B006D57F6 /* DeleteButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92953102AE1C31B006D57F6 /* DeleteButtonStyle.swift */; };
 		E938F5722ACB5C180049874E /* PlainButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E938F5712ACB5C180049874E /* PlainButtonStyle.swift */; };
 		E938F5742ACB5FB50049874E /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E938F5732ACB5FB50049874E /* EventCard.swift */; };
 		E938F57A2ACDFF4D0049874E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E938F5792ACDFF4D0049874E /* ProfileView.swift */; };
@@ -72,6 +73,7 @@
 		E929530A2AE14AC9006D57F6 /* EditProfileSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileSheetView.swift; sourceTree = "<group>"; };
 		E929530C2AE14F6A006D57F6 /* PrettyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyTextField.swift; sourceTree = "<group>"; };
 		E929530E2AE1A0FE006D57F6 /* DeleteConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteConfirmationView.swift; sourceTree = "<group>"; };
+		E92953102AE1C31B006D57F6 /* DeleteButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButtonStyle.swift; sourceTree = "<group>"; };
 		E938F5712ACB5C180049874E /* PlainButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlainButtonStyle.swift; path = ../Components/PlainButtonStyle.swift; sourceTree = "<group>"; };
 		E938F5732ACB5FB50049874E /* EventCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
 		E938F5792ACDFF4D0049874E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				E938F5712ACB5C180049874E /* PlainButtonStyle.swift */,
 				B4B8A3B42ACF563F001CFFE0 /* DisclosureGroupImageStyle.swift */,
+				E92953102AE1C31B006D57F6 /* DeleteButtonStyle.swift */,
 				19F0B5B92ACF46F80097E283 /* PlainTagStyle.swift */,
 			);
 			path = Style;
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19F0B5BA2ACF46F80097E283 /* PlainTagStyle.swift in Sources */,
+				E92953112AE1C31B006D57F6 /* DeleteButtonStyle.swift in Sources */,
 				E92953072AD733D5006D57F6 /* ImagePickSheetView.swift in Sources */,
 				E938F5CA2AD486DD0049874E /* Profile+CoreDataClass.swift in Sources */,
 				1952496C2AC606BD003D986A /* TutorialView.swift in Sources */,

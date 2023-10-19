@@ -18,14 +18,20 @@ struct DeleteConfirmationView: View {
 		NavigationStack {
 			ScrollView {
 				
-				Group {
+				VStack {
 					Text("Tem certeza que deseja continuar?")
 						.font(.title2)
 						.bold()
 					
 					Text("Digite o seu nome de usuário para confirmar")
 						.font(.title3)
-				}.padding(.horizontal)
+						.padding(.leading)
+						.multilineTextAlignment(.center)
+						
+					
+					
+				}
+				.padding(.top, 20)
 				
 				PrettyTextField(localizedString: "nome de usuário", text: $deleteAccountUsername)
 					.padding()
