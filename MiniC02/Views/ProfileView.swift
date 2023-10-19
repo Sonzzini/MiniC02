@@ -17,6 +17,12 @@ struct ProfileView: View {
 	@State var yourEventsList: [EventModel] = []
 	
 	@State var sheetIsPresented = false
+	@State var editProfileSheetIsOpened: Bool = false
+	@State var deleteAccountButton = false
+	
+	@State var goesToDeleteView = false
+	
+	@State var recadastrarSheetIsPresented = false
 	
 	@State var columns: [GridItem] = [
 		GridItem(.adaptive(minimum: 150, maximum: 550)),
@@ -45,7 +51,7 @@ struct ProfileView: View {
 					
 				}
 				.padding(.horizontal, 20)
-
+				
 				
 			}
 			.toolbar {
@@ -60,21 +66,48 @@ struct ProfileView: View {
 						Image(systemName: "bookmark")
 							.foregroundStyle(Color("DarkBlue"))
 					}
-
+					
 				}
 				
 				ToolbarItem(placement: .topBarTrailing) {
 					sheetViewButton
 				}
 			}
+			.alert("Tem certeza que deseja continuar?", isPresented: $deleteAccountButton) {
+				Button("Cancelar", role: .cancel) { }
+				
+
+				NavigationLink {
+					DeleteConfirmationView(recadastrarSheetIsPresented: $recadastrarSheetIsPresented)
+				} label: {
+					Text("Deletar conta")
+				}
+
+
+
+				
+			}
+			.onAppear {
+				UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .red
+			}
+			
 		}
 		.navigationBarBackButtonHidden(true)
 		
 		
 		.sheet(isPresented: $sheetIsPresented) {
-			ProfileSheetView()
+			ProfileSheetView( deleteAccountButton: $deleteAccountButton, editProfileSheetIsOpened: $editProfileSheetIsOpened)
 				.presentationDetents([.medium])
 		}
+		.sheet(isPresented: $editProfileSheetIsOpened) {
+			EditProfileSheetView()
+		}
+		
+		.fullScreenCover(isPresented: $recadastrarSheetIsPresented) {
+			CadastroView(sheetIsPresented: $recadastrarSheetIsPresented)
+		}
+		
+		
 		
 		
 		

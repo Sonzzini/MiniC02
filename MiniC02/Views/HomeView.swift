@@ -17,6 +17,7 @@ struct HomeView: View {
 	let profilePicNames = ["biamoura_oficial", "Gabriel Fonseca", "gabrielk29", "Paulo Sonzzini", "paulosonzzini", "sabainigabriel"]
 	@State var isInPFPNames: Bool = false
 	@State var selectedIndex: Int = 0
+	@State var firstLoginSheetIsPresented = false
 	let date = Date.now
 	
 //	init() {
@@ -52,7 +53,7 @@ struct HomeView: View {
 				}
 				
 				if selectedIndex == 0 {
-					HomeFeedView()
+					HomeFeedView(firstLoginSheetIsPresented: $firstLoginSheetIsPresented)
 				} else {
 					HomePresenceView()
 				}
@@ -88,6 +89,9 @@ struct HomeView: View {
 		}
 		
 		.onAppear {
+			
+			vm.setupController(firstLoginSheetIsPresented: &firstLoginSheetIsPresented)
+			
 			UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
 			UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color("DarkBlue"))]
 			

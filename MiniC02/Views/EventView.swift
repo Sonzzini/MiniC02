@@ -70,15 +70,28 @@ struct EventView: View {
 							confirmed.toggle()
 							
 							// Aqui eu só vomitei tudo que eu tinha do arquivo teste com o Saba
-							var dateComponents = DateComponents()
-							dateComponents.calendar = Calendar.current
+							let isoDate = event.date + " " + event.time
+							
+							let dateFormatter = DateFormatter()
+							dateFormatter.locale = Locale(identifier: "pt_BR")
+							dateFormatter.timeZone = TimeZone(identifier: "GMT-3")
+							dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+							
+							let date = dateFormatter.date(from: isoDate)!
+							
+							let calendar = Calendar.current
+							let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+							print(components)
+							
 							let content = UNMutableNotificationContent()
 							// Essa título eu converser com a Beatriz para fazer
 							content.title = "Você tem um evento próximo!"
 							content.subtitle = "\(event.time) - \(event.date)"
 							content.sound = UNNotificationSound.default
-							let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+							
+							let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
 							let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+							
 							UNUserNotificationCenter.current().add(request)
 							
 						} label: {

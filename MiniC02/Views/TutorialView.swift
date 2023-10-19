@@ -90,7 +90,7 @@ extension TutorialView {
                         .navigationBarBackButtonHidden(true)
                 }
                 .font(.custom("SF Pro", size: 17))
-                .tint(.black)
+					 .tint(Color("MainTextColor"))
             }
         }
     }

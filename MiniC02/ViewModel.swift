@@ -59,19 +59,32 @@ class ViewModel: ObservableObject {
 			firstLoginSheetIsPresented.toggle()
 			
 			let controller = Controller(context: context)
-			controller.firstLogin = false
+			controller.firstLogin = true
 			
 			self.controller = [controller]
 			
 			try? context.save()
 		}
-
+		
 		
 	}
+	//
+	//	func setupController() {
+	//		getController()
+	//
+	//		if controller.isEmpty {
+	//			let controller = Controller(context: context)
+	//			controller.firstLogin = true
+	//
+	//			self.controller = [controller]
+	//
+	//			try? context.save()
+	//		}
+	//	}
 	
 	func removeWhitespacesFromString(mStr: String) -> String {
-		 let filteredChar = mStr.filter { !$0.isWhitespace }
-		 return String(filteredChar)
+		let filteredChar = mStr.filter { !$0.isWhitespace }
+		return String(filteredChar)
 	}
 	
 	func setupProfile(name: String, tags: [String]) {
@@ -99,8 +112,16 @@ class ViewModel: ObservableObject {
 			}
 			
 			
-
+			
 			self.profiles = [profile]
+			
+			for id in ids {
+				context.delete(id)
+			}
+			for confirmedID in confirmedIDs {
+				context.delete(confirmedID)
+			}
+			
 			
 			do {
 				try context.save()
@@ -108,6 +129,42 @@ class ViewModel: ObservableObject {
 				print("Error saving profile")
 			}
 		}
+	}
+	
+	func updateProfile(name: String, tags:[String]) {
+		getProfile()
+		
+		if !profiles.isEmpty {
+			context.delete(self.profiles[0])
+			for tag in self.tags {
+				context.delete(tag)
+			}
+			try? context.save()
+			
+			let profile = Profile(context: context)
+			profile.imagename = name
+			profile.name = name
+			profile.username = removeWhitespacesFromString(mStr: name).lowercased()
+			profile.profileid = UUID()
+			
+			for tag in tags {
+				let tagObj = Tag(context: context)
+				tagObj.name = tag
+				
+				do {
+					tagObj.tagToProfile = profile
+					try context.save()
+				} catch {
+					print("Error relating new tags to profile: \(error.localizedDescription)")
+				}
+				
+				self.profiles = [profile]
+				
+				try? context.save()
+			}
+		}
+		
+		
 	}
 	
 	func saveEventToProfile(event: EventModel) {
