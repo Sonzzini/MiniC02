@@ -14,7 +14,7 @@ struct HomeFeedView: View {
 	@EnvironmentObject var eventC : EventCRU
 	@EnvironmentObject var vm : ViewModel
 	
-	@State var firstLoginSheetIsPresented: Bool = false
+	@Binding var firstLoginSheetIsPresented: Bool
 	
 	var body: some View {
 		NavigationStack {
@@ -27,8 +27,8 @@ struct HomeFeedView: View {
 							.padding(.bottom)
 						
 					}
-
-
+					
+					
 				}
 				.frame(maxWidth: .infinity)
 				.padding(.top)
@@ -39,26 +39,20 @@ struct HomeFeedView: View {
 				
 				
 			}
-
-
+			
+			
 			.onAppear {
 				
 				eventC.getEvents()
 				
-				vm.setupController(firstLoginSheetIsPresented: &firstLoginSheetIsPresented)
 				
 			}
 			
 		}
-
+		
 		.fullScreenCover(isPresented: $firstLoginSheetIsPresented) {
 			TutorialView(sheetIsPresented: $firstLoginSheetIsPresented)
 		}
 		
 	}
 }
-
-#Preview {
-	HomeFeedView()
-}
-
