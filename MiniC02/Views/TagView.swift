@@ -56,13 +56,22 @@ struct TagView: View {
                             print(error.localizedDescription)
                         }
                     }
-                    
-					vm.setupProfile(name: name, tags: tags)
+					
+					if vm.controller[0].firstLogin == true {
+						print("Setting up profile")
+						vm.setupProfile(name: name, tags: tags)
+						vm.controller[0].firstLogin = false
+						try? vm.context.save()
+						
+					} else if vm.controller[0].firstLogin == false {
+						print("Updating profile!")
+						vm.updateProfile(name: name, tags: tags)
+					}
+					
+					
 					sheetIsPresented.toggle()
 				}
 				.buttonStyle(PlainButtonStyle())
-				
-                
 				
 				
 			}
