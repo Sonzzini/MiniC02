@@ -37,6 +37,12 @@ struct EditProfileSheetView: View {
 
 					ForEach(vm.profiles[0].tags) { tag in
 						Text(tag.name!)
+							.padding(.horizontal)
+							.padding(.vertical, 5)
+							.background(Color("NewPeach"))
+							.clipShape(RoundedRectangle(cornerRadius: 10))
+							.foregroundStyle(.white)
+							.padding(.trailing, 8)
 					}
 					
 				}
@@ -55,7 +61,7 @@ struct EditProfileSheetView: View {
 						dismiss()
 					} label: {
 						Text("Cancelar")
-							.foregroundStyle(Color("DarkBlue"))
+							.foregroundStyle(Color("NewPeach"))
 					}
 
 				}

@@ -17,7 +17,11 @@ struct TagButtonView: View {
         
         Button(action: {
             isToggled.toggle()
-			  tags.append(string)
+			  if !tags.contains(string) {
+				  tags.append(string)
+			  } else {
+				  tags.removeAll(where: { $0 == string })
+			  }
         }, label: {
             Text(string)
         })

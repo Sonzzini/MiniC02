@@ -15,6 +15,7 @@ struct TagInfoItem: View {
             HStack(alignment: .center){
                 Image(tag.rawValue)
                     .resizable()
+						  .scaledToFit()
                     .frame(width:43, height: 43)
                     .padding(.leading)
                     .padding(.trailing, 10)

@@ -16,7 +16,7 @@ struct IndexCircles: View {
             Circle()
                 .frame(width: 10)
                 .padding(.bottom, 15)
-                .foregroundStyle(Color("MainTextColor"))
+					 .foregroundStyle(Color.white)
             
         } else {
             Circle()

@@ -23,125 +23,136 @@ struct EventView: View {
 	@State var isInPFPNames = false
 	
 	@Environment(\.dismiss) private var dismiss
-	
+	@Environment(\.colorScheme) var colorScheme
 	@EnvironmentObject var vm : ViewModel
 	
 	var body: some View {
 		NavigationStack {
-			ScrollView{
+			ZStack {
 				
-				VStack(alignment: .leading){
-					Image(event.imagename)
-						.resizable()
-						.scaledToFit()
+				if colorScheme == .light {
+					Color.white
+						.ignoresSafeArea()
+				} else {
+					Color("NewDark")
+						.ignoresSafeArea()
+				}
+				
+				ScrollView {
 					
 					VStack(alignment: .leading){
+						Image(event.imagename)
+							.resizable()
+							.scaledToFit()
 						
-						EventHeaderWithSave
-						
-						Text(event.title)
-							.font(Font.custom("SF Pro", size: 28))
-							.padding(.top, 14)
-							.bold()
-						
-						EventDescription
-							.padding(.vertical)
-						
-						EventAcessibility
-						
-						
-						EventInfo
-							.padding(.vertical)
-						
-						
-						
-						Button {
+						VStack(alignment: .leading){
 							
-							if !confirmed {
-								vm.saveConfirmedEventToProfile(event: event)
-								Aptabase.shared.trackEvent("Botao Eu Vou", with: ["Eventos": event.title])
-
-							} else if confirmed {
-								vm.unsaveConfirmedEventFromProfile(event: event)
-								Aptabase.shared.trackEvent("Botao Desconfirmou", with: ["Eventos": event.title])
-
+							EventHeaderWithSave
+							
+							Text(event.title)
+								.font(Font.custom("SF Pro", size: 28))
+								.padding(.top, 14)
+								.bold()
+							
+							EventDescription
+								.padding(.vertical)
+							
+							EventAcessibility
+							
+							
+							EventInfo
+								.padding(.vertical)
+							
+							
+							
+							Button {
+								
+								if !confirmed {
+									vm.saveConfirmedEventToProfile(event: event)
+									Aptabase.shared.trackEvent("Botao Eu Vou", with: ["Eventos": event.title])
+									
+								} else if confirmed {
+									vm.unsaveConfirmedEventFromProfile(event: event)
+									Aptabase.shared.trackEvent("Botao Desconfirmou", with: ["Eventos": event.title])
+									
+								}
+								
+								confirmed.toggle()
+								
+								// Aqui eu só vomitei tudo que eu tinha do arquivo teste com o Saba
+								let isoDate = event.date + " " + event.time
+								
+								let dateFormatter = DateFormatter()
+								dateFormatter.locale = Locale(identifier: "pt_BR")
+								dateFormatter.timeZone = TimeZone(identifier: "GMT-3")
+								dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+								
+								let date = dateFormatter.date(from: isoDate)!
+								
+								let calendar = Calendar.current
+								let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+								print(components)
+								
+								let content = UNMutableNotificationContent()
+								// Essa título eu converser com a Beatriz para fazer
+								content.title = "Você tem um evento próximo!"
+								content.subtitle = "\(event.time) - \(event.date)"
+								content.sound = UNNotificationSound.default
+								
+								let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+								let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+								
+								UNUserNotificationCenter.current().add(request)
+								
+							} label: {
+								if !confirmed {
+									Text("Eu vou")
+								} else {
+									Text("Confirmado!")
+								}
 							}
+							.buttonStyle(EventButtonStyle())
+							.padding(.vertical, 20)
 							
-							confirmed.toggle()
-							
-							// Aqui eu só vomitei tudo que eu tinha do arquivo teste com o Saba
-							let isoDate = event.date + " " + event.time
-							
-							let dateFormatter = DateFormatter()
-							dateFormatter.locale = Locale(identifier: "pt_BR")
-							dateFormatter.timeZone = TimeZone(identifier: "GMT-3")
-							dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-							
-							let date = dateFormatter.date(from: isoDate)!
-							
-							let calendar = Calendar.current
-							let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
-							print(components)
-							
-							let content = UNMutableNotificationContent()
-							// Essa título eu converser com a Beatriz para fazer
-							content.title = "Você tem um evento próximo!"
-							content.subtitle = "\(event.time) - \(event.date)"
-							content.sound = UNNotificationSound.default
-							
-							let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
-							let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-							
-							UNUserNotificationCenter.current().add(request)
-							
-						} label: {
-							if !confirmed {
-								Text("Eu vou")
-							} else {
-								Text("Confirmado!")
-							}
 						}
-						.buttonStyle(PlainButtonStyle())
-						.padding(.vertical, 20)
+						.padding(.leading, 14)
 						
 					}
-					.padding(.leading, 14)
+				}
+				.toolbar {
+					ToolbarItem(placement: .cancellationAction) {
+						Button(action: {
+							dismiss()
+						}, label: {
+							HStack {
+								Image(systemName: "chevron.left")
+								Text("Início")
+							}
+						})
+						.foregroundStyle(Color("NewPurple"))
+					}
 					
-				}
-			}
-			.toolbar {
-				ToolbarItem(placement: .cancellationAction) {
-					Button(action: {
-						dismiss()
-					}, label: {
-						HStack {
-							Image(systemName: "chevron.left")
-							Text("Início")
-						}
-					})
-					.foregroundStyle(Color("DarkBlue"))
-				}
-				
-				if event.hostname == vm.profiles[0].username {
-					ToolbarItem(placement: .topBarTrailing) {
-						Menu {
-							Button("Deletar", role: .destructive) {
+					if event.hostname == vm.profiles[0].username {
+						ToolbarItem(placement: .topBarTrailing) {
+							Menu {
+								Button("Deletar", role: .destructive) {
+									
+									eventC.deleteEvent(event: event)
+									dismiss()
+									
+								}
 								
-								eventC.deleteEvent(event: event)
-								dismiss()
 								
+							} label: {
+								Image(systemName: "ellipsis")
+									.foregroundStyle(Color("DarkBlue"))
 							}
-							
-							
-						} label: {
-							Image(systemName: "ellipsis")
-								.foregroundStyle(Color("DarkBlue"))
 						}
 					}
 				}
 			}
+			.navigationBarBackButtonHidden(true)
 		}
-		.navigationBarBackButtonHidden(true)
 	}
 }
 
@@ -158,11 +169,11 @@ extension EventView {
 				Image(event.hostname)
 			} else {
 				Image(systemName: "person.fill")
-					.foregroundStyle(Color("DarkBlue"))
+					.foregroundStyle(Color("NewPurple"))
 			}
 			
 			Text(event.hostname)
-				.font(Font.custom("SF Pro", size: 17))
+				.font(Font.custom("Inter-Regular", size: 17))
 				.foregroundStyle(Color("MainTextColor"))
 			
 			Spacer()
@@ -189,15 +200,16 @@ extension EventView {
 				
 				if salvo{
 					Image(systemName: "bookmark.fill")
+						.symbolRenderingMode(.hierarchical)
 						.font(.title2)
 						.padding(.trailing, 14)
-						.foregroundColor(Color("DarkYellow"))
+						.foregroundStyle(Color("NewYellow"), Color.white)
 				}
 				else {
 					Image(systemName: "bookmark")
 						.font(.title2)
 						.padding(.trailing, 14)
-						.foregroundColor(Color("DarkYellow"))
+						.foregroundColor(Color.white)
 				}
 				
 			}
@@ -208,26 +220,27 @@ extension EventView {
 	private var EventInfo: some View {
 		VStack(alignment: .leading) {
 			Text("Informações")
-				.font(Font.custom("SF Pro Text", size: 17)
+				.font(Font.custom("Inter-Regular", size: 17)
 					.weight(.semibold))
 				.foregroundColor(Color(red: 0.59, green: 0.59, blue: 0.59))
 			
 			HStack{
 				Image(systemName: "calendar")
-					.foregroundStyle(Color("DarkBlue"))
+					.foregroundStyle(Color("NewPurple"))
 				
 				Text(event.date)
 					.foregroundStyle(Color("MainTextColor"))
-				Image(systemName: "clock")
-					.foregroundStyle(Color("DarkBlue"))
+				Image(systemName: "clock.fill")
+					.foregroundStyle(Color("NewPeach"))
 				
 				Text(event.time)
 					.foregroundStyle(Color("MainTextColor"))
 			}
+			.font(.custom("Inter-Regular", size: 15))
 			.padding(.vertical)
 			HStack{
 				Image(systemName: "mappin")
-					.foregroundStyle(Color("DarkBlue"))
+					.foregroundStyle(Color("NewGreen"))
 				
 				Text(event.location + " - " + event.neighborhood)
 					.foregroundStyle(Color("MainTextColor"))
@@ -239,13 +252,13 @@ extension EventView {
 	private var EventDescription: some View {
 		VStack(alignment: .leading) {
 			Text("Descrição")
-				.font(Font.custom("SF Pro Text", size: 17)
+				.font(Font.custom("Inter-Regular", size: 17)
 					.weight(.semibold))
 				.foregroundColor(Color("DarkGray"))
 				.padding(.bottom, 5)
 			
 			Text(event.desc)
-				.font(Font.custom("SF Pro", size: 17))
+				.font(Font.custom("Inter-Regular", size: 17))
 				.foregroundStyle(Color("MainTextColor"))
 		}
 	}
@@ -262,7 +275,7 @@ extension EventView {
 					
 				} label: {
 					Image(systemName: "info.circle.fill")
-						.tint(Color("DarkBlue"))
+						.tint(Color("NewPeach"))
 				}
 				.sheet(isPresented: $showingInfoView){
 					AcessibilityTagInformationView()
@@ -271,8 +284,10 @@ extension EventView {
 			HStack{
 				Image(event.acctag.rawValue)
 					.resizable()
+					.scaledToFit()
 					.frame(width: 48, height: 47)
 			}
 		}
+		.font(.custom("Inter-Regular", size: 17))
 	}
 }

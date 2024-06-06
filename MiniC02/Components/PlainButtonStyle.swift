@@ -19,3 +19,45 @@ struct PlainButtonStyle: ButtonStyle {
 	 }
 }
 
+struct NewPlainButtonStyle: ButtonStyle {
+	@Environment(\.colorScheme) var colorScheme
+	
+	func makeBody(configuration: Configuration) -> some View {
+		configuration.label
+			.frame(width: 361, height: 44)
+			.font(.custom("SF Pro", size: 20))
+			.fontWeight(.semibold)
+			.foregroundStyle(colorScheme == .light ? Color("NewPurple") : Color("NewPeach"))
+			.background(Color.white)
+			.cornerRadius(8)
+	}
+}
+
+struct SecondaryPlainButtonStyle: ButtonStyle {
+	@Environment(\.colorScheme) var colorScheme
+	
+	func makeBody(configuration: Configuration) -> some View {
+		configuration.label
+			.frame(width: 361, height: 44)
+			.font(.custom("SF Pro", size: 20))
+			.fontWeight(.semibold)
+			.foregroundStyle(colorScheme == .light ? Color.white : Color("NewPeach"))
+			.background(colorScheme == .light ? Color("NewPurple") : Color.white)
+			.cornerRadius(8)
+	}
+}
+
+
+struct EventButtonStyle: ButtonStyle {
+	@Environment(\.colorScheme) var colorScheme
+	
+	func makeBody(configuration: Configuration) -> some View {
+		configuration.label
+			.frame(width: 361, height: 44)
+			.font(.custom("SF Pro", size: 20))
+			.fontWeight(.semibold)
+			.foregroundStyle(.white)
+			.background(Color("NewPurple"))
+			.cornerRadius(8)
+	}
+}

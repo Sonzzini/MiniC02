@@ -23,8 +23,8 @@ struct HomeFeedView: View {
 					
 					
 					ForEach(eventC.events.reversed()) { event in
-						EventCard(event: event)
-							.padding(.bottom)
+						NewEventCard(event: event)
+							.padding(.bottom, 32)
 						
 					}
 					
@@ -32,9 +32,7 @@ struct HomeFeedView: View {
 				}
 				.frame(maxWidth: .infinity)
 				.padding(.top)
-				.background(
-					Color("BG")
-				)
+				.background(.clear)
 				
 				
 				

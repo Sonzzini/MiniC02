@@ -110,7 +110,7 @@ class EventCRU: ObservableObject {
 				print(error!)
 				return
 			}
-			guard let data = data else {
+			guard data != nil else {
 				print("Error: Did not receive data")
 				return
 			}

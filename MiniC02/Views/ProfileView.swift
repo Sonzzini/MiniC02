@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ProfileView: View {
 	
@@ -21,6 +22,7 @@ struct ProfileView: View {
 	@State var deleteAccountButton = false
 	
 	@State var goesToDeleteView = false
+	@State var isTryingToDeleteProfile = false
 	
 	@State var recadastrarSheetIsPresented = false
 	
@@ -37,67 +39,101 @@ struct ProfileView: View {
 	let profilePicNames: [String]
 	@Binding var isInPFPNames: Bool
 	
+	@Environment(\.colorScheme) var colorScheme
+	
 	var body: some View {
 		NavigationStack {
-			ScrollView {
-				VStack(alignment: .leading) {
+			ZStack {
+				
+				Image(colorScheme == .light ? "blackgreenblob" : "whitegreenblob")
+					.resizable()
+					.scaledToFit()
+					.frame(width: 80)
+					.position(x: UIScreen.main.bounds.width, y: UIScreen.main.bounds.height * 0.12)
+				
+				Image(colorScheme == .light ? "blackyellowstar" : "whiteyellowstar")
+					.resizable()
+					.scaledToFit()
+					.frame(width: 100)
+					.position(x: UIScreen.main.bounds.width - 30, y: UIScreen.main.bounds.height * 0.23)
+				
+				Image(colorScheme == .light ? "blackpeachsemicircleprofileiconpicture" : "whitepeachsemicircleprofileiconpicture")
+					.resizable()
+					.scaledToFit()
+					.frame(height: 140)
+					.position(x: UIScreen.main.bounds.width, y: UIScreen.main.bounds.height * 0.35)
+				
+				Image(colorScheme == .light ? "blackleaf" : "whiteleaf")
+					.resizable()
+					.scaledToFit()
+					.frame(width: 72)
+					.position(x: UIScreen.main.bounds.width - 20, y: UIScreen.main.bounds.height * 0.50)
+				
+				ScrollView {
+					VStack(alignment: .leading) {
+						
+						header
+						
+						identification
+							.padding(.bottom)
+						
+						yourEvents
+						
+					}
+					.padding(.horizontal, 28)
 					
-					header
-					
-					identification
-						.padding(.bottom)
-					
-					yourEvents
 					
 				}
-				.padding(.horizontal, 20)
-				
-				
-			}
-			.toolbar {
-				ToolbarItem(placement: .cancellationAction) {
-					backButton
-				}
-				
-				ToolbarItem(placement: .topBarTrailing) {
-					NavigationLink {
-						SavedEventsView()
-					} label: {
-						Image(systemName: "bookmark")
-							.foregroundStyle(Color("DarkBlue"))
+				.toolbar {
+					ToolbarItem(placement: .cancellationAction) {
+						backButton
 					}
 					
+					ToolbarItem(placement: .topBarTrailing) {
+						NavigationLink {
+							SavedEventsView()
+						} label: {
+							Image(systemName: "bookmark")
+								.foregroundStyle(Color("NewPeach"))
+						}
+						
+					}
+					
+					ToolbarItem(placement: .topBarTrailing) {
+						sheetViewButton
+					}
+				}
+				.alert("Tem certeza que deseja continuar?", isPresented: $deleteAccountButton) {
+					Button("Cancelar", role: .cancel) { }
+					
+					Button("Deletar conta", role: .destructive) {
+						isTryingToDeleteProfile = true
+					}
+					
+					
 				}
 				
-				ToolbarItem(placement: .topBarTrailing) {
-					sheetViewButton
-				}
-			}
-			.alert("Tem certeza que deseja continuar?", isPresented: $deleteAccountButton) {
-				Button("Cancelar", role: .cancel) { }
-				
-
-				NavigationLink {
+				NavigationLink(isActive: $isTryingToDeleteProfile) {
 					DeleteConfirmationView(recadastrarSheetIsPresented: $recadastrarSheetIsPresented)
 				} label: {
-					Text("Deletar conta")
+					EmptyView()
 				}
-
-
-
+				
+				//			.onAppear {
+				//				UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .red
+				//			}
 				
 			}
-			.onAppear {
-				UIView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).tintColor = .red
-			}
-			
 		}
+		.background(
+			Color("NewHomeBackground")
+		)
 		.navigationBarBackButtonHidden(true)
 		
 		
 		.sheet(isPresented: $sheetIsPresented) {
 			ProfileSheetView( deleteAccountButton: $deleteAccountButton, editProfileSheetIsOpened: $editProfileSheetIsOpened)
-				.presentationDetents([.medium])
+				.presentationDetents([.fraction(0.3)])
 		}
 		.sheet(isPresented: $editProfileSheetIsOpened) {
 			EditProfileSheetView()
@@ -121,19 +157,11 @@ extension ProfileView {
 		VStack(alignment: .leading) {
 			HStack(alignment: .top) {
 				
-				if isInPFPNames {
-					Image("Paulo Sonzzini")
-						.resizable()
-						.scaledToFit()
-						.frame(width: 100, height: 100)
-						.clipShape(Circle())
-				} else {
-					Image(systemName: "person")
-						.resizable()
-						.scaledToFit()
-						.frame(width: 100, height: 100)
-						.foregroundStyle(Color("DarkBlue"))
-				}
+				Image(systemName: "person")
+					.resizable()
+					.scaledToFit()
+					.frame(width: 100, height: 100)
+					.foregroundStyle(Color("NewPurple"))
 				
 				VStack(alignment: .leading) {
 					Text(vm.profiles[0].name ?? "User")
@@ -152,15 +180,17 @@ extension ProfileView {
 			Text("Identificação")
 				.font(.custom("SF Pro", size: 20))
 				.bold()
+				.padding(.top, 53)
 			
 			ForEach(vm.profiles) { profile in
 				ForEach(profile.tags) { tag in
 					Text(tag.name ?? "laur")
 						.padding(.horizontal)
 						.padding(.vertical, 5)
-						.background(Color("DarkBlue"))
+						.background(Color("NewPeach"))
 						.clipShape(RoundedRectangle(cornerRadius: 10))
-					
+						.foregroundStyle(.white)
+						.padding(.trailing, 8)
 				}
 			}
 		}
@@ -172,6 +202,7 @@ extension ProfileView {
 				Text("Meus Eventos")
 					.font(.custom("SF Pro", size: 20))
 					.bold()
+					.padding(.top, 26)
 					.onAppear {
 						yourEventsList = []
 						for event in eventC.events {
@@ -198,7 +229,7 @@ extension ProfileView {
 				Image(systemName: "chevron.left")
 				Text("Início")
 			}
-			.foregroundStyle(Color("DarkBlue"))
+			.foregroundStyle(Color("NewPeach"))
 		})
 	}
 	
@@ -207,7 +238,7 @@ extension ProfileView {
 			sheetIsPresented.toggle()
 		}) {
 			Image(systemName: "ellipsis")
-				.foregroundStyle(Color("DarkBlue"))
+				.foregroundStyle(Color("NewPeach"))
 		}
 	}
 }

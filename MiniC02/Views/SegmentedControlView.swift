@@ -77,6 +77,8 @@ private struct SegmentedControlButtonView: View {
 	 @Binding private var backgroundFrame: CGRect
 	 @Binding private var isScrollable: Bool
 
+	@Environment(\.colorScheme) var colorScheme
+	
 	 private let titles: [String]
 	 let checkIsScrollable: (() -> Void)
 
@@ -100,6 +102,7 @@ private struct SegmentedControlButtonView: View {
 								Text(titles[index])
 									 .frame(height: 42)
 									 .bold()
+									 .foregroundStyle(selectedIndex == index ? Color("NewPurple") : colorScheme == .light ? Color.black : Color.white)
 						  }
 					 }
 					 .buttonStyle(CustomSegmentButtonStyle())
