@@ -56,7 +56,7 @@ class ViewModel: ObservableObject {
 		getController()
 		
 		if controller.isEmpty {
-			firstLoginSheetIsPresented.toggle()
+			firstLoginSheetIsPresented = true
 			
 			let controller = Controller(context: context)
 			controller.firstLogin = true
@@ -66,6 +66,10 @@ class ViewModel: ObservableObject {
 			try? context.save()
 		}
 		
+		guard let controller = controller.first else { return }
+		if controller.firstLogin {
+			firstLoginSheetIsPresented = true
+		}
 		
 	}
 	//
@@ -189,7 +193,7 @@ class ViewModel: ObservableObject {
 			let eventId = event.id
 			for id in ids {
 				if id.id == eventId {
-					print(id.id)
+					print(id.id ?? "ID")
 					context.delete(id)
 					
 					try? context.save()

@@ -5,6 +5,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro.ttf</string>
+		<string>Inter-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

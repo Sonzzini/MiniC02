@@ -20,6 +20,8 @@ struct HomeView: View {
 	@State var firstLoginSheetIsPresented = false
 	let date = Date.now
 	
+	@Environment(\.colorScheme) var colorScheme
+	
 //	init() {
 		//		Aptabase.shared.trackEvent("app_started")
 		//		Aptabase.shared.trackEvent("screen_view", with: ["name": "Settings"])
@@ -35,7 +37,7 @@ struct HomeView: View {
 					Text("Hoje")
 						.font(.largeTitle)
 						.bold()
-						.foregroundStyle(Color("DarkBlue"))
+						.foregroundStyle(colorScheme == .light ? Color.black : Color.white)
 						.padding(.leading)
 					
 					Subtitle
@@ -44,6 +46,8 @@ struct HomeView: View {
 						.padding(.bottom, -8)
 					
 				}
+				.background(Color("NewHomeBackground")
+					.padding(.bottom, -8))
 				
 				
 				
@@ -65,7 +69,7 @@ struct HomeView: View {
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink(destination: EventPostView()) {
 						Image(systemName: "plus")
-							.foregroundStyle(Color("DarkBlue"))
+							.foregroundStyle(Color("NewPeach"))
 					}
 				}
 				
@@ -79,13 +83,20 @@ struct HomeView: View {
 								.frame(width: 25)
 								.clipShape(Circle())
 						} else {
-							Image(systemName: "person")
-								.foregroundColor(Color("DarkBlue"))
+							Image(systemName: "person.fill")
+								.foregroundColor(Color("NewPeach"))
 						}
 						
 					}
 				}
 			}
+			.background(
+				Image(colorScheme == .light ? "homeBackgroundLight" : "homeBackgroundDark")
+					.resizable()
+					.scaledToFill()
+					.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+					.offset(y: UIScreen.main.bounds.height * 0.35)
+			)
 		}
 		
 		.onAppear {
@@ -117,7 +128,7 @@ extension HomeView {
     private var Subtitle: some View {
         HStack {
             Text(date, style: .date)
-                .foregroundStyle(Color("DarkYellow"))
+				  .foregroundStyle(Color("NewPurple"))
                 .font(.system(size: 27, weight: .semibold))
                 .padding(.horizontal)
             

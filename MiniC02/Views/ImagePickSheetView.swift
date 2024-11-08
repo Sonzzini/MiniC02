@@ -19,7 +19,7 @@ struct ImagePickSheetView: View {
 			GeometryReader { g in
 				ScrollView {
 					
-					Text("Selecione uma foto para o seu evento!")
+					Text("Escolha uma imagem:")
 						.font(.title3)
 						.bold()
 						.padding(.top, 20)

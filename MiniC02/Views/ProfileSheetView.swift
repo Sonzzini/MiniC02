@@ -61,11 +61,11 @@ struct ProfileSheetView: View {
 			}
 			.listStyle(.insetGrouped)
 			
-			Text("Sair")
-				.foregroundStyle(Color.red)
-				.onTapGesture {
-					dismiss()
-				}
+//			Text("Sair")
+//				.foregroundStyle(Color.red)
+//				.onTapGesture {
+//					dismiss()
+//				}
 
 			
 		}
